@@ -1,0 +1,91 @@
+.container-admin {
+  display: grid;
+  grid-template-columns: 26rem 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+.header-admin {
+  background-color: var(--color-grey-0);
+  border-bottom: 1px solid var(--color-grey-100);
+  padding: 1.2rem 4.8rem;
+}
+
+.sidebar-admin {
+  background-color: var(--color-grey-0);
+  border-right: 1px solid var(--color-grey-100);
+  padding: 3.2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+
+  grid-row: 1 / -1;
+
+  // SIDEBAR MENU
+  &__logo {
+    //could be an image
+    color: var(--color-brand-600);
+    text-align: center;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      color: var(--color-grey-500);
+      transform: scale(1.2);
+    }
+  }
+
+  &__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  &__li {
+    width: 20rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+
+      color: var(--color-grey-500);
+      font-size: 1.6rem;
+      font-weight: 500;
+      padding: 1.2rem 2.4rem;
+      width: 100%;
+      transition: all 0.3s ease-out;
+    }
+
+    &:hover,
+    &:active,
+    &:active:link,
+    &:active:visited {
+      background-color: var(--color-grey-50);
+      border-radius: var(--border-radius-sm);
+      color: var(--color-grey-800);
+    }
+
+    & svg {
+      color: var(--color-grey-400);
+      height: 2.4rem;
+      width: 2.4rem;
+      transition: all 0.3s ease-out;
+    }
+
+    &:hover svg,
+    &:active svg,
+    &:active:link svg,
+    &:active:visited svg {
+      color: var(--color-brand-600);
+    }
+  }
+}
+
+.main-admin {
+  background-color: var(--color-grey-50);
+  padding: 4rem 4.8rem 6.4rem;
+}

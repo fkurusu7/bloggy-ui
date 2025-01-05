@@ -1,0 +1,9 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition($properties...) {
+  transition: map-get($properties, 0.3s);
+}

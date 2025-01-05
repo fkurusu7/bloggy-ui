@@ -1,0 +1,34 @@
+body {
+  color: var(--color-grey-700);
+  min-height: 100vh;
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+// Form elements
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+
+  &:focus {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: -1px;
+  }
+}
+
+// Disabled states
+:disabled {
+  cursor: not-allowed;
+}
+
+select,
+input {
+  &:disabled {
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-500);
+  }
+}

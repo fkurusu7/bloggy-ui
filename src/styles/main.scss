@@ -9,4 +9,5 @@
 @use 'base/base' as *;
 
 // Blog - Admin & Bloggy
-@use 'blog/admin';
+@use 'blog/admin-layout';
+@use 'blog/admin-blog';

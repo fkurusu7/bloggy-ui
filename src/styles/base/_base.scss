@@ -32,3 +32,17 @@ input {
     color: var(--color-grey-500);
   }
 }
+
+.row {
+  display: flex;
+
+  &-horizontal {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-vertical {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+}

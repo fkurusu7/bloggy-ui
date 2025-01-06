@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 function MeAppLayout() {
   return (
-    <div>
+    <div className="container-me">
       <Outlet />
     </div>
   );

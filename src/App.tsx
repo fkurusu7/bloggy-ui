@@ -5,10 +5,11 @@ import BlogAdmin from './features/blog_admin/BlogAdmin';
 import BlogAdminLayout from './features/blog_admin/BlogAdminLayout';
 import Tmp from './features/blog_admin/Tmp';
 import { Toaster } from 'react-hot-toast';
+import { LightOnDarkProvider } from './context/LightOnDarkMode';
 
 function App() {
   return (
-    <>
+    <LightOnDarkProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<MeAppLayout />}>
@@ -42,7 +43,7 @@ function App() {
           },
         }}
       />
-    </>
+    </LightOnDarkProvider>
   );
 }
 

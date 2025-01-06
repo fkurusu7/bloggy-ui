@@ -1,4 +1,40 @@
 // BlogAdmin
+// Header
+.header-admin {
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__menu {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  &__btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-grey-500);
+    transition: all 0.3s ease-out;
+
+    & svg {
+      height: 2.3rem;
+      width: 2.3rem;
+    }
+
+    &:hover {
+      color: var(--color-grey-800);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      border: none;
+      transform: scale(1.1);
+    }
+  }
+}
 
 // PostsTable
 .blog-table {

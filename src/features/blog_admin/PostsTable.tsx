@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { HiOutlineHandThumbUp, HiOutlineHandThumbDown } from 'react-icons/hi2';
 
 function PostsTable() {
@@ -26,7 +27,10 @@ function PostsTable() {
         <div className="blog-table__body-row_post">Build a Blog with TS </div>
         <div className="blog-table__body-row_tags">css, js, go</div>
         <div className="blog-table__body-row_date">24/dic/24 15:49</div>
-        <div className="blog-table__body-row_draft blog-table__body-row_draft-true">
+        <div
+          className="blog-table__body-row_draft blog-table__body-row_draft-true"
+          onClick={() => toast.error('heeeeelllooo')}
+        >
           <HiOutlineHandThumbUp />
         </div>
       </div>
@@ -35,7 +39,10 @@ function PostsTable() {
         <div className="blog-table__body-row_post">Build a Blog with TS </div>
         <div className="blog-table__body-row_tags">css, js, go</div>
         <div className="blog-table__body-row_date">24/dic/24 15:49</div>
-        <div className="blog-table__body-row_draft blog-table__body-row_draft-true">
+        <div
+          className="blog-table__body-row_draft blog-table__body-row_draft-true"
+          onClick={() => toast.success('heeeeelllooo')}
+        >
           <HiOutlineHandThumbUp />
         </div>
       </div>

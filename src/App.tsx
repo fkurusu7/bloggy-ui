@@ -1,6 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import MeAppLayout from './features/me/MeAppLayout';
 import BlogAdmin from './features/blog_admin/BlogAdmin';
 import BlogAdminLayout from './features/blog_admin/BlogAdminLayout';
 import Tmp from './features/blog_admin/Tmp';
@@ -13,14 +12,14 @@ function App() {
     <LightOnDarkProvider>
       <BrowserRouter>
         <Routes>
-          <Route element={<MeAppLayout />}>
+          <Route element={<Me />}>
             <Route index element={<Navigate replace to={'me'} />} />
-            <Route path="me" element={<Me />} />
+            <Route path="/" element={<Me />} />
           </Route>
           <Route element={<BlogAdminLayout />}>
-            <Route index element={<Navigate replace to={'blog/admin'} />} />
-            <Route path="blog/admin" element={<BlogAdmin />} />
-            <Route path="blog/tmp" element={<Tmp />} />
+            <Route index element={<Navigate replace to={'/blog/admin'} />} />
+            <Route path="/blog/admin" element={<BlogAdmin />} />
+            <Route path="/blog/tmp" element={<Tmp />} />
           </Route>
         </Routes>
       </BrowserRouter>

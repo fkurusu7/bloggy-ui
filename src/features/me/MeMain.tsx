@@ -1,3 +1,4 @@
+import MeBackground from './MeBackground';
 import MeCTA from './MeCTA';
 
 function MeMain() {
@@ -5,9 +6,8 @@ function MeMain() {
     <div className="me-social">
       {/* Buttons to Blog and Resume */}
       <MeCTA />
-
-      <section className="me-projects">projects</section>
-      <section className="me-background">background (skilss, hobbies, stack)</section>
+      <section className="me-projects">WIP projects WIP</section>
+      <MeBackground />
     </div>
   );
 }

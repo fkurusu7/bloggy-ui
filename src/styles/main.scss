@@ -9,11 +9,11 @@
 @use 'base/base' as *;
 
 // Components
-@use 'components/modal';
+@use 'components/modal' as *;
 
 // Blog - Admin & Bloggy
-@use 'blog/admin-layout';
-@use 'blog/admin-blog';
+@use 'blog/admin-layout' as *;
+@use 'blog/admin-blog' as *;
 
 // Me (Personal) Styles
-@use 'me/me-layout';
+@use 'me/me-layout' as *;

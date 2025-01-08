@@ -1,0 +1,30 @@
+.resume {
+  &__layout {
+    background-color: var(--color-grey-100);
+    min-height: 100vh;
+
+    display: grid;
+    --gutter: 4rem;
+    grid-template-columns:
+      minmax(var(--gutter), calc(1fr / 2))
+      1fr
+      2fr
+      minmax(var(--gutter), calc(1fr / 2));
+
+    grid-template-rows: 1fr 3fr;
+  }
+
+  &__introduction {
+    grid-column: 2/4;
+    grid-row: 1/2;
+    background-color: red;
+  }
+  &__options {
+    grid-column: 2 / 3;
+    grid-row: 2/-1;
+  }
+  &__experience {
+    grid-column: 3 / 4;
+    grid-row: 2/-1;
+  }
+}

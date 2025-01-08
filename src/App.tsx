@@ -6,6 +6,7 @@ import Tmp from './features/blog_admin/Tmp';
 import { Toaster } from 'react-hot-toast';
 import { LightOnDarkProvider } from './context/LightOnDarkMode';
 import Me from './features/me/Me';
+import Resume from './features/resume/Resume';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Navigate replace to={'me'} />} />
             <Route path="/" element={<Me />} />
           </Route>
+          <Route path="/resume" element={<Resume />} />
           <Route element={<BlogAdminLayout />}>
             <Route index element={<Navigate replace to={'/blog/admin'} />} />
             <Route path="/blog/admin" element={<BlogAdmin />} />

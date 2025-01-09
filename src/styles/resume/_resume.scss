@@ -12,6 +12,7 @@
     background-color: var(--color-grey-100);
     border-radius: var(--border-radius-lg);
     min-height: 100vh;
+    padding: 4rem 0;
 
     display: grid;
     --gutter: 4rem;
@@ -34,7 +35,7 @@
     gap: 4rem;
 
     border-left: 2rem solid var(--color-grey-400);
-    margin-top: 4rem;
+
     padding-left: 2rem;
     padding: 2rem 0;
     margin-bottom: 5rem;
@@ -83,7 +84,7 @@
     }
   }
 
-  &__options {
+  &__background {
     grid-column: 2 / 3;
     grid-row: 2/-1;
 
@@ -101,16 +102,13 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-
-        & li {
-        }
       }
     }
 
     &-heading {
       margin-bottom: 2rem;
       font-family: 'Sono', sans-serif;
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 500;
       color: var(--color-brand-400);
     }
@@ -118,7 +116,7 @@
     &-link {
       &:link,
       &:visited {
-        color: var(--color-grey-500);
+        color: var(--color-grey-600);
         font-size: 1.6rem;
         transition: all 0.3s ease-out;
 
@@ -131,7 +129,7 @@
       &:active,
       &:active:link,
       &:active:visited {
-        color: var(--color-grey-600);
+        color: var(--color-grey-500);
       }
 
       & svg {
@@ -143,7 +141,20 @@
       &:active svg,
       &:active:link svg,
       &:active:visited svg {
-        color: var(--color-brand-500);
+        color: var(--color-brand-600);
+      }
+    }
+
+    &-stack,
+    &-langs {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--color-grey-600);
+
+      & svg {
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
   }
@@ -151,5 +162,58 @@
   &__experience {
     grid-column: 3 / 4;
     grid-row: 2/-1;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &-jobs,
+    &-education {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    &-job,
+    &-school {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 2rem;
+    }
+    &-where {
+      flex: 0 0 17rem;
+      & h3 {
+        color: var(--color-brand-400);
+        font-size: 1.9rem;
+        font-weight: 500;
+        font-family: 'Sono', sans-serif;
+      }
+      & i {
+        font-size: 1.3rem;
+        color: var(--color-grey-600);
+      }
+      & p {
+        font-size: 1.4rem;
+        color: var(--color-grey-400);
+      }
+    }
+    &-description {
+      flex: 1;
+      & h3 {
+        color: var(--color-grey-600);
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+      & p {
+        font-size: 1.5rem;
+        font-family: 'Poppins', sans-serif;
+      }
+    }
   }
 }

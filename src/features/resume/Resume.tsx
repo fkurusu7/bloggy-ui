@@ -11,14 +11,18 @@ import {
 } from 'react-icons/ai';
 import { FaNodeJs, FaReact, FaDocker, FaCss3 } from 'react-icons/fa';
 import { GiWeightLiftingUp } from 'react-icons/gi';
-import { HiOutlineCodeBracket, HiOutlineFlag } from 'react-icons/hi2';
+import { HiOutlineBackspace, HiOutlineCodeBracket, HiOutlineFlag } from 'react-icons/hi2';
 import { MdOutlineDirectionsBike } from 'react-icons/md';
 import { PiPersonSimpleHike } from 'react-icons/pi';
 import { VscVscodeInsiders } from 'react-icons/vsc';
+import Button from '../../component/Button';
 
 function Resume() {
   return (
     <div className="resume__container">
+      <Button goBack={true} variant="ghost">
+        <HiOutlineBackspace />
+      </Button>
       <div className="resume__layout">
         <div className="resume__introduction">
           <div className="resume__introduction-profile">

@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import { LightOnDarkProvider } from './context/LightOnDarkMode';
 import Me from './features/me/Me';
 import Resume from './features/resume/Resume';
+import UserAuth from './features/auth/UserAuth';
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
             <Route path="/" element={<Me />} />
           </Route>
           <Route path="/resume" element={<Resume />} />
+          {/* AUTH */}
+          <Route path="/signin" element={<UserAuth type="signin" />} />
+          <Route path="/signup" element={<UserAuth type="signup" />} />
+          {/* BLOG */}
           <Route element={<BlogAdminLayout />}>
             <Route index element={<Navigate replace to={'/blog/admin'} />} />
             <Route path="/blog/admin" element={<BlogAdmin />} />

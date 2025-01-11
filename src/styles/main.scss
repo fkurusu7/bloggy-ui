@@ -12,6 +12,9 @@
 @use 'components/button' as *;
 @use 'components/modal' as *;
 
+// Auth
+@use 'auth/auth_layout' as *;
+
 // Blog - Admin & Bloggy
 @use 'blog/admin-layout' as *;
 @use 'blog/admin-blog' as *;

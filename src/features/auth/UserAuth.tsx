@@ -6,7 +6,7 @@ import {
   HiOutlineKey,
 } from 'react-icons/hi2';
 import Button from '../../component/Button';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -27,12 +27,15 @@ function UserAuth({ type }: UserAuthProps) {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (ev: any) => {
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+  };
+
   return (
     <div className="auth__container">
       <div className="auth__form-container">
@@ -87,7 +90,7 @@ function UserAuth({ type }: UserAuthProps) {
             />
           </div>
           <div className="auth__button-container">
-            <Button type="submit" size="small">
+            <Button type="submit" size="small" variant="form">
               {type === 'signin' ? 'Sign in' : 'Sign up'}
             </Button>
           </div>

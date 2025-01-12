@@ -2,6 +2,7 @@
   border: 1px solid transparent;
   outline: none;
 
+  // SIZEs
   &.small {
     padding: 1rem 3rem;
     font-size: 1.5rem;
@@ -19,6 +20,7 @@
   //   outline: 1px solid var(--color-brand-200);
   // }
 
+  // PSEUDOCLASSES
   &:active {
     outline: none;
   }
@@ -33,6 +35,7 @@
     opacity: 0.9;
   }
 
+  // VARIANTS
   &.primary {
     background-color: var(--color-grey-400);
     color: var(--color-grey-600);
@@ -54,6 +57,19 @@
       height: 3.5rem;
     }
   }
+  &.form {
+    background-color: transparent;
+    border-radius: var(--border-radius-md);
+    color: var(--color-grey-500);
+    outline: 2px solid var(--color-grey-100);
+    width: 100%;
+
+    &:active {
+      outline: 2px solid var(--color-brand-600);
+      transform: scale(0.98);
+    }
+  }
+  // VARIANTS
 
   & .spin {
     animation: spinLoader 1s linear infinite;

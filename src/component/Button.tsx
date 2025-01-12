@@ -38,7 +38,8 @@ function Button({
     <button
       type={type}
       disabled={disabled}
-      onClick={handleClick}
+      {...(type !== 'submit' && { onClick: handleClick })}
+      // onClick={type !== "submit" ? handleClick : undefined}
       className={`btn ${size} ${variant} ${goBack ? 'float' : ''}`}
     >
       {isLoading ? <FiLoader className="spin" /> : children}

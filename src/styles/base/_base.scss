@@ -13,11 +13,6 @@ textarea,
 select {
   font: inherit;
   color: inherit;
-
-  &:focus {
-    outline: 2px solid var(--color-brand-600);
-    outline-offset: -1px;
-  }
 }
 
 // Disabled states

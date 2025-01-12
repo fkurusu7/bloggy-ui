@@ -8,9 +8,9 @@
 
   &__form-container {
     position: absolute;
-    top: 10%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -10%);
+    transform: translate(-50%, -30%);
 
     display: flex;
     flex-direction: column;
@@ -26,9 +26,87 @@
   }
 
   &__form {
-    border: 1px solid var(--color-grey-100);
+    background-color: inherit;
+    border: 3px solid var(--color-grey-100);
     border-radius: var(--border-radius-md);
-    min-width: 50rem;
-    padding: 2rem;
+    min-width: 30rem;
+    padding: 3rem 5rem;
+    transition: all 0.3s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+
+    &:hover {
+      border-color: var(--color-brand-600);
+    }
+  }
+
+  &__button-container,
+  &__input-container {
+    // border: 1px solid red;
+    min-height: 6rem;
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__input {
+    &-box {
+      background-color: var(--color-grey-50);
+      border: none;
+      border-radius: var(--border-radius-md);
+      color: var(--color-grey-500);
+      font-size: 1.5rem;
+      height: 4rem;
+      max-width: 25rem;
+      outline: 2px solid var(--color-grey-100);
+      padding: 1rem 4rem;
+      transition: all 0.3s ease-out;
+
+      &::placeholder {
+        color: var(--color-grey-300);
+        font-size: 1.4rem;
+      }
+
+      &:focus {
+        outline: 2px solid var(--color-brand-600);
+        outline-offset: -1px;
+
+        & + svg {
+          color: var(--color-brand-600);
+        }
+      }
+    }
+    &-icon {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+
+      height: 2.2rem;
+      width: 2.2rem;
+      color: var(--color-grey-400);
+
+      &--password {
+        left: auto;
+        right: 1rem;
+
+        cursor: pointer;
+        height: 1.8rem;
+        transition: all 1s ease-out;
+        width: 1.8rem;
+
+        &--hidden {
+          display: none;
+          visibility: hidden;
+        }
+      }
+    }
   }
 }

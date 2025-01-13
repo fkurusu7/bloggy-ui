@@ -83,6 +83,20 @@
           color: var(--color-brand-600);
         }
       }
+
+      &--error {
+        outline: 2px solid var(--color-red-700);
+
+        & + svg {
+          color: var(--color-red-700);
+        }
+      }
+    }
+    &--error {
+      align-self: flex-start;
+      font-size: 1.3rem;
+      color: var(--color-red-700);
+      margin: 0.5rem;
     }
     &-icon {
       position: absolute;

@@ -8,6 +8,7 @@ import { LightOnDarkProvider } from './context/LightOnDarkMode';
 import Me from './features/me/Me';
 import Resume from './features/resume/Resume';
 import UserAuth from './features/auth/UserAuth';
+import PrivateRoute from './features/auth/PrivateRoute';
 
 function App() {
   return (
@@ -23,10 +24,12 @@ function App() {
           <Route path="/signin" element={<UserAuth type="signin" />} />
           <Route path="/signup" element={<UserAuth type="signup" />} />
           {/* BLOG */}
-          <Route element={<BlogAdminLayout />}>
-            <Route index element={<Navigate replace to={'/blog/admin'} />} />
-            <Route path="/blog/admin" element={<BlogAdmin />} />
-            <Route path="/blog/tmp" element={<Tmp />} />
+          <Route element={<PrivateRoute />}>
+            <Route element={<BlogAdminLayout />}>
+              <Route index element={<Navigate replace to={'/blog/admin'} />} />
+              <Route path="/blog/admin" element={<BlogAdmin />} />
+              <Route path="/blog/tmp" element={<Tmp />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

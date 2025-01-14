@@ -11,6 +11,16 @@ import {
 import Button from '../../component/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../context/useContextTypes';
+import {
+  signinFailure,
+  signinStart,
+  signinSuccess,
+  signupFailure,
+  signupStart,
+  signupSuccess,
+} from '../../context/userSlice';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -64,11 +74,14 @@ function UserAuth({ type }: UserAuthProps) {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<FormError[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const fullnameRef = useRef<HTMLInputElement>(null);
+
+  // USER CONTEXT
+  const dispatch = useDispatch();
+  const { isLoading, error: apiError } = useAppSelector((state) => state.user);
 
   // Function to focus on the first field with error
   const focusOnError = (errorFields: FormError[]) => {
@@ -108,7 +121,8 @@ function UserAuth({ type }: UserAuthProps) {
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     try {
-      setIsLoading(true);
+      if (type === 'signin') dispatch(signinStart());
+      else dispatch(signupStart());
       // Validate Fields
       const schema = type === 'signin' ? signinSchema : signupSchema;
       const result = schema.parse(formData);
@@ -125,9 +139,11 @@ function UserAuth({ type }: UserAuthProps) {
       const jsonData = await response.json();
       if (response.ok) {
         if (type === 'signin') {
+          dispatch(signinSuccess(jsonData));
           toast.success('Signed in successfully!');
           navigate('/blog/admin');
         } else {
+          dispatch(signupSuccess(jsonData));
           toast.success(`User ${jsonData.data.email} created successfully! Please sign in.`);
           navigate('/signin');
         }
@@ -147,24 +163,26 @@ function UserAuth({ type }: UserAuthProps) {
         console.log(formErrors);
         focusOnError(formErrors);
       } else if (error instanceof ApiError) {
-        toast.error(error.message);
         if (type === 'signup') {
+          dispatch(signupFailure(error.message));
           fullnameRef.current?.focus();
         } else {
+          dispatch(signinFailure(error.message));
           emailRef.current?.focus();
         }
+        toast.error(apiError);
       } else {
         // Handle unexpected errors
-        console.error('Unexpected error:', error);
-        toast.error('An unexpected error occurred. Please try again later.');
         if (type === 'signup') {
+          dispatch(signupFailure(error));
           fullnameRef.current?.focus();
         } else {
+          dispatch(signinFailure(error));
           emailRef.current?.focus();
         }
+        console.error('Unexpected error:', apiError);
+        toast.error('An unexpected error occurred. Please try again later.');
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 

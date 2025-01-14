@@ -9,7 +9,7 @@ import {
 } from 'react-icons/hi2';
 
 import Button from '../../component/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 type UserAuthProps = {
@@ -94,8 +94,6 @@ function UserAuth({ type }: UserAuthProps) {
   };
 
   const getFieldError = (fieldName: string): string | undefined => {
-    console.log(fieldName, errors);
-
     return errors.find((error) => error.field === fieldName)?.message;
   };
 
@@ -125,11 +123,12 @@ function UserAuth({ type }: UserAuthProps) {
       });
 
       const jsonData = await response.json();
-      console.log(jsonData);
       if (response.ok) {
         if (type === 'signin') {
-          navigate('/blog');
+          toast.success('Signed in successfully!');
+          navigate('/blog/admin');
         } else {
+          toast.success(`User ${jsonData.data.email} created successfully! Please sign in.`);
           navigate('/signin');
         }
         clearForm();
@@ -240,6 +239,23 @@ function UserAuth({ type }: UserAuthProps) {
               {type === 'signin' ? 'Sign in' : 'Sign up'}
             </Button>
           </div>
+
+          <hr className="divider" />
+          {type === 'signin' ? (
+            <div className="auth__links-container">
+              <p className="auth__links-p">Don't have an account?</p>
+              <Link to="/signup" className="auth__links-link">
+                Sign up
+              </Link>
+            </div>
+          ) : (
+            <div className="auth__links-container">
+              <p className="auth__links-p">Already have an account?</p>
+              <Link to="/signin" className="auth__links-link">
+                Sign in
+              </Link>
+            </div>
+          )}
         </form>
       </div>
     </div>

@@ -45,7 +45,8 @@
   }
 
   &__button-container,
-  &__input-container {
+  &__input-container,
+  &__links-container {
     // border: 1px solid red;
     min-height: 6rem;
     position: relative;
@@ -120,6 +121,29 @@
           display: none;
           visibility: hidden;
         }
+      }
+    }
+  }
+
+  &__links {
+    &-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: fit-content;
+    }
+    &-p {
+      color: var(--color-grey-400);
+      font-size: 1.2rem;
+    }
+
+    &-link {
+      &:link,
+      &:visited {
+        border-bottom: 1px solid currentColor;
+        color: var(--color-grey-500);
+        font-size: 1.3rem;
+        letter-spacing: 0.15rem;
       }
     }
   }

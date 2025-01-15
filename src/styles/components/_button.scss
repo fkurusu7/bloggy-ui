@@ -24,13 +24,11 @@
   &:active {
     outline: none;
   }
-
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
     pointer-events: none;
   }
-
   &:hover {
     opacity: 0.9;
   }
@@ -40,10 +38,10 @@
     background-color: var(--color-grey-400);
     color: var(--color-grey-600);
   }
-  &.secondary {
-  }
-  &.danger {
-  }
+  // &.secondary {
+  // }
+  // &.danger {
+  // }
   &.ghost {
     background-color: transparent;
     color: var(--color-brand-400);
@@ -67,6 +65,33 @@
     &:active {
       outline: 2px solid var(--color-brand-600);
       transform: scale(0.98);
+    }
+  }
+
+  &.icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-grey-500);
+    transition: all 0.3s ease-out;
+
+    // override:
+    padding: 0;
+    font-size: 0;
+    & svg {
+      height: 2.3rem;
+      width: 2.3rem;
+    }
+
+    &:hover {
+      color: var(--color-grey-800);
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+      border: none;
+      transform: scale(1.1);
     }
   }
   // VARIANTS

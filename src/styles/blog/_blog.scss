@@ -1,15 +1,16 @@
+// LAYOUT
 .blog {
   &__container {
     background-color: var(--color-grey-100);
     min-height: 100vh;
 
     display: grid;
-    grid-template-columns: minmax(1rem, 10rem) repeat(3, 1fr) minmax(1rem, 10rem);
-    grid-template-rows: 10rem 1fr 5rem;
+    grid-template-columns: 20rem 3fr 20rem;
+    grid-template-rows: 7rem 1fr 5rem;
   }
 
   &__header {
-    grid-column: 2 / 5;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
   }
   &__main {
@@ -17,7 +18,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
 
-    grid-column: 2 / 5;
+    grid-column: 2 / 3;
     grid-row: 2 / 3;
 
     &-posts {
@@ -28,7 +29,36 @@
     }
   }
   &__footer {
-    grid-column: 2 / 5;
+    grid-column: 2 / 3;
     grid-row: 3 / -1;
+  }
+}
+
+// ELEMENTS
+.blog {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-logo > a {
+      &:link,
+      &:visited {
+        color: var(--color-grey-500);
+        transition: all 0.3s ease-out;
+      }
+
+      &:hover,
+      &:active {
+        color: var(--color-brand-400);
+        transform: scale(1.1);
+      }
+    }
+
+    &-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
   }
 }

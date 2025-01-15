@@ -29,7 +29,7 @@ function App() {
           <Route path="/signup" element={<UserAuth type="signup" />} />
           {/* BLOG  */}
           <Route element={<BlogAppLayout />}>
-            <Route path="/blog/posts" element={<h1>POSTSSSSS</h1>} />
+            <Route path="/blog" element={<h1>POSTSSSSS</h1>} />
             <Route path="/blog/posts/:postId" element={<h1>POST number</h1>} />
           </Route>
           {/* BLOG ADMIN */}

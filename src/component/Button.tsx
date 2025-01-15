@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'form';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'form' | 'icon';
 type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonSize = 'small' | 'medium' | 'large';
 

@@ -15,10 +15,13 @@ function App() {
     <LightOnDarkProvider>
       <BrowserRouter>
         <Routes>
-          <Route element={<Me />}>
+          {/* <Route element={<Me />}>
             <Route index element={<Navigate replace to={'me'} />} />
             <Route path="/" element={<Me />} />
           </Route>
+          <Route path="/resume" element={<Resume />} /> */}
+          <Route path="/" element={<Me />} />
+          <Route path="/me" element={<Me />} />
           <Route path="/resume" element={<Resume />} />
           {/* AUTH */}
           <Route path="/signin" element={<UserAuth type="signin" />} />

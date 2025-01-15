@@ -9,6 +9,7 @@ import Me from './features/me/Me';
 import Resume from './features/resume/Resume';
 import UserAuth from './features/auth/UserAuth';
 import PrivateRoute from './features/auth/PrivateRoute';
+import BlogAppLayout from './features/blog/BlogAppLayout';
 
 function App() {
   return (
@@ -26,7 +27,12 @@ function App() {
           {/* AUTH */}
           <Route path="/signin" element={<UserAuth type="signin" />} />
           <Route path="/signup" element={<UserAuth type="signup" />} />
-          {/* BLOG */}
+          {/* BLOG  */}
+          <Route element={<BlogAppLayout />}>
+            <Route path="/blog/posts" element={<h1>POSTSSSSS</h1>} />
+            <Route path="/blog/posts/:postId" element={<h1>POST number</h1>} />
+          </Route>
+          {/* BLOG ADMIN */}
           <Route element={<PrivateRoute />}>
             <Route element={<BlogAdminLayout />}>
               <Route index element={<Navigate replace to={'/blog/admin'} />} />

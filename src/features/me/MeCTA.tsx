@@ -9,7 +9,7 @@ function MeCTA() {
         <Link to={'/resume'} className="me-social__cta-link">
           <HiOutlineDocumentText /> <span>See my Resume</span>
         </Link>
-        <Link to={'/blog/admin'} className="me-social__cta-link">
+        <Link to={'/blog'} className="me-social__cta-link">
           <HiOutlineNewspaper />
           <span>Go to my Blog</span>
         </Link>

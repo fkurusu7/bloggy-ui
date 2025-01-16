@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes } from 'react';
 import { FiLoader } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'form' | 'icon';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'form' | 'icon' | 'linkicon';
 type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonSize = 'small' | 'medium' | 'large';
 
@@ -13,6 +13,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   goBack?: boolean;
   isLoading?: boolean;
   fullWidth?: boolean;
+  to?: string;
 }
 
 function Button({
@@ -24,6 +25,7 @@ function Button({
   disabled = false,
   goBack = false,
   children,
+  to = null,
 }: ButtonProps) {
   const navigate = useNavigate();
 
@@ -34,6 +36,14 @@ function Button({
       onClick(ev);
     }
   };
+
+  if (variant === 'linkicon' && to) {
+    return (
+      <Link to={to} className={`btn ${variant}`}>
+        {children}
+      </Link>
+    );
+  }
   return (
     <button
       type={type}

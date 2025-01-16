@@ -1,31 +1,10 @@
 import { HiOutlineLogout } from 'react-icons/hi';
 import { HiOutlineUser } from 'react-icons/hi2';
 import LightOnDarkToggle from '../../component/LightOnDarkToggle';
-import { useAppDipatch } from '../../context/useContextTypes';
-import { signoutSuccess } from '../../context/userSlice';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useAuth } from '../../hooks/useAuth';
 
 function BlogAdminHeader() {
-  const navigate = useNavigate();
-
-  const dispatch = useAppDipatch();
-
-  const handleSignout = async () => {
-    try {
-      const response = await fetch('/api/auth/signout', {
-        method: 'POST',
-      });
-      if (response.ok) {
-        dispatch(signoutSuccess());
-        toast.success('Signed out successfully');
-        navigate('/', { replace: true });
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error('Error Signing out');
-    }
-  };
+  const { handleSignout } = useAuth();
 
   return (
     <header className="header-admin">

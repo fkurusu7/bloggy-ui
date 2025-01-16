@@ -87,6 +87,9 @@
     &:hover {
       color: var(--color-grey-800);
     }
+    &:hover > svg {
+      transform: scale(0.95);
+    }
 
     &:active,
     &:focus {

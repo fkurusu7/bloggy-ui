@@ -23,6 +23,7 @@
 
 // Blog
 @use 'blog/blog' as *;
+@use 'blog/posts' as *;
 
 // Blog - Admin & Bloggy
 @use 'blog/admin-layout' as *;

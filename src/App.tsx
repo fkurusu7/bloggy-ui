@@ -10,6 +10,7 @@ import Resume from './features/resume/Resume';
 import UserAuth from './features/auth/UserAuth';
 import PrivateRoute from './features/auth/PrivateRoute';
 import BlogAppLayout from './features/blog/BlogAppLayout';
+import Posts from './features/blog/Posts';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/signup" element={<UserAuth type="signup" />} />
           {/* BLOG  */}
           <Route element={<BlogAppLayout />}>
-            <Route path="/blog" element={<h1>POSTSSSSS</h1>} />
+            <Route path="/blog" element={<Posts />} />
             <Route path="/blog/posts/:postId" element={<h1>POST number</h1>} />
           </Route>
           {/* BLOG ADMIN */}

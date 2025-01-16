@@ -13,7 +13,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   goBack?: boolean;
   isLoading?: boolean;
   fullWidth?: boolean;
-  to?: string;
+  to?: string | null;
 }
 
 function Button({

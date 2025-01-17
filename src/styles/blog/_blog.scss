@@ -141,13 +141,11 @@
     }
 
     &-post {
-      &-title {
-        font-size: 3rem;
-        font-weight: 100;
-        font-family: 'Sono', sans-serif;
-      }
+      grid-row: 2 / -1;
+      grid-column: 1 / 2;
+
       &-content {
-        padding: 2rem 0;
+        text-align: justify;
       }
     }
 

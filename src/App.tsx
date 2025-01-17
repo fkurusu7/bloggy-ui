@@ -34,7 +34,7 @@ function App() {
             <Route path="/blog" element={<Posts />} />
             <Route path="/blog/search/:searchTerm" element={<Posts />} />
             <Route path="/blog/tag/:tag" element={<Posts />} />
-            <Route path="/blog/posts/:postId" element={<Post />} />
+            <Route path="/blog/posts/:slug" element={<Post />} />
           </Route>
           {/* BLOG ADMIN */}
           <Route element={<PrivateRoute />}>

@@ -15,7 +15,8 @@
   }
   &__main {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 4rem 1fr;
     gap: 2rem;
 
     margin-top: 2rem;
@@ -66,7 +67,17 @@
   }
 
   &__main {
+    &-title {
+      font-size: 3rem;
+      font-weight: 100;
+      font-family: 'Sono', sans-serif;
+
+      grid-row: 1 / 2;
+    }
     &-posts {
+      grid-row: 2 / -1;
+      grid-column: 1 / 2;
+
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -126,6 +137,83 @@
 
         display: flex;
         gap: 1rem;
+      }
+    }
+
+    // Search and tags = ST
+    &-st {
+      grid-row: 2 / -1;
+      grid-column: 2 / -1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 3rem;
+
+      &-search {
+        position: relative;
+
+        & > input {
+          background-color: transparent;
+          border: none;
+          border-radius: var(--border-radius-md);
+          box-shadow: var(--shadow-lg);
+          color: var(--color-grey-500);
+          font-size: 1.5rem;
+          outline: 2px solid var(--color-grey-200);
+          padding: 0.7rem 3.1rem;
+          transition: all 0.3s ease-out;
+          width: 100%;
+
+          &::placeholder {
+            color: var(--color-grey-400);
+            font-size: 1.4rem;
+          }
+          &:hover {
+            outline-color: var(--color-brand-500);
+          }
+          &:hover + svg {
+            color: var(--color-brand-500);
+          }
+        }
+
+        & > svg {
+          color: var(--color-grey-200);
+          height: 2.1rem;
+          position: absolute;
+          top: 0.9rem;
+          left: 0.5rem;
+          width: 2.1rem;
+          transition: all 0.3s ease-out;
+        }
+      }
+
+      &-tags {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      &-tag {
+        &:link,
+        &:visited {
+          border-radius: var(--border-radius-md);
+          box-shadow: var(--shadow-lg);
+          color: var(--color-grey-400);
+          font-family: 'Sono', sans-serif;
+          font-size: 1.4rem;
+          outline: 2px solid var(--color-grey-200);
+          padding: 0.5rem 1rem;
+          transition: all 0.3s ease-out;
+        }
+        transition: all 0.3s ease-out;
+
+        &:hover,
+        &:active {
+          outline-color: var(--color-brand-500);
+        }
       }
     }
   }

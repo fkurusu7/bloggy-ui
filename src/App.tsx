@@ -11,6 +11,7 @@ import UserAuth from './features/auth/UserAuth';
 import PrivateRoute from './features/auth/PrivateRoute';
 import BlogAppLayout from './features/blog/BlogAppLayout';
 import Posts from './features/blog/Posts';
+import Post from './features/blog/Post';
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
           {/* BLOG  */}
           <Route element={<BlogAppLayout />}>
             <Route path="/blog" element={<Posts />} />
-            <Route path="/blog/posts/:postId" element={<h1>POST number</h1>} />
+            <Route path="/blog/search/:searchTerm" element={<Posts />} />
+            <Route path="/blog/tag/:tag" element={<Posts />} />
+            <Route path="/blog/posts/:postId" element={<Post />} />
           </Route>
           {/* BLOG ADMIN */}
           <Route element={<PrivateRoute />}>

@@ -1,11 +1,12 @@
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import Button from '../../component/Button';
 import { useAppSelector } from '../../context/useContextTypes';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Posts() {
-  // useEffect to fetchPosts
   const { currentUser } = useAppSelector((state) => state.user);
+
+  const { searchTerm, tagName } = useParams();
 
   return (
     // Map thorugh Posts!

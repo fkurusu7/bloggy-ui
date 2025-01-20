@@ -12,8 +12,6 @@ function BlogHeader() {
 
   const { currentUser } = useAppSelector((state) => state.user);
 
-  console.log(currentUser);
-
   return (
     <header className="blog__header">
       <div className="blog__header-logo">

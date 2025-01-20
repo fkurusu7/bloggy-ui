@@ -11,19 +11,25 @@ function Posts() {
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [error, setError] = useState(null);
 
-  const { searchTerm, tagName } = useParams();
-
+  const { searchTerm, tag } = useParams();
+  console.log('searchTerm', searchTerm, 'tag', tag);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setIsLoadingPosts(true);
         setError(null);
+
         let urlString = '/api/blog/getPosts';
+        const params = new URLSearchParams();
         if (searchTerm) {
-          urlString = `?searchTerm=${searchTerm}`;
-        } else if (tagName) {
-          urlString = `?tag=${tagName}`;
+          params.append('searchTerm', searchTerm);
+        } else if (tag) {
+          params.append('tag', tag);
         }
+        const queryStr = params.toString();
+        if (queryStr) urlString += `?${queryStr}`;
+        console.log(urlString);
+
         const response = await fetch(urlString);
 
         if (!response.ok && response.status !== 404) {
@@ -31,7 +37,7 @@ function Posts() {
         }
 
         const jsonRes = await response.json();
-        console.log(jsonRes);
+        console.log(jsonRes.data);
         setPosts(jsonRes.data);
       } catch (error: any) {
         setError(error.message);
@@ -41,11 +47,11 @@ function Posts() {
     };
 
     fetchPosts();
-  }, []);
+  }, [tag, searchTerm]);
 
   const getTitle = () => {
     if (searchTerm) return `Search by ${searchTerm}`;
-    else if (tagName) return `Search by Tag: ${searchTerm}`;
+    else if (tag) return `Search by Tag: ${tag}`;
     else return 'Latest Posts';
   };
 

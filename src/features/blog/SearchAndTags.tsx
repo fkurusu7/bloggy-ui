@@ -39,7 +39,7 @@ function SearchAndTags() {
         <input type="text" placeholder="Search for a post" />
         <HiOutlineSearch />
       </div>
-      <div className="blog__main-st-tags">
+      <div className="blog__main-tags">
         {isLoadingTags ? (
           <FiLoader className="spin" />
         ) : errorTags ? (
@@ -47,7 +47,7 @@ function SearchAndTags() {
         ) : (
           tags.map((tag: any) => {
             return (
-              <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__main-st-tag">
+              <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__main-tag">
                 {tag.name}
               </Link>
             );

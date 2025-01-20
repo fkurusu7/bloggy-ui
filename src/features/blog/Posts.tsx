@@ -12,7 +12,7 @@ function Posts() {
   const [error, setError] = useState(null);
 
   const { searchTerm, tag } = useParams();
-  console.log('searchTerm', searchTerm, 'tag', tag);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -28,7 +28,6 @@ function Posts() {
         }
         const queryStr = params.toString();
         if (queryStr) urlString += `?${queryStr}`;
-        console.log(urlString);
 
         const response = await fetch(urlString);
 
@@ -37,7 +36,7 @@ function Posts() {
         }
 
         const jsonRes = await response.json();
-        console.log(jsonRes.data);
+
         setPosts(jsonRes.data);
       } catch (error: any) {
         setError(error.message);
@@ -77,6 +76,17 @@ function Posts() {
                   <h2>{post.title}</h2> <span>Jun, 23</span>
                 </div>
                 <p className="blog__main-posts-post-description">{post.description}</p>
+
+                <div className="blog__main-tags">
+                  {post.tags.map((tag: any) => {
+                    return (
+                      <p key={tag.slug} className="blog__main-tag">
+                        {tag.name}
+                      </p>
+                    );
+                  })}
+                </div>
+
                 {currentUser && (
                   <div className="blog__main-posts-post-actions">
                     <Button variant="icon">

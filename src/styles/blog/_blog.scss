@@ -82,8 +82,10 @@
       flex-direction: column;
       gap: 1rem;
 
+      // Many psots in the Posts component - Link
       &-post {
-        display: block;
+        display: flex;
+        flex-direction: column;
         border: 2px solid var(--color-grey-200);
         border-radius: var(--border-radius-md);
         box-shadow: var(--shadow-sm);
@@ -137,9 +139,26 @@
           display: flex;
           gap: 1rem;
         }
+
+        & .blog__main-tags {
+          margin-top: auto;
+
+          display: flex;
+          justify-content: flex-end;
+
+          & > p {
+            font-size: 1.05rem;
+
+            &:hover,
+            &:active {
+              outline-color: var(--color-brand-500);
+            }
+          }
+        }
       }
     }
 
+    // One POST in the slug post
     &-post {
       grid-row: 2 / -1;
       grid-column: 1 / 2;
@@ -197,32 +216,34 @@
           transition: all 0.3s ease-out;
         }
       }
+    }
 
-      &-tags {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
+    // TAGs - Posts and Search components
+    &-tags {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
-      &-tag {
-        &:link,
-        &:visited {
-          border-radius: var(--border-radius-md);
-          box-shadow: var(--shadow-lg);
-          color: var(--color-grey-400);
-          font-family: 'Sono', sans-serif;
-          font-size: 1.4rem;
-          outline: 2px solid var(--color-grey-200);
-          padding: 0.5rem 1rem;
-          transition: all 0.3s ease-out;
-        }
+    &-tag {
+      &,
+      &:link,
+      &:visited {
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--shadow-lg);
+        color: var(--color-grey-400);
+        font-family: 'Sono', sans-serif;
+        font-size: 1.4rem;
+        outline: 2px solid var(--color-grey-200);
+        padding: 0.5rem 1rem;
         transition: all 0.3s ease-out;
+      }
+      transition: all 0.3s ease-out;
 
-        &:hover,
-        &:active {
-          outline-color: var(--color-brand-500);
-        }
+      &:hover,
+      &:active {
+        outline-color: var(--color-brand-500);
       }
     }
   }

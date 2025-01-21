@@ -58,14 +58,13 @@ function Posts() {
     // Map thorugh Posts!
     <>
       <h2 className="blog__main-title">{getTitle()}</h2>{' '}
-      {/* Title Will be passed when loading posts or search term or * */}
-      {isLoadingPosts ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <section className="blog__main-posts">
-          {posts.map((post: any) => {
+      <section className="blog__main-posts">
+        {isLoadingPosts ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          posts.map((post: any) => {
             return (
               <Link
                 to={`/blog/posts/${post.slug}`}
@@ -99,9 +98,9 @@ function Posts() {
                 )}
               </Link>
             );
-          })}
-        </section>
-      )}
+          })
+        )}
+      </section>
     </>
   );
 }

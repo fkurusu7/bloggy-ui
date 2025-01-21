@@ -4,6 +4,7 @@ import { useAppSelector } from '../../context/useContextTypes';
 import { Link, useParams } from 'react-router-dom';
 
 import { useBlogPosts } from '../../hooks/useBlogPosts';
+import { formatShortDate } from '../../utils/helpers';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
@@ -22,7 +23,7 @@ function Posts() {
         <p>{error}</p>
       ) : (
         <section className="blog__main-posts">
-          {posts.map((post: any) => {
+          {posts.map((post) => {
             return (
               <Link
                 to={`/blog/posts/${post.slug}`}
@@ -30,7 +31,7 @@ function Posts() {
                 key={post.slug}
               >
                 <div className="blog__main-posts-post-heading">
-                  <h2>{post.title}</h2> <span>Jun, 23</span>
+                  <h2>{post.title}</h2> <span>{formatShortDate(post.createdAt)}</span>
                 </div>
                 <p className="blog__main-posts-post-description">{post.description}</p>
 

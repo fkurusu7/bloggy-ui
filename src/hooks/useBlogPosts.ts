@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 interface Post {
   slug: string;
   title: string;
+  banner: string;
   description: string;
   tags: Array<{ slug: string; name: string }>;
-  date: string;
+  createdAt: string;
   draft: boolean;
 }
 

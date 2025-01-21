@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { HiOutlineHandThumbUp, HiOutlineHandThumbDown } from 'react-icons/hi2';
 
 function PostsTable() {
+  const [posts, setposts] = useState(second);
+
   return (
     <div className="blog-table" role="table">
       <div className="blog-table__header" role="row">

@@ -2,7 +2,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { HiOutlineCog6Tooth } from 'react-icons/hi2';
 import { HiOutlineNewspaper } from 'react-icons/hi2';
-import { HiOutlinePower } from 'react-icons/hi2';
 
 function BlogAdminSidebar() {
   return (
@@ -28,12 +27,6 @@ function BlogAdminSidebar() {
             <NavLink to={'blog/admin'} className="sidebar-admin__link">
               <HiOutlineCog6Tooth />
               <span>Settings</span>
-            </NavLink>
-          </li>
-          <li className="sidebar-admin__li">
-            <NavLink to={'blog/tmp'} className="sidebar-admin__link">
-              <HiOutlinePower />
-              <span>Logout</span>
             </NavLink>
           </li>
         </ul>

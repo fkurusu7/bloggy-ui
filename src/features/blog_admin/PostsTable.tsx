@@ -1,6 +1,12 @@
-import { HiOutlineHandThumbUp, HiOutlineHandThumbDown } from 'react-icons/hi2';
+import {
+  HiOutlineTrash,
+  HiOutlinePencilSquare,
+  HiOutlineXCircle,
+  HiOutlineCheckCircle,
+} from 'react-icons/hi2';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatDateSimple } from '../../utils/helpers';
+import Button from '../../component/Button';
 
 function PostsTable() {
   const { posts, isLoadingPosts, error } = useBlogPosts();
@@ -13,7 +19,7 @@ function PostsTable() {
         <div>Post</div>
         <div>Tags</div>
         <div>Date</div>
-        <div>Draft</div>
+        <div>Published</div>
         <div></div>
       </div>
       {/* TABLE BODY - MAP ==> Post Data */}
@@ -31,8 +37,18 @@ function PostsTable() {
                 {post.tags.map((tag) => tag.name).join(', ')}
               </div>
               <div className="blog-table__body-row_date">{formatDateSimple(post.createdAt)}</div>
-              <div className="blog-table__body-row_draft blog-table__body-row_draft-false">
-                {post.draft ? <HiOutlineHandThumbUp /> : <HiOutlineHandThumbDown />}
+              <div
+                className={`blog-table__body-row_draft ${post.draft ? 'blog-table__body-row_draft-false' : 'blog-table__body-row_draft-true'}`}
+              >
+                {post.draft ? <HiOutlineXCircle /> : <HiOutlineCheckCircle />}
+              </div>
+              <div>
+                <Button variant="icon">
+                  <HiOutlineTrash color="var(--color-red-700)" />
+                </Button>
+                <Button variant="icon">
+                  <HiOutlinePencilSquare color="var(--color-green-700)" />
+                </Button>
               </div>
             </div>
           );

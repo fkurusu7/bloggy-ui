@@ -3,56 +3,13 @@ import Button from '../../component/Button';
 import { useAppSelector } from '../../context/useContextTypes';
 import { Link, useParams } from 'react-router-dom';
 
-import { useEffect, useState } from 'react';
+import { useBlogPosts } from '../../hooks/useBlogPosts';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
-  const [posts, setPosts] = useState([]);
-  const [isLoadingPosts, setIsLoadingPosts] = useState(false);
-  const [error, setError] = useState(null);
-
   const { searchTerm, tag } = useParams();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setIsLoadingPosts(true);
-        setError(null);
-
-        let urlString = '/api/blog/getPosts';
-        const params = new URLSearchParams();
-        if (searchTerm) {
-          params.append('searchTerm', searchTerm);
-        } else if (tag) {
-          params.append('tag', tag);
-        }
-        const queryStr = params.toString();
-        if (queryStr) urlString += `?${queryStr}`;
-
-        const response = await fetch(urlString);
-
-        if (!response.ok && response.status !== 404) {
-          throw new Error('Error fetching posts');
-        }
-
-        const jsonRes = await response.json();
-
-        setPosts(jsonRes.data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setIsLoadingPosts(false);
-      }
-    };
-
-    fetchPosts();
-  }, [tag, searchTerm]);
-
-  const getTitle = () => {
-    if (searchTerm) return `Search by ${searchTerm}`;
-    else if (tag) return `Search by Tag: ${tag}`;
-    else return 'Latest Posts';
-  };
+  const { posts, isLoadingPosts, error, getTitle } = useBlogPosts({ searchTerm, tag });
 
   return (
     // Map thorugh Posts!

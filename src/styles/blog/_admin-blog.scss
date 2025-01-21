@@ -38,9 +38,10 @@
 
 // PostsTable
 .blog-table {
-  background-color: var(--color-grey-0);
+  background-color: var(--color-grey-50);
   border: 1px solid var(--color-grey-200);
   border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
   font-size: 1.4rem;
   overflow: hidden;
 
@@ -52,8 +53,8 @@
     grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 1fr 1fr;
 
     background-color: var(--color-grey-50);
-    border-bottom: 1px solid var(--color-grey-100);
-    color: var(--color-grey-600);
+    border-bottom: 2px solid var(--color-grey-200);
+    color: var(--color-grey-500);
     font-weight: 600;
     letter-spacing: 0.4px;
     padding: 1.6rem 2.4rem;
@@ -69,7 +70,7 @@
     padding: 1.4rem 3rem;
 
     &:not(:last-child) {
-      border-bottom: 1px solid var(--color-grey-100);
+      border-bottom: 1px solid var(--color-grey-200);
     }
 
     &_img {
@@ -83,7 +84,7 @@
     }
 
     &_post {
-      color: var(--color-grey-600);
+      color: var(--color-grey-700);
       font-family: 'Sono';
       font-size: 1.5rem;
       font-weight: 600;
@@ -97,7 +98,7 @@
       font-family: 'Sono';
       font-size: 1.3rem;
       font-weight: 300;
-      color: var(--color-grey-400);
+      color: var(--color-grey-500);
     }
     &_draft {
       font-family: 'Sono';

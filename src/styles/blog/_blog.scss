@@ -5,7 +5,7 @@
     min-height: 100vh;
 
     display: grid;
-    grid-template-columns: 20rem 3fr 20rem;
+    grid-template-columns: 10rem 3fr 10rem;
     grid-template-rows: 9rem 1fr 5rem;
   }
 
@@ -227,6 +227,7 @@
     }
 
     &-tag {
+      transition: all 0.3s ease-out;
       &,
       &:link,
       &:visited {
@@ -239,7 +240,6 @@
         padding: 0.5rem 1rem;
         transition: all 0.3s ease-out;
       }
-      transition: all 0.3s ease-out;
 
       &:hover,
       &:active {

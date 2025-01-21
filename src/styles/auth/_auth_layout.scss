@@ -18,7 +18,7 @@
     gap: 2rem;
 
     & h1 {
-      color: var(--color-brand-200);
+      color: var(--color-brand-500);
       font-family: 'Sono', sans-serif;
       font-size: 4rem;
       text-transform: uppercase;
@@ -40,7 +40,7 @@
     gap: 1rem;
 
     &:hover {
-      border-color: var(--color-brand-600);
+      border-color: var(--color-brand-500);
     }
   }
 
@@ -77,11 +77,11 @@
       }
 
       &:focus {
-        outline: 2px solid var(--color-brand-600);
+        outline: 2px solid var(--color-brand-500);
         outline-offset: -1px;
 
         & + svg {
-          color: var(--color-brand-600);
+          color: var(--color-brand-500);
         }
       }
 
@@ -106,7 +106,7 @@
 
       height: 2.2rem;
       width: 2.2rem;
-      color: var(--color-grey-400);
+      color: var(--color-grey-500);
 
       &--password {
         left: auto;
@@ -133,7 +133,7 @@
       min-height: fit-content;
     }
     &-p {
-      color: var(--color-grey-300);
+      color: var(--color-grey-400);
       font-size: 1.2rem;
     }
 
@@ -141,7 +141,7 @@
       &:link,
       &:visited {
         border-bottom: 1px solid currentColor;
-        color: var(--color-grey-300);
+        color: var(--color-grey-400);
         font-size: 1.3rem;
         letter-spacing: 0.15rem;
       }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import LightOnDarkToggle from '../../component/LightOnDarkToggle';
-import { HiOutlineUser } from 'react-icons/hi2';
+import { HiOutlineCog } from 'react-icons/hi2';
 import { HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi';
 
 import Button from '../../component/Button';
@@ -25,8 +25,8 @@ function BlogHeader() {
         {currentUser ? (
           <>
             <li>
-              <Button type="button" variant="icon">
-                <HiOutlineUser />
+              <Button variant="linkicon" to="/blog/admin">
+                <HiOutlineCog />
               </Button>
             </li>
             <li>

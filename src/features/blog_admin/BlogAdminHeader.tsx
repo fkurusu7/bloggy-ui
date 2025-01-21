@@ -1,27 +1,32 @@
 import { HiOutlineLogout } from 'react-icons/hi';
-import { HiOutlineUser } from 'react-icons/hi2';
+import { HiOutlineDocumentText } from 'react-icons/hi2';
+
 import LightOnDarkToggle from '../../component/LightOnDarkToggle';
 import { useAuth } from '../../hooks/useAuth';
+import Button from '../../component/Button';
 
 function BlogAdminHeader() {
   const { handleSignout } = useAuth();
 
   return (
     <header className="header-admin">
-      <ul className="header-admin__menu">
+      <ul className="blog__header-menu">
         <li>
           <LightOnDarkToggle />
         </li>
-        <li>
-          <button className="header-admin__btn-icon">
-            <HiOutlineUser />
-          </button>
-        </li>
-        <li>
-          <button className="header-admin__btn-icon" type="button" onClick={handleSignout}>
-            <HiOutlineLogout />
-          </button>
-        </li>
+
+        <>
+          <li>
+            <Button variant="linkicon" to="/blog">
+              <HiOutlineDocumentText />
+            </Button>
+          </li>
+          <li>
+            <Button type="button" variant="icon" onClick={handleSignout}>
+              <HiOutlineLogout />
+            </Button>
+          </li>
+        </>
       </ul>
     </header>
   );

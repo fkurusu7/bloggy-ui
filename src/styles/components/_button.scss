@@ -62,6 +62,10 @@
     outline: 2px solid var(--color-grey-200);
     width: 100%;
 
+    &:hover {
+      outline: 2px solid var(--color-brand-600);
+    }
+
     &:active {
       outline: 2px solid var(--color-brand-600);
       transform: scale(0.98);

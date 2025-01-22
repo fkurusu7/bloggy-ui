@@ -10,7 +10,6 @@ import Button from '../../component/Button';
 
 function PostsTable() {
   const { posts, isLoadingPosts, error } = useBlogPosts();
-  console.log(posts);
 
   return (
     <div className="blog-table" role="table">

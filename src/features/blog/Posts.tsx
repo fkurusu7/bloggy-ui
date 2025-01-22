@@ -5,15 +5,15 @@ import { Link, useParams } from 'react-router-dom';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
 import { FiLoader } from 'react-icons/fi';
-import { useState } from 'react';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
+import { useModal } from '../../hooks/useModal';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
   const { searchTerm, tag } = useParams();
   const { posts, isLoadingPosts, error, getTitle } = useBlogPosts({ searchTerm, tag });
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const { isOpenModal, closeModal, toggleModal } = useModal();
 
   return (
     <>
@@ -21,7 +21,7 @@ function Posts() {
       <div className="row row-horizontal">
         <h2 className="blog__main-title">{getTitle()}</h2>
         {currentUser && (
-          <Button variant="icon" size="large" onClick={() => setIsOpenModal(!isOpenModal)}>
+          <Button variant="icon" size="large" onClick={toggleModal}>
             <HiOutlineDocumentPlus />
           </Button>
         )}
@@ -62,7 +62,7 @@ function Posts() {
         )}
       </section>
       {isOpenModal && (
-        <Modal onClose={() => setIsOpenModal(false)}>
+        <Modal onClose={closeModal}>
           <div>
             <CreatePost />
           </div>

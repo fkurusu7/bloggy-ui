@@ -68,6 +68,7 @@
 
   &__main {
     &-title {
+      color: var(--color-grey-500);
       font-size: 3rem;
       font-weight: 100;
       font-family: 'Sono', sans-serif;
@@ -86,7 +87,7 @@
       &-post {
         display: flex;
         flex-direction: column;
-        border: 2px solid var(--color-grey-200);
+        border: 2px solid var(--color-grey-400);
         border-radius: var(--border-radius-md);
         box-shadow: var(--shadow-sm);
         font-family: 'Sono', sans-serif;
@@ -189,7 +190,7 @@
           box-shadow: var(--shadow-lg);
           color: var(--color-grey-500);
           font-size: 1.5rem;
-          outline: 2px solid var(--color-grey-200);
+          outline: 2px solid var(--color-grey-400);
           padding: 0.7rem 3.1rem;
           transition: all 0.3s ease-out;
           width: 100%;
@@ -207,7 +208,7 @@
         }
 
         & > svg {
-          color: var(--color-grey-200);
+          color: var(--color-grey-400);
           height: 2.1rem;
           position: absolute;
           top: 0.9rem;
@@ -236,7 +237,7 @@
         color: var(--color-grey-400);
         font-family: 'Sono', sans-serif;
         font-size: 1.4rem;
-        outline: 2px solid var(--color-grey-200);
+        outline: 2px solid var(--color-grey-300);
         padding: 0.5rem 1rem;
         transition: all 0.3s ease-out;
       }

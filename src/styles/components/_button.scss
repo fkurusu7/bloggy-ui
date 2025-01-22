@@ -1,5 +1,6 @@
 .btn {
   border: 1px solid transparent;
+  border-radius: var(--border-radius-md);
   outline: none;
 
   // SIZEs
@@ -23,6 +24,7 @@
   // PSEUDOCLASSES
   &:active {
     outline: none;
+    transform: scale(0.99);
   }
   &:disabled {
     cursor: not-allowed;
@@ -35,13 +37,11 @@
 
   // VARIANTS
   &.primary {
-    background-color: var(--color-grey-400);
-    color: var(--color-grey-600);
+    background-color: transparent;
+    outline: 2px solid var(--color-brand-400);
+    color: var(--color-brand-400);
   }
-  // &.secondary {
-  // }
-  // &.danger {
-  // }
+
   &.ghost {
     background-color: transparent;
     color: var(--color-brand-400);
@@ -77,7 +77,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    color: var(--color-grey-500);
+    color: var(--color-grey-600);
     transition: all 0.3s ease-out;
 
     // override:
@@ -88,8 +88,21 @@
       width: 2.3rem;
     }
 
+    &.large {
+      & > svg {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+    &.medium {
+      & > svg {
+        height: 2.6rem;
+        width: 2.6rem;
+      }
+    }
+
     &:hover {
-      color: var(--color-grey-800);
+      color: var(--color-grey-500);
     }
     &:hover > svg {
       transform: scale(0.95);

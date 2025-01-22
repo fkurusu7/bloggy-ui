@@ -1,7 +1,16 @@
-import toast from 'react-hot-toast';
-import { HiOutlineHandThumbUp, HiOutlineHandThumbDown } from 'react-icons/hi2';
+import {
+  HiOutlineTrash,
+  HiOutlinePencilSquare,
+  HiOutlineXCircle,
+  HiOutlineCheckCircle,
+} from 'react-icons/hi2';
+import { useBlogPosts } from '../../hooks/useBlogPosts';
+import { formatDateSimple } from '../../utils/helpers';
+import Button from '../../component/Button';
 
 function PostsTable() {
+  const { posts, isLoadingPosts, error } = useBlogPosts();
+
   return (
     <div className="blog-table" role="table">
       <div className="blog-table__header" role="row">
@@ -9,43 +18,41 @@ function PostsTable() {
         <div>Post</div>
         <div>Tags</div>
         <div>Date</div>
-        <div>Draft</div>
+        <div>Published</div>
         <div></div>
       </div>
       {/* TABLE BODY - MAP ==> Post Data */}
-      <div className="blog-table__body-row">
-        <img src="/grok.jpg" alt="grok" className="blog-table__body-row_img" />
-        <div className="blog-table__body-row_post">Build a Blog with TS </div>
-        <div className="blog-table__body-row_tags">css, js, go</div>
-        <div className="blog-table__body-row_date">24/dic/24 15:49</div>
-        <div className="blog-table__body-row_draft blog-table__body-row_draft-false">
-          <HiOutlineHandThumbDown />
-        </div>
-      </div>
-      <div className="blog-table__body-row">
-        <img src="/grok.jpg" alt="grok" className="blog-table__body-row_img" />
-        <div className="blog-table__body-row_post">Build a Blog with TS </div>
-        <div className="blog-table__body-row_tags">css, js, go</div>
-        <div className="blog-table__body-row_date">24/dic/24 15:49</div>
-        <div
-          className="blog-table__body-row_draft blog-table__body-row_draft-true"
-          onClick={() => toast.error('heeeeelllooo')}
-        >
-          <HiOutlineHandThumbUp />
-        </div>
-      </div>
-      <div className="blog-table__body-row">
-        <img src="/grok.jpg" alt="grok" className="blog-table__body-row_img" />
-        <div className="blog-table__body-row_post">Build a Blog with TS </div>
-        <div className="blog-table__body-row_tags">css, js, go</div>
-        <div className="blog-table__body-row_date">24/dic/24 15:49</div>
-        <div
-          className="blog-table__body-row_draft blog-table__body-row_draft-true"
-          onClick={() => toast.success('heeeeelllooo')}
-        >
-          <HiOutlineHandThumbUp />
-        </div>
-      </div>
+      {isLoadingPosts ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        posts.map((post) => {
+          return (
+            <div className="blog-table__body-row" key={post.title}>
+              <img src={post.banner} alt="..." className="blog-table__body-row_img" />
+              <div className="blog-table__body-row_post">{post.title}</div>
+              <div className="blog-table__body-row_tags">
+                {post.tags.map((tag) => tag.name).join(', ')}
+              </div>
+              <div className="blog-table__body-row_date">{formatDateSimple(post.createdAt)}</div>
+              <div
+                className={`blog-table__body-row_draft ${post.draft ? 'blog-table__body-row_draft-false' : 'blog-table__body-row_draft-true'}`}
+              >
+                {post.draft ? <HiOutlineXCircle /> : <HiOutlineCheckCircle />}
+              </div>
+              <div>
+                <Button variant="icon">
+                  <HiOutlineTrash color="var(--color-red-700)" />
+                </Button>
+                <Button variant="icon">
+                  <HiOutlinePencilSquare color="var(--color-green-700)" />
+                </Button>
+              </div>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }

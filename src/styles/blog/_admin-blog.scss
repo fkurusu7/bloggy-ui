@@ -38,7 +38,6 @@
 
 // PostsTable
 .blog-table {
-  background-color: var(--color-grey-50);
   border: 1px solid var(--color-grey-200);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
@@ -67,7 +66,16 @@
     column-gap: 2.4rem;
     align-items: center;
     grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 1fr 1fr;
+
+    background-color: var(--color-grey-50);
     padding: 1.4rem 3rem;
+
+    &:nth-child(even) {
+      background-color: transparent;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-grey-200);

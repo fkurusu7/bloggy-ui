@@ -1,10 +1,12 @@
+import { Link, useParams } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import { FiLoader } from 'react-icons/fi';
+import { Tooltip } from 'react-tooltip';
+
 import Button from '../../component/Button';
 import { useAppSelector } from '../../context/useContextTypes';
-import { Link, useParams } from 'react-router-dom';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
-import { FiLoader } from 'react-icons/fi';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
 import { useModal } from '../../hooks/useModal';
@@ -21,7 +23,7 @@ function Posts() {
       <div className="row row-horizontal">
         <h2 className="blog__main-title">{getTitle()}</h2>
         {currentUser && (
-          <Button variant="icon" size="large" onClick={toggleModal}>
+          <Button variant="icon" size="large" onClick={toggleModal} tooltipmsg="Create Post">
             <HiOutlineDocumentPlus />
           </Button>
         )}
@@ -68,6 +70,10 @@ function Posts() {
           </div>
         </Modal>
       )}
+      <Tooltip
+        id="create-tooltip"
+        style={{ backgroundColor: 'var(--color-grey-200)', color: 'var(--color-grey-700)' }}
+      />
     </>
   );
 }

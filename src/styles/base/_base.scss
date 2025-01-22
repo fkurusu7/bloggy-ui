@@ -59,3 +59,10 @@ input {
     transform: rotate(360deg);
   }
 }
+
+// ToolTIPS
+.btn-tooltip {
+  background-color: var(--color-grey-500);
+  border-radius: var(--border-radius-md);
+  color: var(--color-grey-100);
+}

@@ -14,6 +14,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   isLoading?: boolean;
   fullWidth?: boolean;
   to?: string | null;
+  tooltipmsg?: string;
 }
 
 function Button({
@@ -26,6 +27,7 @@ function Button({
   goBack = false,
   children,
   to = null,
+  tooltipmsg,
 }: ButtonProps) {
   const navigate = useNavigate();
 
@@ -51,6 +53,9 @@ function Button({
       {...(type !== 'submit' && { onClick: handleClick })}
       // onClick={type !== "submit" ? handleClick : undefined}
       className={`btn ${size} ${variant} ${goBack ? 'float' : ''}`}
+      data-tooltip-id="create-tooltip"
+      data-tooltip-content={tooltipmsg}
+      data-tooltip-place="top"
     >
       {isLoading ? <FiLoader className="spin" /> : children}
     </button>

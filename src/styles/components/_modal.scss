@@ -10,6 +10,9 @@
     box-shadow: var(--shadow-lg);
     padding: 3.2rem 4rem;
     transition: all 0.5s ease-out;
+
+    max-height: 90vh; // Add max-height to modal container
+    overflow-y: auto;
   }
 
   &-overlay {

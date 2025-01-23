@@ -1,3 +1,5 @@
+import Button from '../../component/Button';
+
 function CreatePost() {
   return (
     <div className="create__container">
@@ -27,7 +29,12 @@ function CreatePost() {
 
           {/* DESCRIPTION */}
           <div className="create__main-description">
-            <textarea name="description" id="description" placeholder="Add description"></textarea>
+            <textarea
+              name="description"
+              id="description"
+              placeholder="Add description"
+              rows={3}
+            ></textarea>
           </div>
         </div>
 
@@ -35,7 +42,14 @@ function CreatePost() {
         <div className="create__content">Content</div>
 
         {/* BUTTONS */}
-        <div className="create__btns">buttons</div>
+        <div className="create__buttons">
+          <Button variant="primary" size="small">
+            Save Draft
+          </Button>
+          <Button variant="primary" size="small">
+            Publish
+          </Button>
+        </div>
       </form>
     </div>
   );

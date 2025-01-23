@@ -8,7 +8,16 @@ function CreatePost() {
         {/* MAIN */}
         <div className="create__main">
           {/* BANNER Image */}
-          <div className="create__main-banner">Banner</div>
+          <div className="create__main-banner">
+            <label htmlFor="banner" className="create__main-banner-label">
+              {/* loading image */}
+              <div className="lab">Loading image</div>
+              {/* image to show when uploaded */}
+              <img src="/write_sth.jpg" alt="Banner post image" />
+              {/* input to upload */}
+              <input hidden type="file" name="banner" id="banner" accept=".png, .jpg, .jpeg" />
+            </label>
+          </div>
           {/* TITLE */}
           <div className="create__main-title">
             <input type="text" name="title" id="title" placeholder="title" />

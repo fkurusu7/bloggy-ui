@@ -2,7 +2,6 @@
   &__container {
     min-width: 80rem;
     max-height: 90vh;
-    overflow: auto;
 
     display: flex;
     flex-direction: column;
@@ -51,11 +50,38 @@
 
   // STYLES
   &__main {
-    margin-bottom: 2rem;
     &-banner {
       border-radius: var(--border-radius-md);
-      outline: 2px solid var(--color-grey-200);
+      outline: 2px dashed var(--color-grey-200);
+
+      // image handle
+      position: relative;
+
+      &-label {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        & > div,
+        & > img {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        & > div {
+          z-index: 30;
+        }
+        & > img {
+          aspect-ratio: 16/9;
+          height: auto;
+          width: 25rem;
+          z-index: 20;
+        }
+      }
     }
+
     &-title,
     &-tag {
       display: flex;
@@ -75,6 +101,11 @@
         &::placeholder {
           color: var(--color-grey-400);
         }
+
+        &:hover,
+        &:focus {
+          outline-color: var(--color-brand-400);
+        }
       }
     }
 
@@ -86,6 +117,11 @@
         outline: 2px solid var(--color-grey-200);
         padding: 1rem 2rem;
         width: 100%;
+
+        &:hover,
+        &:focus {
+          outline-color: var(--color-brand-400);
+        }
       }
     }
   }

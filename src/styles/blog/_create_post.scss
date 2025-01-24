@@ -64,7 +64,8 @@
         width: 100%;
 
         & > div,
-        & > img {
+        & > img,
+        & > svg {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -72,12 +73,18 @@
         }
         & > div {
           z-index: 30;
+          color: var(--color-grey-600);
         }
         & > img {
           aspect-ratio: 16/9;
           height: auto;
           width: 25rem;
           z-index: 20;
+        }
+        & > svg {
+          height: 20rem;
+          width: 25rem;
+          color: var(--color-grey-200);
         }
       }
     }

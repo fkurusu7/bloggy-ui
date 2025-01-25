@@ -36,12 +36,11 @@ function CreatePost() {
       setIsUploadingImage(true);
       if (ev.target.files && ev.target.files.length > 0) {
         const img = ev.target.files[0];
-        const imageValidation = imageSchema.parse({ image: img });
-        console.log(imageValidation);
+        imageSchema.parse({ image: img });
+
         // toast.success('Valid image');
         // Upload Image to AWS S3
         const imageUploadedURL = await uploadImageToAWS(img);
-        console.log(imageUploadedURL);
 
         setEditorFormData((prevData) => ({
           ...prevData,
@@ -64,6 +63,40 @@ function CreatePost() {
     const { value, id } = ev.target;
 
     setEditorFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  const MAX_TAGS = 5;
+  const handleAddTag = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    if (ev.currentTarget.value.trim().length && (ev.key === 'Enter' || ev.key === ',')) {
+      ev.preventDefault();
+      const tagName = ev.currentTarget.value.trim().toLowerCase();
+
+      // Validate there are no more than 5 tags added per Post
+      if (editorFormData.tags.length > MAX_TAGS) {
+        toast.error(`Maximum ${MAX_TAGS} tags allowed`);
+        ev.currentTarget.value = '';
+        return;
+      }
+
+      /*
+      if (tagName.length > MAX_TAG_LENGTH) {
+        toast.error(`Tag must be less than ${MAX_TAG_LENGTH} characters`);
+        ev.target.value = "";
+        return;
+        }
+        */
+
+      // Check if tag already present in tags array
+      if (editorFormData.tags.includes(tagName)) {
+        toast.error('Tag already added to Post');
+        ev.currentTarget.value = '';
+        return;
+      }
+
+      setEditorFormData((prevData) => ({ ...prevData, tags: [...prevData.tags, tagName] }));
+      ev.currentTarget.value = '';
+      // TODO: handle errors
+    }
   };
 
   console.log(editorFormData);
@@ -126,6 +159,7 @@ function CreatePost() {
                 id="tag"
                 className="create__main-tag"
                 placeholder="Add a tag (press enter or comma)"
+                onKeyDown={handleAddTag}
               />
             </div>
             <div className="create__main-tags-selected">

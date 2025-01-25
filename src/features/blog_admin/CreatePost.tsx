@@ -4,14 +4,7 @@ import Button from '../../component/Button';
 import toast from 'react-hot-toast';
 import { uploadImageToAWS } from '../../utils/aws';
 import { HiOutlinePhoto } from 'react-icons/hi2';
-
-// const postInitialState = {
-//   title: '',
-//   banner: '',
-//   content: [],
-//   tags: [],
-//   description: '',
-// };
+import { FiLoader } from 'react-icons/fi';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -64,6 +57,12 @@ function CreatePost() {
     }
   };
 
+  const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { value, id } = ev.target;
+
+    setEditorFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
   console.log(editorFormData);
 
   return (
@@ -76,18 +75,21 @@ function CreatePost() {
           <div className="create__main-banner">
             <label htmlFor="banner" className="create__main-banner-label">
               {/* loading image */}
-              {isUploadingImage && <div className="lab">Loading image</div>}
-              {/* image to show when uploaded */}
-              {editorFormData.banner ? (
+
+              {isUploadingImage ? (
+                <div className="lab">
+                  Loading image... <FiLoader className="spin" />
+                </div>
+              ) : editorFormData.banner ? (
                 <img
-                  src={editorFormData.banner || '/write_sth.jpg'}
+                  src={editorFormData.banner}
                   alt="Banner post image"
                   style={isUploadingImage ? { opacity: 0.3 } : {}}
                 />
               ) : (
                 <HiOutlinePhoto />
               )}
-              {/* input to upload */}
+
               <input
                 hidden
                 type="file"
@@ -101,7 +103,14 @@ function CreatePost() {
           </div>
           {/* TITLE */}
           <div className="create__main-title">
-            <input type="text" name="title" id="title" placeholder="title" />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="title"
+              onChange={handleFormDataChange}
+              value={editorFormData.title}
+            />
           </div>
           {/* TAGS */}
           <div className="create__main-tag">
@@ -124,6 +133,8 @@ function CreatePost() {
               id="description"
               placeholder="Add description"
               rows={3}
+              value={editorFormData.description}
+              onChange={handleFormDataChange}
             ></textarea>
           </div>
         </div>

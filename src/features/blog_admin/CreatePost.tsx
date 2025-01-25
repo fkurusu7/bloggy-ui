@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { z } from 'zod';
-import Button from '../../component/Button';
 import toast from 'react-hot-toast';
+import { FiLoader } from 'react-icons/fi';
+
+import Button from '../../component/Button';
 import { uploadImageToAWS } from '../../utils/aws';
 import { HiOutlinePhoto } from 'react-icons/hi2';
-import { FiLoader } from 'react-icons/fi';
+import ExistingTags from './ExistingTags';
+import { PostData } from './types';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -19,14 +22,14 @@ const imageSchema = z.object({
 
 function CreatePost() {
   const [isUploadingImage, setIsUploadingImage] = useState(false);
-  const postInitialState = {
+  const postInitialState: PostData = {
     title: '',
     banner: '',
     content: [],
     tags: [],
     description: '',
   };
-  const [editorFormData, setEditorFormData] = useState(postInitialState);
+  const [editorFormData, setEditorFormData] = useState<PostData>(postInitialState);
 
   const handleBannerImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -113,19 +116,22 @@ function CreatePost() {
             />
           </div>
           {/* TAGS */}
-          <div className="create__main-tag">
-            <input
-              type="text"
-              name="tag"
-              id="tag"
-              className="create__main-tag"
-              placeholder="Add a tag (press enter or comma)"
-            />
-          </div>
           <div className="create__main-tags">
-            <span>javascript</span> <span>css</span> <span>aws</span>
+            {/* Load tags from DB */}
+            <ExistingTags editorFormData={editorFormData} setEditorFormData={setEditorFormData} />
+            <div className="create__main-tags-input">
+              <input
+                type="text"
+                name="tag"
+                id="tag"
+                className="create__main-tag"
+                placeholder="Add a tag (press enter or comma)"
+              />
+            </div>
+            <div className="create__main-tags-selected">
+              <span>javascript</span> <span>css</span> <span>aws</span>
+            </div>
           </div>
-
           {/* DESCRIPTION */}
           <div className="create__main-description">
             <textarea

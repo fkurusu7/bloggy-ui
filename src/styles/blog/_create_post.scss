@@ -20,7 +20,7 @@
   &__main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 5rem);
     gap: 2rem;
 
     &-banner {
@@ -33,13 +33,9 @@
       grid-column: 2 / 3;
       grid-row: 1 / 2;
     }
-    &-tag {
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
-    }
     &-tags {
       grid-column: 2 / 3;
-      grid-row: 3 / 4;
+      grid-row: 2 / 4;
     }
 
     &-description {
@@ -90,7 +86,7 @@
     }
 
     &-title,
-    &-tag {
+    &-tags-input {
       display: flex;
       justify-content: center;
 
@@ -113,6 +109,37 @@
         &:focus {
           outline-color: var(--color-brand-400);
         }
+      }
+    }
+
+    &-tags {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &-db,
+      &-selected {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        & > span {
+          border-radius: var(--border-radius-md);
+          font-size: 1.2rem;
+          padding: 0.3rem 0.5rem;
+        }
+      }
+      &-db > span {
+        outline: 1px solid var(--color-grey-200);
+      }
+      &-selected > span {
+        outline: 1px dashed var(--color-grey-200);
+      }
+      &-input {
+      }
+      &-selected {
       }
     }
 

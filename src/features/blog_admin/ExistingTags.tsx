@@ -11,18 +11,25 @@ function ExistingTags({ editorFormData, setEditorFormData }: ExistingTagsProps) 
   const [isLoadingTags, setIsLoadingTags] = useState(false);
   const [errorTags, setErrorTags] = useState<string | null>(null);
 
+  interface Tag {
+    name: string;
+    slug: string;
+  }
   // Fetch Top 4 tags
   useEffect(() => {
     const fetchTags = async () => {
       try {
         setIsLoadingTags(true);
-        const response = await fetch('/api/blog/tags?limit=4');
+        const response = await fetch('/api/blog/getTags?limit=5');
         if (!response.ok) {
           throw new Error('Failed to fetch existing tags');
         }
         const jsonResponse = await response.json();
-        setExistingTags(jsonResponse.data);
+        console.log(jsonResponse.data);
+
+        setExistingTags(jsonResponse.data.map((tag: Tag) => tag.name));
       } catch (error: any) {
+        console.log(error);
         setErrorTags("Error loading Tags. Please add by hand your post's tag(s)");
         setExistingTags([]);
       } finally {
@@ -55,7 +62,7 @@ function ExistingTags({ editorFormData, setEditorFormData }: ExistingTagsProps) 
       ) : existingTags.length === 0 ? (
         <p>No tags found</p>
       ) : (
-        existingTags.map((tag, index) => {
+        existingTags.map((tag: string, index) => {
           const selected = isTagSelected(tag);
           return (
             <button

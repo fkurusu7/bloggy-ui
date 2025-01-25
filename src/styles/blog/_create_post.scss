@@ -2,6 +2,7 @@
   &__container {
     min-width: 80rem;
     max-height: 90vh;
+    font-family: 'Sono', sans-serif;
 
     display: flex;
     flex-direction: column;
@@ -124,15 +125,39 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         gap: 1rem;
+        transition: all 0.3s ease-out;
 
-        & > span {
+        & > button {
+          background-color: transparent;
           border-radius: var(--border-radius-md);
-          font-size: 1.2rem;
+          border: none;
+          color: var(--color-grey-400);
+          cursor: pointer;
+          font-size: 1.1rem;
           padding: 0.3rem 0.5rem;
+          transition: all 0.3s ease-out;
         }
       }
-      &-db > span {
-        outline: 1px solid var(--color-grey-200);
+      &-db {
+        & > button {
+          outline: 1px dashed var(--color-grey-200);
+
+          &:hover {
+            outline-color: var(--color-grey-400);
+          }
+          &:active {
+            transform: scale(0.99);
+          }
+          &:disabled {
+            opacity: 0.8;
+            text-decoration: line-through;
+          }
+        }
+
+        & > p {
+          color: var(--color-grey-300);
+          font-size: 1.3rem;
+        }
       }
       &-selected > span {
         outline: 1px dashed var(--color-grey-200);

@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { HiOutlineSearch } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SearchAndTags() {
+  const navigate = useNavigate();
   // 1. Get Tags
   const [tags, setTags] = useState([]);
   const [errorTags, setErrorTags] = useState(null);
   const [isLoadingTags, setIsLoadingTags] = useState(false);
 
+  // Load pre-existing Tags in the DB
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchTags = async () => {
       try {
         setIsLoadingTags(true);
         setErrorTags(null);
@@ -28,15 +30,24 @@ function SearchAndTags() {
       }
     };
 
-    fetchPosts();
+    fetchTags();
   }, []);
 
-  // 3. Add functionality to search for posts
+  // TODO: Add functionality to search for posts
+
+  const handleInputSearch = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    // /blog/search/:searchTerm
+    if (ev.currentTarget.value.trim().length && ev.key === 'Enter') {
+      const searchTerm = ev.currentTarget.value;
+      ev.currentTarget.value = '';
+      navigate(`/blog/search/${searchTerm}`);
+    }
+  };
 
   return (
     <aside className="blog__main-st">
       <div className="blog__main-st-search">
-        <input type="text" placeholder="Search for a post" />
+        <input type="text" placeholder="Search for a post" onKeyDown={handleInputSearch} />
         <HiOutlineSearch />
       </div>
       <div className="blog__main-tags">

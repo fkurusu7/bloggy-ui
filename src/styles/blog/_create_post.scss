@@ -50,6 +50,10 @@
     &-banner {
       border-radius: var(--border-radius-md);
       outline: 2px dashed var(--color-grey-200);
+      &:hover,
+      &:focus {
+        outline-color: var(--color-brand-400);
+      }
 
       // image handle
       position: relative;

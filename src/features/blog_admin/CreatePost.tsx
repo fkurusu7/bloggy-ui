@@ -8,6 +8,7 @@ import { uploadImageToAWS } from '../../utils/aws';
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import ExistingTags from './ExistingTags';
 import { PostData } from './types';
+import PostAddedTag from './PostAddedTag';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -67,12 +68,13 @@ function CreatePost() {
 
   const MAX_TAGS = 5;
   const handleAddTag = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    // keyCode: enter-13 - comma-188
     if (ev.currentTarget.value.trim().length && (ev.key === 'Enter' || ev.key === ',')) {
       ev.preventDefault();
       const tagName = ev.currentTarget.value.trim().toLowerCase();
 
       // Validate there are no more than 5 tags added per Post
-      if (editorFormData.tags.length > MAX_TAGS) {
+      if (editorFormData.tags.length >= MAX_TAGS) {
         toast.error(`Maximum ${MAX_TAGS} tags allowed`);
         ev.currentTarget.value = '';
         return;
@@ -163,7 +165,16 @@ function CreatePost() {
               />
             </div>
             <div className="create__main-tags-selected">
-              <span>javascript</span> <span>css</span> <span>aws</span>
+              {editorFormData.tags.map((tag) => {
+                return (
+                  <PostAddedTag
+                    tagName={tag}
+                    key={tag}
+                    editorFormData={editorFormData}
+                    setEditorFormData={setEditorFormData}
+                  />
+                );
+              })}
             </div>
           </div>
           {/* DESCRIPTION */}

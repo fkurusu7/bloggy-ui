@@ -99,7 +99,6 @@
         height: 4rem;
         outline: 2px solid var(--color-grey-200);
         padding: 0.5rem 0.5rem;
-        text-transform: capitalize;
         width: 100%;
 
         &::placeholder {
@@ -159,12 +158,45 @@
           font-size: 1.3rem;
         }
       }
-      &-selected > span {
-        outline: 1px dashed var(--color-grey-200);
-      }
-      &-input {
-      }
+
       &-selected {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+
+        &-tag {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.1rem;
+
+          color: var(--color-grey-400);
+          font-family: 'Sono', sans-serif;
+          font-size: 1.2rem;
+
+          & > input {
+            background-color: transparent;
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-size: 1.2rem;
+            outline: 1px solid var(--color-grey-400);
+            text-align: center;
+            text-transform: lowercase;
+            width: 15ch;
+          }
+
+          & > button {
+            border: none;
+            background-color: transparent;
+            & > svg {
+              width: 2rem;
+              height: 2rem;
+              color: var(--color-red-700);
+            }
+          }
+        }
       }
     }
 

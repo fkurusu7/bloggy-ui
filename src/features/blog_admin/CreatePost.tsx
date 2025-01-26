@@ -131,6 +131,9 @@ function CreatePost() {
       if (!response.ok) {
         throw new Error('Submitting error');
       }
+
+      toast.success('Post created successfully!');
+      navigate('/blog/admin');
     } catch (error) {
       if (error instanceof z.ZodError) {
         console.log(error);

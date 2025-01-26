@@ -53,7 +53,7 @@ function Button({
       {...(type !== 'submit' && { onClick: handleClick })}
       // onClick={type !== "submit" ? handleClick : undefined}
       className={`btn ${size} ${variant} ${goBack ? 'float' : ''}`}
-      data-tooltip-id="create-tooltip"
+      data-tooltip-id="tooltipid"
       data-tooltip-content={tooltipmsg}
       data-tooltip-place="top"
     >

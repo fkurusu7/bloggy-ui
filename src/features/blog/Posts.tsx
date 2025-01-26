@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import { FiLoader } from 'react-icons/fi';
-import { Tooltip } from 'react-tooltip';
 
 import Button from '../../component/Button';
 import { useAppSelector } from '../../context/useContextTypes';
@@ -10,6 +9,7 @@ import { formatShortDate } from '../../utils/helpers';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
 import { useModal } from '../../hooks/useModal';
+import TooltipUtil from '../../utils/TooltipUtil';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
@@ -70,10 +70,7 @@ function Posts() {
           </div>
         </Modal>
       )}
-      <Tooltip
-        id="create-tooltip"
-        style={{ backgroundColor: 'var(--color-grey-200)', color: 'var(--color-grey-700)' }}
-      />
+      <TooltipUtil />
     </>
   );
 }

@@ -4,6 +4,7 @@ import CreatePost from './CreatePost';
 import Button from '../../component/Button';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { useModal } from '../../hooks/useModal';
+import TooltipUtil from '../../utils/TooltipUtil';
 
 function BlogAdmin() {
   const { isOpenModal, closeModal, toggleModal } = useModal();
@@ -12,7 +13,7 @@ function BlogAdmin() {
     <>
       <div className="row row-horizontal">
         <h1 className="heading heading-1">All Posts</h1>
-        <Button variant="icon" size="large" onClick={toggleModal}>
+        <Button variant="icon" size="large" onClick={toggleModal} tooltipmsg="Create Post">
           <HiOutlineDocumentPlus />
         </Button>
       </div>
@@ -26,6 +27,7 @@ function BlogAdmin() {
           </div>
         </Modal>
       )}
+      <TooltipUtil />
     </>
   );
 }

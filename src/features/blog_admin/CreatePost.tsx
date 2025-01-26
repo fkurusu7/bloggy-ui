@@ -9,6 +9,7 @@ import { HiOutlinePhoto } from 'react-icons/hi2';
 import ExistingTags from './ExistingTags';
 import { PostData } from './types';
 import PostAddedTag from './PostAddedTag';
+import { useNavigate } from 'react-router-dom';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -21,16 +22,28 @@ const imageSchema = z.object({
     .refine((file) => ALLOWED_IMAGE_TYPES.includes(file?.type)),
 });
 
+// const formSchema = z.object({
+//   banner: z.string(),
+//   title: z.string(),
+//   tags: z.string().array().nonempty(),
+//   description: z.string(),
+//   // content: z.object()
+// });
+
 function CreatePost() {
+  const navigate = useNavigate();
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+
   const postInitialState: PostData = {
     title: '',
     banner: '',
-    content: [],
+    content: 'Content Fixed, Remove once the Editor is working!',
     tags: [],
     description: '',
   };
   const [editorFormData, setEditorFormData] = useState<PostData>(postInitialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [formDataError, setFormDataError] = useState({});
 
   const handleBannerImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -101,12 +114,40 @@ function CreatePost() {
     }
   };
 
+  const handleSubmit = async () => {
+    console.log('Log');
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await fetch('/api/blog/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editorFormData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Submitting error');
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        console.log(error);
+      } else {
+        console.log(error);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   console.log(editorFormData);
 
   return (
     <div className="create__container">
       <h2 className="heading-1">Create a Post</h2>
-      <form className="create__form">
+      <div className="create__form">
         {/* MAIN */}
         <div className="create__main">
           {/* BANNER Image */}
@@ -198,11 +239,11 @@ function CreatePost() {
           <Button variant="primary" size="small">
             Save Draft
           </Button>
-          <Button variant="primary" size="small">
-            Publish
+          <Button variant="primary" size="small" onClick={handleSubmit} disabled={isSubmitting}>
+            {isSubmitting ? 'Publishing' : 'Publish'}
           </Button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

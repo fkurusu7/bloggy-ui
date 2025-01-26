@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 export interface PostData {
   title: string;
   banner: string;
-  content: any[];
+  content: string;
   tags: string[];
   description: string;
 }
@@ -11,4 +11,10 @@ export interface PostData {
 export interface ExistingTagsProps {
   editorFormData: PostData;
   setEditorFormData: Dispatch<SetStateAction<PostData>>;
+}
+
+export interface PostAddedTagProps {
+  tagName: string;
+  setEditorFormData: React.Dispatch<React.SetStateAction<PostData>>;
+  editorFormData: PostData;
 }

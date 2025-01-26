@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { HiOutlineXMark } from 'react-icons/hi2';
+import { PostAddedTagProps } from './types';
 
-function PostAddedTag({ tagName, setEditorFormData, editorFormData }) {
+function PostAddedTag({ tagName, setEditorFormData, editorFormData }: PostAddedTagProps) {
   const [isEditingTag, setIsEditingTag] = useState(false);
   const [editedTag, setEditedTag] = useState(tagName);
 

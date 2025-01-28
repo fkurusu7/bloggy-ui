@@ -2,13 +2,13 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { FORMAT_TEXT_COMMAND, $getSelection, $isRangeSelection } from 'lexical';
 import { $createCodeNode } from '@lexical/code';
 import { $setBlocksType } from '@lexical/selection';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { $createLinkNode } from '@lexical/link';
 import { INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from '@lexical/list';
 import { $createHeadingNode, HeadingTagType } from '@lexical/rich-text';
 
-// export function ToolbarPlugin(): JSX.Element {
-export function ToolbarPlugin(): Element {
+export function ToolbarPlugin(): React.JSX.Element {
+  // export function ToolbarPlugin(): Element {
   const [editor] = useLexicalComposerContext();
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');

@@ -10,6 +10,7 @@ import ExistingTags from './ExistingTags';
 import { PostData } from './types';
 import PostAddedTag from './PostAddedTag';
 import { useNavigate } from 'react-router-dom';
+import Editor from './Editor';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -112,6 +113,13 @@ function CreatePost() {
       ev.currentTarget.value = '';
       // TODO: handle errors
     }
+  };
+
+  const handleContentChange = (newContent: string) => {
+    setEditorFormData((prevData) => ({
+      ...prevData,
+      content: newContent,
+    }));
   };
 
   const handleSubmit = async () => {
@@ -235,7 +243,9 @@ function CreatePost() {
         </div>
 
         {/* EDITOR */}
-        <div className="create__content">Content</div>
+        <div className="create__content">
+          <Editor content={editorFormData.content} onChange={handleContentChange} />
+        </div>
 
         {/* BUTTONS */}
         <div className="create__buttons">

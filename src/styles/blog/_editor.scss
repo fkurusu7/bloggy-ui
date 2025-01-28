@@ -1,0 +1,129 @@
+.tiptap-editor {
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 0.4rem;
+
+  &-toolbar {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    display: flex;
+    gap: 0.4rem;
+
+    .toolbar-btn {
+      padding: 0.4rem 0.8rem;
+      background: none;
+      border: 1px solid var(--border-color);
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--bg-hover);
+      }
+
+      &.is-active {
+        background: var(--bg-active);
+        color: var(--color-white);
+      }
+    }
+  }
+}
+
+.tiptap-content {
+  min-height: 30rem;
+  padding: 1.6rem;
+
+  p {
+    margin: 1em 0;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    margin: 1em 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin: 1em 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 2rem;
+    margin: 1em 0;
+  }
+
+  li {
+    margin: 0.5em 0;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--border-color);
+    padding-left: 1.6rem;
+    margin: 1em 0;
+    color: var(--color-text-secondary);
+  }
+}
+
+.floating-menu {
+  background: var(--bg-white);
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 0.4rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: var(--bg-hover);
+    }
+  }
+}
+
+.bubble-menu {
+  background: var(--bg-white);
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 0.4rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: var(--bg-hover);
+    }
+  }
+}
+
+// Ensure focus states are visible but clean
+.ProseMirror {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--border-focus);
+  }
+
+  // Add styling for placeholder text
+  p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: var(--color-placeholder);
+    pointer-events: none;
+    height: 0;
+  }
+}

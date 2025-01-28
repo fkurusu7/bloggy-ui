@@ -28,4 +28,5 @@
 // Blog - Admin & Bloggy
 @use 'blog/admin-layout' as *;
 @use 'blog/admin-blog' as *;
+@use 'blog/editor' as *;
 @use 'blog/create_post' as *;

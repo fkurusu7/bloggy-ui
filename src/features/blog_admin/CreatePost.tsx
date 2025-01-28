@@ -10,7 +10,7 @@ import ExistingTags from './ExistingTags';
 import { PostData } from './types';
 import PostAddedTag from './PostAddedTag';
 import { useNavigate } from 'react-router-dom';
-import Editor from './EditorTipTap';
+
 import EditorTiptap from './EditorTipTap';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -244,7 +244,6 @@ function CreatePost() {
         </div>
 
         {/* EDITOR */}
-
         <div className="create__content">
           <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
         </div>

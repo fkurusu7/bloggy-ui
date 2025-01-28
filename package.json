@@ -13,6 +13,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@lexical/code": "^0.23.1",
+    "@lexical/link": "^0.23.1",
+    "@lexical/list": "^0.23.1",
+    "@lexical/react": "^0.23.1",
+    "@lexical/rich-text": "^0.23.1",
     "@reduxjs/toolkit": "^2.5.0",
     "@tiptap/extension-color": "^2.11.3",
     "@tiptap/extension-list-item": "^2.11.3",
@@ -22,6 +28,8 @@
     "@tiptap/react": "^2.11.3",
     "@tiptap/starter-kit": "^2.11.3",
     "date-fns": "^4.1.0",
+    "lexical": "^0.23.1",
+    "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.5.1",

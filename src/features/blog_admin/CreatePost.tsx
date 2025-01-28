@@ -10,7 +10,8 @@ import ExistingTags from './ExistingTags';
 import { PostData } from './types';
 import PostAddedTag from './PostAddedTag';
 import { useNavigate } from 'react-router-dom';
-import Editor from './Editor';
+import Editor from './EditorTipTap';
+import EditorTiptap from './EditorTipTap';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -243,8 +244,9 @@ function CreatePost() {
         </div>
 
         {/* EDITOR */}
+
         <div className="create__content">
-          <Editor content={editorFormData.content} onChange={handleContentChange} />
+          <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
         </div>
 
         {/* BUTTONS */}

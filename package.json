@@ -14,7 +14,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
+    "@tiptap/extension-color": "^2.11.3",
+    "@tiptap/extension-list-item": "^2.11.3",
     "@tiptap/extension-placeholder": "^2.11.3",
+    "@tiptap/extension-text-style": "^2.11.3",
     "@tiptap/pm": "^2.11.3",
     "@tiptap/react": "^2.11.3",
     "@tiptap/starter-kit": "^2.11.3",

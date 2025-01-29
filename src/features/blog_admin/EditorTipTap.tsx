@@ -14,13 +14,15 @@ import {
   HiMiniItalic,
   HiMiniListBullet,
   HiOutlineNumberedList,
+  HiOutlineStrikethrough,
 } from 'react-icons/hi2';
 import { HiOutlineCode } from 'react-icons/hi';
-import { PiParagraph } from 'react-icons/pi';
-import { LuUndoDot } from 'react-icons/lu';
+import { PiMarkerCircleLight, PiParagraph } from 'react-icons/pi';
+import { LuRedoDot, LuUndoDot } from 'react-icons/lu';
 import { TbBlockquote } from 'react-icons/tb';
 import { CgFormatSeparator } from 'react-icons/cg';
-import { ImPagebreak } from 'react-icons/im';
+import { ImClearFormatting, ImPagebreak } from 'react-icons/im';
+import { AiOutlineClear } from 'react-icons/ai';
 
 interface TiptapEditorProps {
   content: string;
@@ -55,7 +57,7 @@ const MenuBar = () => {
         disabled={!editor.can().chain().focus().toggleStrike().run()}
         className={editor.isActive('strike') ? 'is-active' : ''}
       >
-        Strike
+        <HiOutlineStrikethrough />
       </button>
       {/* <button
         onClick={() => editor.chain().focus().toggleCode().run()}
@@ -64,8 +66,14 @@ const MenuBar = () => {
       >
         Code
       </button> */}
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>Clear marks</button>
-      <button onClick={() => editor.chain().focus().clearNodes().run()}>Clear nodes</button>
+      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+        {/* Clear marks - Inline formatting */}
+        <ImClearFormatting />
+      </button>
+      <button onClick={() => editor.chain().focus().clearNodes().run()}>
+        {/* Clear nodes */}
+        <AiOutlineClear />
+      </button>
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive('paragraph') ? 'is-active' : ''}
@@ -131,13 +139,13 @@ const MenuBar = () => {
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
       >
-        Redo
+        <LuRedoDot />
       </button>
       <button
         onClick={() => editor.chain().focus().setColor('#958DF1').run()}
         className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
       >
-        Purple
+        <PiMarkerCircleLight />
       </button>
     </div>
   );

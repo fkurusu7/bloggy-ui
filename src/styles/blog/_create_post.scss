@@ -222,7 +222,9 @@
   }
 
   &__content {
-    min-height: 30rem;
+    border-radius: var(--border-radius-md);
+    min-height: 24rem;
+    max-height: 50rem;
     outline: 2px solid var(--color-grey-200);
     overflow-y: auto;
   }

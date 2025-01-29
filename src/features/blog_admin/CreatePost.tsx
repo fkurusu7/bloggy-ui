@@ -39,7 +39,7 @@ function CreatePost() {
   const postInitialState: PostData = {
     title: '',
     banner: '',
-    content: 'Content Fixed, Remove once the Editor is working!',
+    content: '',
     tags: [],
     description: '',
   };

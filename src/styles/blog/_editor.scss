@@ -1,42 +1,122 @@
-.tiptap__editor {
-  border-radius: var(--border-radius-md);
-  position: relative;
+.tiptap {
+  &__editor {
+    border-radius: var(--border-radius-md);
+    position: relative;
 
-  &--toolbar {
-    background-color: var(--color-grey-200);
-    border-bottom: 2px solid var(--color-grey-100);
-    padding: 0.8rem 1rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-
-    & > button {
+    &--toolbar {
       background-color: var(--color-grey-200);
-      border: none;
-      border-radius: 0.4rem;
-      color: var(--color-grey-600);
-      cursor: pointer;
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-      outline: 1px solid var(--color-grey-400);
-      padding: 0.1rem 0.4rem;
-      transition: all 0.3s ease;
+      border-bottom: 2px solid var(--color-grey-100);
+      padding: 0.8rem 1rem;
 
-      height: 2rem;
-      &:hover {
-        outline-color: var(--color-grey-300);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+
+      & > button {
+        background-color: var(--color-grey-200);
+        border: none;
+        border-radius: 0.4rem;
+        color: var(--color-grey-600);
+        cursor: pointer;
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+        outline: 1px solid var(--color-grey-400);
+        padding: 0.1rem 0.4rem;
+        transition: all 0.3s ease;
+
+        height: 2rem;
+        &:hover {
+          outline-color: var(--color-grey-300);
+        }
+
+        &.is-active {
+          background-color: var(--color-grey-700);
+          color: var(--color-grey-100);
+        }
+        & > svg {
+          height: 1.7rem;
+          width: 1.7rem;
+        }
+      }
+    }
+  }
+  &.ProseMirror {
+    padding: 1rem 2rem;
+    font-family: 'Sono', sans-serif;
+
+    & > h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    & > h2 {
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+    & > h3 {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    & > p {
+      font-size: 1.4rem;
+      font-weight: 200;
+    }
+
+    & > ul {
+      list-style: square;
+      margin-left: 3rem;
+    }
+    & > ol {
+      list-style: decimal;
+      margin-left: 3rem;
+    }
+
+    & code {
+      background-color: var(--color-grey-50);
+      border-radius: var(--border-radius-md);
+      color: var(--color-grey-700);
+      display: block;
+      padding: 1rem 3rem;
+      width: 100%;
+    }
+
+    & strong {
+      font-weight: 600;
+    }
+
+    & hr {
+      color: var(--color-grey-200);
+      margin: 1rem;
+    }
+
+    & blockquote {
+      // border-left: 0.5rem solid var(--color-grey-300);
+      border-radius: var(--border-radius-sm);
+      font-size: 1.3rem;
+      padding: 0.2rem 5rem;
+      padding-right: 8rem;
+      position: relative;
+
+      &:before {
+        content: open-quote;
+        left: -2rem;
       }
 
-      &.is-active {
-        background-color: var(--color-grey-700);
-        color: var(--color-grey-100);
+      &:after {
+        content: close-quote;
+        right: 3rem;
       }
-      & > svg {
-        height: 1.7rem;
-        width: 1.7rem;
+
+      &:before,
+      &:after {
+        color: var(--color-grey-200);
+        display: inline-block;
+        font-size: 10rem;
+
+        position: absolute;
+        top: -0.4em;
       }
     }
   }

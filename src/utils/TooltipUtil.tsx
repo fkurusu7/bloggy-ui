@@ -1,11 +1,11 @@
 import { Tooltip } from 'react-tooltip';
 
 type tooltipTypes = {
-  backColor: string;
-  fontColor: string;
+  backColor?: string;
+  fontColor?: string;
 };
 
-function TooltipUtil({ backColor = '200', fontColor = '700' }: tooltipTypes) {
+function TooltipUtil({ backColor = '700', fontColor = '200' }: tooltipTypes) {
   return (
     <Tooltip
       id="tooltipid"

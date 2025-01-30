@@ -246,7 +246,7 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
           }}
         />
       </div>
-      <TooltipUtil backColor={'700'} fontColor={'200'} />
+      <TooltipUtil />
     </>
   );
 };

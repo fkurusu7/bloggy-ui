@@ -123,6 +123,131 @@
   }
 }
 
+.code-block {
+  position: relative;
+  margin: 1rem 0;
+  background: #1e1e1e;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.code-block-language {
+  font-size: 13px;
+  color: #d4d4d4;
+}
+
+.code-block-select {
+  background: #2d2d2d;
+  border: 1px solid #3d3d3d;
+  color: #d4d4d4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.code-block-select:hover {
+  border-color: #525252;
+}
+
+.code-block-select:focus {
+  outline: none;
+  border-color: #007acc;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px;
+  background: transparent;
+  overflow-x: auto;
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.code-block code {
+  font-family: inherit;
+  color: #d4d4d4;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+}
+
+/* Syntax highlighting tokens */
+.code-block .token {
+  display: inline;
+  background: none !important;
+}
+
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: #6a9955;
+}
+
+.code-block .token.punctuation {
+  color: #d4d4d4;
+}
+
+.code-block .token.property,
+.code-block .token.tag,
+.code-block .token.boolean,
+.code-block .token.number,
+.code-block .token.constant,
+.code-block .token.symbol,
+.code-block .token.deleted {
+  color: #b5cea8;
+}
+
+.code-block .token.selector,
+.code-block .token.attr-name,
+.code-block .token.string,
+.code-block .token.char,
+.code-block .token.builtin,
+.code-block .token.inserted {
+  color: #ce9178;
+}
+
+.code-block .token.operator,
+.code-block .token.entity,
+.code-block .token.url,
+.code-block .language-css .token.string,
+.code-block .style .token.string {
+  color: #d4d4d4;
+}
+
+.code-block .token.atrule,
+.code-block .token.attr-value,
+.code-block .token.keyword {
+  color: #569cd6;
+}
+
+.code-block .token.function {
+  color: #dcdcaa;
+}
+
+.code-block .token.class-name {
+  color: #4ec9b0;
+}
+
+.code-block .token.regex,
+.code-block .token.important,
+.code-block .token.variable {
+  color: #d16969;
+}
+
+// TODO: MIGHT Remove
 // Reading/Styling Post info
 .tiptap-content {
   border: 1px solid red;

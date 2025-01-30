@@ -1,5 +1,6 @@
 import { Color } from '@tiptap/extension-color';
-import CodeBlock from '@tiptap/extension-code-block';
+// import CodeBlock from '@tiptap/extension-code-block';
+import CustomCodeBlock from './CustomCodeBlock';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import ListItem from '@tiptap/extension-list-item';
@@ -218,9 +219,10 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
   const extensions = [
     TextStyle,
     ListItem,
-    CodeBlock,
+    // CodeBlock,
     Document,
     Paragraph,
+    CustomCodeBlock,
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
     StarterKit.configure({
       bulletList: {

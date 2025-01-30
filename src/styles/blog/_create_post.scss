@@ -223,6 +223,7 @@
 
   &__content {
     border-radius: var(--border-radius-md);
+    cursor: text;
     min-height: 24rem;
     max-height: 50rem;
     outline: 2px solid var(--color-grey-200);

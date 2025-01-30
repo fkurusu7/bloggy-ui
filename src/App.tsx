@@ -23,6 +23,7 @@ function App() {
             <Route path="/" element={<Me />} />
           </Route>
           <Route path="/resume" element={<Resume />} /> */}
+          <Route index element={<Navigate replace to={'/me'} />} />
           <Route path="/" element={<Me />} />
           <Route path="/me" element={<Me />} />
           <Route path="/resume" element={<Resume />} />
@@ -39,7 +40,6 @@ function App() {
           {/* BLOG ADMIN */}
           <Route element={<PrivateRoute />}>
             <Route element={<BlogAdminLayout />}>
-              <Route index element={<Navigate replace to={'/blog/admin'} />} />
               <Route path="/blog/admin" element={<BlogAdmin />} />
               <Route path="/blog/tmp" element={<Tmp />} />
             </Route>

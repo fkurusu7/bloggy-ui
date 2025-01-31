@@ -49,7 +49,12 @@
   &.ProseMirror {
     padding: 1rem 2rem;
     font-family: 'Sono', sans-serif;
-    min-height: 20rem;
+    min-height: 30rem;
+
+    &-focused {
+      border: none;
+      outline: none;
+    }
 
     & > h1 {
       font-size: 1.8rem;
@@ -176,7 +181,10 @@
             border-radius: var(--border-radius-md);
             color: #fafaf9;
             display: block;
+            font-family: 'Cutive Mono', serif;
             font-size: 1.4rem;
+            font-style: normal;
+            font-weight: 400;
             padding: 1.5rem;
             // width: 100%;
           }
@@ -185,196 +193,3 @@
     }
   }
 }
-
-// .code-block pre {
-//   margin: 0;
-//   padding: 16px;
-//   background: transparent;
-//   overflow-x: auto;
-//   font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace;
-//   font-size: 14px;
-//   line-height: 1.5;
-//   tab-size: 2;
-// }
-
-// .code-block code {
-//   font-family: inherit;
-//   color: #d4d4d4;
-//   white-space: pre;
-//   word-spacing: normal;
-//   word-break: normal;
-// }
-
-// <div className="code-block not-prose relative">
-//         <div className="code-block-header flex justify-between items-center p-2 bg-gray-800 text-white rounded-t">
-
-// .code-block code {
-//   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-//   font-size: 0.875rem;
-//   line-height: 1.5;
-// }
-
-// /* Syntax highlighting tokens */
-// .code-block .token {
-//   display: inline;
-//   background: none !important;
-// }
-
-// .code-block .token.comment,
-// .code-block .token.prolog,
-// .code-block .token.doctype,
-// .code-block .token.cdata {
-//   color: #6a9955;
-// }
-
-// .code-block .token.punctuation {
-//   color: #d4d4d4;
-// }
-
-// .code-block .token.property,
-// .code-block .token.tag,
-// .code-block .token.boolean,
-// .code-block .token.number,
-// .code-block .token.constant,
-// .code-block .token.symbol,
-// .code-block .token.deleted {
-//   color: #b5cea8;
-// }
-
-// .code-block .token.selector,
-// .code-block .token.attr-name,
-// .code-block .token.string,
-// .code-block .token.char,
-// .code-block .token.builtin,
-// .code-block .token.inserted {
-//   color: #ce9178;
-// }
-
-// .code-block .token.operator,
-// .code-block .token.entity,
-// .code-block .token.url,
-// .code-block .language-css .token.string,
-// .code-block .style .token.string {
-//   color: #d4d4d4;
-// }
-
-// .code-block .token.atrule,
-// .code-block .token.attr-value,
-// .code-block .token.keyword {
-//   color: #569cd6;
-// }
-
-// .code-block .token.function {
-//   color: #dcdcaa;
-// }
-
-// .code-block .token.class-name {
-//   color: #4ec9b0;
-// }
-
-// .code-block .token.regex,
-// .code-block .token.important,
-// .code-block .token.variable {
-//   color: #d16969;
-// }
-
-// TODO: MIGHT Remove
-// Reading/Styling Post info
-// .tiptap-content {
-//   border: 1px solid red;
-//   min-height: 30rem;
-//   padding: 1.6rem;
-
-//   p {
-//     margin: 1em 0;
-//     line-height: 1.6;
-//   }
-
-//   h1 {
-//     font-size: 2.4rem;
-//     margin: 1em 0;
-//   }
-
-//   h2 {
-//     font-size: 2rem;
-//     margin: 1em 0;
-//   }
-
-//   ul,
-//   ol {
-//     padding-left: 2rem;
-//     margin: 1em 0;
-//   }
-
-//   li {
-//     margin: 0.5em 0;
-//   }
-
-//   blockquote {
-//     border-left: 3px solid var(--border-color);
-//     padding-left: 1.6rem;
-//     margin: 1em 0;
-//     color: var(--color-text-secondary);
-//   }
-// }
-
-// .floating-menu {
-//   background: red;
-//   padding: 0.4rem;
-//   border-radius: 0.4rem;
-//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-//   display: flex;
-//   gap: 0.4rem;
-
-//   button {
-//     padding: 0.4rem 0.8rem;
-//     background: none;
-//     border: 1px solid var(--border-color);
-//     border-radius: 0.4rem;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
-
-//     &:hover {
-//       background: var(--bg-hover);
-//     }
-//   }
-// }
-
-// .bubble-menu {
-//   background: var(--bg-white);
-//   padding: 0.4rem;
-//   border-radius: 0.4rem;
-//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-//   display: flex;
-//   gap: 0.4rem;
-
-//   button {
-//     padding: 0.4rem 0.8rem;
-//     background: none;
-//     border: 1px solid var(--border-color);
-//     border-radius: 0.4rem;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
-
-//     &:hover {
-//       background: var(--bg-hover);
-//     }
-//   }
-// }
-
-// // Ensure focus states are visible but clean
-// .ProseMirror {
-//   &:focus {
-//     outline: none;
-//     box-shadow: 0 0 0 2px var(--border-focus);
-//   }
-
-//   // Add styling for placeholder text
-//   p.is-editor-empty:first-child::before {
-//     content: attr(data-placeholder);
-//     float: left;
-//     color: var(--color-placeholder);
-//     pointer-events: none;
-//     height: 0;
-//   }
-// }

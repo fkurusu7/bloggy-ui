@@ -257,8 +257,8 @@ const CodeBlock = ({ node, updateAttributes, editor }: NodeViewProps) => {
 
   return (
     <NodeViewWrapper>
-      <div className="code-block not-prose relative bg-gray-900 rounded-lg">
-        <div className="code-block-header flex justify-between items-center p-2 bg-gray-800 text-white rounded-t-lg border-b border-gray-700">
+      <div className="code-block not-prose">
+        <div className="code-block-header">
           <span className="code-block-language">{currentLabel}</span>
           <select
             contentEditable={false}
@@ -274,12 +274,9 @@ const CodeBlock = ({ node, updateAttributes, editor }: NodeViewProps) => {
             ))}
           </select>
         </div>
-        <div className="relative">
-          <pre className="!m-0 !bg-transparent">
-            <NodeViewContent
-              as="code"
-              className={`language-${currentLanguage} block whitespace-pre-wrap p-4 overflow-auto text-sm font-mono`}
-            />
+        <div className="code-block-content">
+          <pre>
+            <NodeViewContent as="code" className={`language-${currentLanguage}`} />
           </pre>
         </div>
       </div>

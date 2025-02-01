@@ -19,7 +19,7 @@ function Post() {
   // Handle loading state
   if (isLoading) {
     return (
-      <div className="blog__main-loading">
+      <div className="blog__post-info-loading">
         <FiLoader className="spin" />
       </div>
     );
@@ -27,17 +27,18 @@ function Post() {
 
   // Handle error state
   if (error) {
-    return <div className="blog__main-error">Error loading post: {error}</div>;
+    return <div className="blog__post-info-error">Error loading post: {error}</div>;
   }
 
   // Handle no post found
   if (!post) {
     return (
       <>
-        <div className="blog__main-post__heading">
-          <p className="blog__main-post__error">Post not found</p>
+        <div className="blog__post-info__heading">
+          <p className="blog__post-info__error">Post not found</p>
           <Link
             to={'/blog'}
+            className="blog__post-info__error-icon"
             data-tooltip-id="tooltipid"
             data-tooltip-content="Go back"
             data-tooltip-place="top"
@@ -49,26 +50,26 @@ function Post() {
       </>
     );
   }
+  console.log(post);
 
   return (
-    <>
-      <div className="blog__main-post__heading">
-        <h1 className="blog__main-post__title">{post.title}</h1>
+    <article className="blog__post-info">
+      <div className="blog__post-info__heading">
+        <h1 className="blog__post-info__title">{post.title}</h1>
         <span>{calculateReadingTime(post.content)}</span>
       </div>
-      <article className="blog__main-post">
-        <div className="blog__main-post__meta">
-          <div className="blog__main-post__tags">
-            {post.tags.map((tag, index) => (
-              <span key={`${tag.slug}-${index}`}>{tag.name}</span>
-            ))}
-          </div>
-          <div className="blog__main-post__created">{formatDateSimple(post.createdAt)}</div>
+      <div className="blog__post-info__meta">
+        <div className="blog__post-info__tags">
+          {post.tags.map((tag, index) => (
+            <span key={`${tag.slug}-${index}`}>{tag.name}</span>
+          ))}
         </div>
-        <div className="blog__main-post-description">{post.description}</div>
-        <div className="blog__main-post-content">{post.content}</div>
-      </article>
-    </>
+        <div className="blog__post-info__created">{formatDateSimple(post.createdAt)}</div>
+      </div>
+      <div className="blog__post-info__description">{post.description}</div>
+      <img className="blog__post-info__banner" src={post.banner} />
+      <div className="blog__post-info__content">{post.content}</div>
+    </article>
   );
 }
 

@@ -43,7 +43,7 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
         }
 
         const jsonRes = await response.json();
-        console.log(jsonRes);
+
         setPosts(jsonRes.data || []);
       } catch (error: any) {
         if (error instanceof Error && error.name === 'AbortError') {

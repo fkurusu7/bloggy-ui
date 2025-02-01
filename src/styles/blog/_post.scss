@@ -1,0 +1,62 @@
+.blog__post-info {
+  min-height: 100vh;
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.2rem;
+
+    & span {
+      font-size: 1.4rem;
+      color: var(--color-grey-500);
+    }
+    // Error message - post not found
+    & .blog__post-info__error {
+      font-size: 2rem;
+      color: var(--color-red-700);
+
+      &-icon {
+        color: var(--color-red-700);
+        & > svg {
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+    }
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--color-grey-400);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  &__tags {
+    display: flex;
+    gap: 1rem;
+
+    & span {
+      border-radius: var(--border-radius-md);
+      font-size: 1.1rem;
+      outline: 1px solid var(--color-grey-500);
+      padding: 0.1rem 0.5rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    color: var(--color-grey-500);
+    border-bottom: 2px solid var(--color-grey-200);
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__banner {
+    display: block;
+    width: 50%;
+    height: auto;
+  }
+}

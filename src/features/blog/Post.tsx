@@ -1,46 +1,73 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useBlogPosts } from '../../hooks/useBlogPosts';
+import { FiLoader } from 'react-icons/fi';
+import { formatDateSimple } from '../../utils/helpers';
+import { HiOutlineArrowLeftCircle } from 'react-icons/hi2';
+import TooltipUtil from '../../utils/TooltipUtil';
 
 function Post() {
   const { slug } = useParams();
+  const { posts, isLoadingPosts: isLoading, error } = useBlogPosts({ slug });
+  const post = posts[0];
+
+  const calculateReadingTime = (content: string) => {
+    const words = content.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / 150);
+    return `${minutes} min read`;
+  };
+
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="blog__main-loading">
+        <FiLoader className="spin" />
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return <div className="blog__main-error">Error loading post: {error}</div>;
+  }
+
+  // Handle no post found
+  if (!post) {
+    return (
+      <>
+        <div className="blog__main-post__heading">
+          <p className="blog__main-post__error">Post not found</p>
+          <Link
+            to={'/blog'}
+            data-tooltip-id="tooltipid"
+            data-tooltip-content="Go back"
+            data-tooltip-place="top"
+          >
+            <HiOutlineArrowLeftCircle />
+          </Link>
+        </div>
+        <TooltipUtil />
+      </>
+    );
+  }
 
   return (
     <>
-      <h1 className="blog__main-title"> Post {slug}</h1>
-      <div className="blog__main-post">
-        <div className="blog__main-post-content">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim quae eaque facilis
-          consequatur nostrum libero voluptatum consequuntur velit magni quos, iste totam assumenda,
-          facere repellat amet aut, iure nemo quo delectus. Neque error fugiat maxime ipsam!
-          Quibusdam esse suscipit eaque nemo illo laudantium, ipsa velit numquam dolor corporis quia
-          qui tenetur assumenda aliquam eligendi p raesentium aspernatur iure dignissimos
-          repellendus blanditiis quas maxime! Cumque earum odio assumenda ad iure aut. Officiis
-          maxime placeat similique facilis vitae quaerat non soluta tenetur repellendus? Minima
-          saepe magni sit alias. Animi assumenda fugit, ratione vero nihil iusto, recusandae
-          blanditiis repellendus magni pariatur laudantium asperiores sint perferendis! Nulla quam
-          nam mollitia voluptates sit cupiditate aspernatur totam harum omnis, id at, quo officiis
-          ad nesciunt nemo vitae error quasi maxime! Quas sed hic rem blanditiis eos, voluptatem
-          facilis animi quod, cumque voluptas placeat vitae temporibus. Ad minus unde culpa
-          architecto, libero exercitationem debitis eum. Voluptate ad soluta a, quasi inventore
-          voluptatem quas repellat officia porro nihil accusamus ut, debitis doloribus sapiente
-          explicabo blanditiis cum eligendi obcaecati earum temporibus hic minus aperiam? Voluptatem
-          quam eius, alias consequatur magnam labore assumenda ab dicta. Exercitationem dicta
-          deleniti, eveniet sequi distinctio doloribus doloremque ipsum! Optio temporibus qui quas
-          eligendi. Eum ratione ipsam quisquam illum suscipit debitis quasi, ea earum qui ut
-          pariatur reprehenderit, totam libero fugit numquam, dolorum delectus expedita hic
-          quibusdam amet eos praesentium incidunt deleniti. Eius sunt cumque nam ullam quas quia
-          illo unde adipisci voluptatem voluptate, veritatis repellat inventore laboriosam nesciunt
-          quos labore dicta? Vitae dolorum eligendi repellat maxime perspiciatis, culpa aliquid
-          molestiae! Cumque delectus enim magni quisquam id rem, quas Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit. Ab saepe voluptatibus aperiam inventore voluptate sequi enim
-          eum adipisci aliquam, labore blanditiis quia ex deleniti vitae accusantium aspernatur
-          quasi, perferendis non culpa ipsa laudantium. Aut sint distinctio iste vel provident
-          mollitia cum, maiores consequuntur. Magni aliquam nihil dolorem praesentium qui quia.
-          voluptatem aperiam corrupti officiis error, exercitationem ducimus deserunt dicta
-          necessitatibus obcaecati dolor beatae doloremque! Est perspiciatis debitis quaerat cum
-          ullam atque neque quo eveniet explicabo obcaecati cupiditate modi labore eum pariatur
-          vitae iste cumque blanditiis, rem similique?
-        </div>
+      <div className="blog__main-post__heading">
+        <h1 className="blog__main-post__title">{post.title}</h1>
+        <span>{calculateReadingTime(post.content)}</span>
       </div>
+      <article className="blog__main-post">
+        <div className="blog__main-post__meta">
+          <div className="blog__main-post__tags">
+            {post.tags.map((tag, index) => (
+              <span key={`${tag.slug}-${index}`}>{tag.name}</span>
+            ))}
+          </div>
+          <div className="blog__main-post__created">{formatDateSimple(post.createdAt)}</div>
+        </div>
+        <div className="blog__main-post-description">{post.description}</div>
+        <div className="blog__main-post-content">{post.content}</div>
+      </article>
     </>
   );
 }

@@ -41,7 +41,13 @@ function Button({
 
   if (variant === 'linkicon' && to) {
     return (
-      <Link to={to} className={`btn ${variant}`}>
+      <Link
+        to={to}
+        className={`btn ${variant}`}
+        data-tooltip-id="tooltipid"
+        data-tooltip-content={tooltipmsg}
+        data-tooltip-place="top"
+      >
         {children}
       </Link>
     );

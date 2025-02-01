@@ -1,26 +1,20 @@
 import { useEffect, useState } from 'react';
-
-interface Post {
-  slug: string;
-  title: string;
-  banner: string;
-  description: string;
-  tags: Array<{ slug: string; name: string }>;
-  createdAt: string;
-  draft: boolean;
-}
+import { Post } from '../features/blog_admin/types';
 
 interface UseBlogPostsParams {
   searchTerm?: string;
   tag?: string;
+  slug?: string;
 }
 
-export function useBlogPosts({ searchTerm, tag }: UseBlogPostsParams = {}) {
+export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {}) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchPosts = async () => {
       try {
         setIsLoadingPosts(true);
@@ -32,28 +26,42 @@ export function useBlogPosts({ searchTerm, tag }: UseBlogPostsParams = {}) {
           params.append('searchTerm', searchTerm);
         } else if (tag) {
           params.append('tag', tag);
+        } else if (slug) {
+          params.append('slug', slug);
         }
         const queryStr = params.toString();
         if (queryStr) urlString += `?${queryStr}`;
 
         const response = await fetch(urlString);
 
-        if (!response.ok && response.status !== 404) {
+        if (!response.ok) {
+          if (response.status !== 404) {
+            setPosts([]);
+            return;
+          }
           throw new Error('Error fetching posts');
         }
 
         const jsonRes = await response.json();
-
-        setPosts(jsonRes.data);
+        console.log(jsonRes);
+        setPosts(jsonRes.data || []);
       } catch (error: any) {
-        setError(error.message);
+        if (error instanceof Error && error.name === 'AbortError') {
+          return;
+        }
+        setError(error instanceof Error ? error.message : 'An error occurred');
+        console.log(error);
       } finally {
         setIsLoadingPosts(false);
       }
     };
 
     fetchPosts();
-  }, [tag, searchTerm]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [tag, searchTerm, slug]);
 
   const getTitle = () => {
     if (searchTerm) return `Search by ${searchTerm}`;

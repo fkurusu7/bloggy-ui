@@ -8,6 +8,17 @@ export interface PostData {
   description: string;
 }
 
+export interface Post {
+  slug: string;
+  title: string;
+  banner: string;
+  description: string;
+  content: string;
+  tags: Array<{ slug: string; name: string }>;
+  createdAt: string;
+  draft: boolean;
+}
+
 export interface ExistingTagsProps {
   editorFormData: PostData;
   setEditorFormData: Dispatch<SetStateAction<PostData>>;

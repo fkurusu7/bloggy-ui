@@ -9,7 +9,7 @@ import { EditorProvider, useCurrentEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import {
   HiMiniBold,
-  HiMiniH1,
+  // HiMiniH1,
   HiMiniH2,
   HiMiniH3,
   HiMiniItalic,
@@ -104,7 +104,7 @@ const MenuBar = () => {
       >
         <PiParagraph />
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
         data-tooltip-id="tooltipid"
@@ -112,7 +112,7 @@ const MenuBar = () => {
         data-tooltip-place="top"
       >
         <HiMiniH1 />
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
@@ -203,7 +203,7 @@ const MenuBar = () => {
         <LuRedoDot />
       </button>
       <button
-        onClick={() => editor.chain().focus().setColor('#958DF1').run()}
+        onClick={() => editor.chain().focus().setColor('#818cf8').run()}
         className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
         data-tooltip-id="tooltipid"
         data-tooltip-content="Highlight Text"

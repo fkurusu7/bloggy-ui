@@ -29,6 +29,7 @@
     "@tiptap/starter-kit": "^2.11.3",
     "@types/prismjs": "^1.26.5",
     "date-fns": "^4.1.0",
+    "dompurify": "^3.2.4",
     "lexical": "^0.23.1",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",

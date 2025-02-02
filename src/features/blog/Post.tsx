@@ -4,6 +4,7 @@ import { FiLoader } from 'react-icons/fi';
 import { formatDateSimple } from '../../utils/helpers';
 import { HiOutlineArrowLeftCircle } from 'react-icons/hi2';
 import TooltipUtil from '../../utils/TooltipUtil';
+import PostContent from './PostContent';
 
 function Post() {
   const { slug } = useParams();
@@ -67,8 +68,8 @@ function Post() {
         <div className="blog__post-info__created">{formatDateSimple(post.createdAt)}</div>
       </div>
       <div className="blog__post-info__description">{post.description}</div>
-      <img className="blog__post-info__banner" src={post.banner} />
-      <div className="blog__post-info__content">{post.content}</div>
+      {/* <img className="blog__post-info__banner" src={post.banner} /> */}
+      <PostContent content={post.content} />
     </article>
   );
 }

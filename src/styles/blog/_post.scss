@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 0.2rem;
+    font-size: 2.5rem;
 
     & span {
       font-size: 1.4rem;
@@ -58,5 +59,84 @@
     display: block;
     width: 50%;
     height: auto;
+  }
+
+  &__content {
+    & h1 {
+      font-size: 2rem;
+    }
+    & h2 {
+      font-size: 1.8rem;
+    }
+    & h3 {
+      font-size: 1.7rem;
+    }
+    & > p {
+      font-size: 1.4rem;
+      font-weight: 200;
+    }
+
+    & > ul {
+      list-style: square;
+      margin-left: 3rem;
+    }
+    & > ol {
+      list-style: decimal;
+      margin-left: 3rem;
+    }
+
+    & strong {
+      font-weight: 600;
+    }
+
+    & hr {
+      color: var(--color-grey-200);
+      margin: 1rem;
+    }
+
+    & blockquote {
+      // border-left: 0.5rem solid var(--color-grey-300);
+      border-radius: var(--border-radius-sm);
+      font-size: 1.3rem;
+      padding: 0.2rem 5rem;
+      padding-right: 8rem;
+      position: relative;
+
+      &:before {
+        content: open-quote;
+        left: -2rem;
+      }
+
+      &:after {
+        content: close-quote;
+        right: 3rem;
+      }
+
+      &:before,
+      &:after {
+        color: var(--color-grey-200);
+        display: inline-block;
+        font-size: 10rem;
+
+        position: absolute;
+        top: -0.4em;
+      }
+    }
+
+    & pre {
+      display: inline-block;
+      border-radius: var(--border-radius-md);
+      width: 80%;
+      margin: 0 auto;
+      padding: 1rem 0 !important;
+
+      & > code {
+        font-family: 'Cutive Mono', serif;
+        font-size: 1.55rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+      }
+    }
   }
 }

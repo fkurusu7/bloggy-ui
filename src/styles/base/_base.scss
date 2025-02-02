@@ -66,3 +66,41 @@ input {
   border-radius: var(--border-radius-md);
   color: var(--color-grey-100);
 }
+
+// Footer for Me and Blog pages
+.footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+
+  border-top: 1px solid var(--color-silver-700);
+  font-size: 1.4rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+
+  &__heart,
+  &__tacos,
+  &__copy {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  &__copy {
+    color: var(--color-blue-700);
+    gap: 0.3rem;
+  }
+  &__heart > svg {
+    color: var(--color-red-700);
+  }
+  &__tacos > svg {
+    color: var(--color-yellow-100);
+  }
+  &__heart,
+  &__tacos {
+    & svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

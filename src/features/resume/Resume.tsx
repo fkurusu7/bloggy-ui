@@ -183,12 +183,13 @@ function Resume() {
                   </p>
                 </article>
                 <article className="resume__experience-description">
-                  <h3>Web Developer (Full-Stack)</h3>
+                  <h3>Full Stack Developer | Freelance (2023 - Present)</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum officiis quaerat
-                    dolorum itaque consequuntur voluptas. Necessitatibus velit eius, quam
-                    blanditiis, modi consequatur vero deserunt sapiente iusto non debitis? Labore,
-                    totam.
+                    Specialized in React Development, creating both personal and client solutions
+                    capabilities. Built custom application for generating and managing Call for Bids
+                    (CfB) documentation. Developed and maintained a comprehensive blog platform with
+                    administrative. Created and deployed personal portfolio website and interactive
+                    resume
                   </p>
                 </article>
               </section>

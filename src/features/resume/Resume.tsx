@@ -177,13 +177,13 @@ function Resume() {
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
                   <h3>Freelance</h3>
-                  <i>Mexico</i>
+                  <i>Mexico City, Mexico</i>
                   <p>
                     Jan, 2023 <span>-</span> Present
                   </p>
                 </article>
                 <article className="resume__experience-description">
-                  <h3>Full Stack Developer | Freelance (2023 - Present)</h3>
+                  <h3>Full Stack Developer | Freelance</h3>
                   <p>
                     Specialized in React Development, creating both personal and client solutions
                     capabilities. Built custom application for generating and managing Call for Bids
@@ -195,7 +195,9 @@ function Resume() {
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>Morgan Stanley</h3>
+                  <h3>
+                    Morgan Stanley <span>- SVAM</span>
+                  </h3>
                   <i>New York, USA</i>
                   <p>
                     Sep, 2019 <span>-</span> Jul, 2022
@@ -204,46 +206,71 @@ function Resume() {
                 <article className="resume__experience-description">
                   <h3>Java Tech Lead</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum officiis quaerat
-                    dolorum itaque consequuntur voluptas. Necessitatibus velit eius, quam
-                    blanditiis, modi consequatur vero deserunt sapiente iusto non debitis? Labore,
-                    totam.
+                    Lead development and maintenance of enterprise Java applications utilizing
+                    Spring Core and RESTful architecture. Drive continuous improvement through
+                    performance optimization and fault correction in mission-critical systems.
+                    Manage CI/CD pipelines using TeamCity across Linux environments.
                   </p>
+                  <p>Tech Stack: Java SE 8, Spring Core, DB2, TeamCity, Linux</p>
                 </article>
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>Morgan Stanley</h3>
-                  <i>New York, USA</i>
+                  <h3>IBM</h3>
+                  <i>Guadalajara, Mexico</i>
                   <p>
-                    Sep, 2019 <span>-</span> Jul, 2022
+                    Dic, 2018 <span>-</span> Jul, 2019
                   </p>
                 </article>
                 <article className="resume__experience-description">
-                  <h3>Java Tech Lead</h3>
+                  <h3>Java Developer</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum officiis quaerat
-                    dolorum itaque consequuntur voluptas. Necessitatibus velit eius, quam
-                    blanditiis, modi consequatur vero deserunt sapiente iusto non debitis? Labore,
-                    totam.
+                    Architected and implemented RESTful services with Spring Boot and Spring Core
+                    Developed data transformation pipelines handling JSON, Java beans, and Avro
+                    schemas Built and maintained Kafka-based message processing systems Orchestrated
+                    containerized deployments using Docker and OpenShift.
                   </p>
+                  <p>Tech Stack: Java SE 8, Spring Boot, Couchbase, Kafka, Docker, GitLab</p>
                 </article>
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>Morgan Stanley</h3>
-                  <i>New York, USA</i>
+                  <h3>IMSS - Mexican Social Security Institute</h3>
+                  <i>Mexico City, Mexico</i>
                   <p>
-                    Sep, 2019 <span>-</span> Jul, 2022
+                    Aug, 2009 <span>-</span> Mar, 2017
                   </p>
                 </article>
                 <article className="resume__experience-description">
                   <h3>Java Tech Lead</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum officiis quaerat
-                    dolorum itaque consequuntur voluptas. Necessitatibus velit eius, quam
-                    blanditiis, modi consequatur vero deserunt sapiente iusto non debitis? Labore,
-                    totam.
+                    <strong>Softtek | SOA Architect </strong>
+                    Designed and implemented SOAP and REST web services architecture Led development
+                    of JSON-to-XML transformation services for mobile applications Conducted
+                    architecture reviews and established coding standards Implemented comprehensive
+                    testing strategies including unit and integration testing
+                    <p>Tech Stack: Java 1.6, WebLogic Server, ESB, OSB, Oracle Linux</p>
+                  </p>
+                  <p>
+                    <strong>Novutek | Middleware Specialist </strong>
+                    Architected ALSB façade systems for web service orchestration Developed SOAP web
+                    services and WSDL contracts based on business requirements Created integration
+                    solutions for Mainframe 3270 systems Authored technical documentation and
+                    functional requirement specifications.
+                    <p>Tech Stack: Java 1.6, SOAP, ESB (ALSB), OSB, XQuery, WebLogic Server</p>
+                  </p>
+                  <p>
+                    <strong>Miracle Business Networking | Java Developer</strong>
+                    Developed SOAP web service interfaces and data service integrations Implemented
+                    complex SQL queries and database operations Managed WebLogic Server deployments
+                    in Linux environments
+                    <p>Tech Stack: Java, WebLogic Server, ALSB, ALDSP, SQL, XQuery</p>
+                  </p>
+                  <p>
+                    <strong>Oracle Mexico | Java Developer</strong>
+                    Developed Java-based web service integrations using SOAP Implemented
+                    Hibernate-based database operations for Oracle DB
+                    <p>Tech Stack: Java, WebLogic Server, Hibernate, Oracle DB</p>
                   </p>
                 </article>
               </section>

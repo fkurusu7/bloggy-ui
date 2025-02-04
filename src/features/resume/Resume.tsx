@@ -280,9 +280,9 @@ function Resume() {
                       <strong>Tech Stack:</strong> Java 1.6, Hibernate, Oracle DB, SOAP, ESB (ALSB), OSB, WebLogic Server, ALDSP, SQL, XQuery, WebLogic Server, Oracle Linux.
                       </p>
                       "
+                      style={{ cursor: 'pointer' }}
                     >
-                      Consulting Companies -{' '}
-                      <small style={{ color: '#dedc69', cursor: 'pointer' }}>hover me</small>
+                      Consulting Companies - <small style={{ color: '#dedc69' }}>hover me</small>
                     </strong>
                   </p>
                   <p>

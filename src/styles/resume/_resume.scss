@@ -10,7 +10,7 @@
     position: relative;
   }
   &__layout {
-    background-color: rgba(41, 37, 36, 0.5);
+    background-color: rgba(41, 37, 36, 0.7);
     border-radius: var(--border-radius-lg);
     min-height: 100vh;
     text-align: justify;
@@ -20,7 +20,6 @@
     --gutter: 1rem;
     // minmax(var(--gutter), calc(1fr / 4))
     grid-template-columns: 3rem 25rem 2fr 3rem;
-
     grid-template-rows: 5rem 30rem 3fr;
   }
 
@@ -161,6 +160,7 @@
   &__experience {
     grid-column: 3 / 4;
     grid-row: 3 / -1;
+    margin-left: 5rem;
 
     &-container {
       display: flex;

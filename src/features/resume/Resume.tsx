@@ -16,6 +16,7 @@ import { MdOutlineDirectionsBike } from 'react-icons/md';
 import { PiPersonSimpleHike } from 'react-icons/pi';
 import { VscVscodeInsiders } from 'react-icons/vsc';
 import Button from '../../component/Button';
+import TooltipUtil from '../../utils/TooltipUtil';
 
 function Resume() {
   return (
@@ -195,8 +196,12 @@ function Resume() {
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>
-                    Morgan Stanley <span>- SVAM</span>
+                  <h3
+                    data-tooltip-id="tooltipid"
+                    data-tooltip-content="SVAM International, Inc"
+                    data-tooltip-place="top"
+                  >
+                    Morgan Stanley
                   </h3>
                   <i>New York, USA</i>
                   <p>
@@ -235,7 +240,13 @@ function Resume() {
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>IMSS - Mexican Social Security Institute</h3>
+                  <h3
+                    data-tooltip-id="tooltipid"
+                    data-tooltip-content="Mexican Social Security Institute"
+                    data-tooltip-place="top"
+                  >
+                    IMSS
+                  </h3>
                   <i>Mexico City, Mexico</i>
                   <p>
                     Aug, 2009 <span>-</span> Mar, 2017
@@ -244,33 +255,44 @@ function Resume() {
                 <article className="resume__experience-description">
                   <h3>Java Tech Lead</h3>
                   <p>
-                    <strong>Softtek | SOA Architect </strong>
-                    Designed and implemented SOAP and REST web services architecture Led development
-                    of JSON-to-XML transformation services for mobile applications Conducted
-                    architecture reviews and established coding standards Implemented comprehensive
-                    testing strategies including unit and integration testing
-                    <p>Tech Stack: Java 1.6, WebLogic Server, ESB, OSB, Oracle Linux</p>
+                    <strong
+                      data-tooltip-id="tooltipid"
+                      data-tooltip-place="right"
+                      data-tooltip-delay-hide={1000}
+                      data-tooltip-html="<strong>Softtek</strong> | SOA Architect 
+                      <br />
+                      <span class='tooltip__text'>Designed and implemented SOAP and REST web services architecture. Led development of JSON-to-XML transformation services for mobile applications. Conducted architecture reviews and established coding standards. Implemented comprehensive testing strategies including unit and integration testing.</span>
+                      <br />
+                      <strong>Novutek</strong> | Middleware Specialist
+                      <br />
+                      <span class='tooltip__text'>Architected ALSB façade systems for web service orchestration. Developed SOAP web services and WSDL contracts based on business requirements. Created integration solutions for Mainframe 3270 systems. Authored technical documentation and functional requirement specifications.</span>
+                      <br />
+                      <strong>Miracle Business Networking</strong> | Java Developer
+                      <br />
+                      <span class='tooltip__text'>Architected ALSB façade systems for web service orchestration. Developed SOAP web services and WSDL contracts based on business requirements. Created integration solutions for Mainframe 3270 systems. Authored technical documentation and functional requirement specifications.</span>
+                      <br/>
+                      <strong>Oracle Mexico</strong> | Java Developer
+                      <br />
+                      <span class='tooltip__text'>Developed SOAP web service interfaces and data service integrations. Implemented complex SQL queries and database operations. Managed WebLogic Server deployments in Linux environments.</span>
+                      <br/>
+                      <br/>
+                      <p class='tooltip__tech-stack'>
+                      <strong>Tech Stack:</strong> Java 1.6, Hibernate, Oracle DB, SOAP, ESB (ALSB), OSB, WebLogic Server, ALDSP, SQL, XQuery, WebLogic Server, Oracle Linux.
+                      </p>
+                      "
+                    >
+                      Consulting Companies -{' '}
+                      <small style={{ color: '#dedc69', cursor: 'pointer' }}>hover me</small>
+                    </strong>
                   </p>
                   <p>
-                    <strong>Novutek | Middleware Specialist </strong>
-                    Architected ALSB façade systems for web service orchestration Developed SOAP web
-                    services and WSDL contracts based on business requirements Created integration
-                    solutions for Mainframe 3270 systems Authored technical documentation and
-                    functional requirement specifications.
-                    <p>Tech Stack: Java 1.6, SOAP, ESB (ALSB), OSB, XQuery, WebLogic Server</p>
-                  </p>
-                  <p>
-                    <strong>Miracle Business Networking | Java Developer</strong>
-                    Developed SOAP web service interfaces and data service integrations Implemented
-                    complex SQL queries and database operations Managed WebLogic Server deployments
-                    in Linux environments
-                    <p>Tech Stack: Java, WebLogic Server, ALSB, ALDSP, SQL, XQuery</p>
-                  </p>
-                  <p>
-                    <strong>Oracle Mexico | Java Developer</strong>
-                    Developed Java-based web service integrations using SOAP Implemented
-                    Hibernate-based database operations for Oracle DB
-                    <p>Tech Stack: Java, WebLogic Server, Hibernate, Oracle DB</p>
+                    Architected and developed enterprise integration solutions using SOAP/REST web
+                    services and ESB patterns Designed and implemented service transformations
+                    (JSON/XML) for mobile and legacy system integrations Built database solutions
+                    utilizing SQL, Hibernate, and Oracle DB with focus on performance optimization
+                    Managed WebLogic Server deployments across Linux environments and Mainframe 3270
+                    systems Established technical standards through architecture reviews,
+                    documentation, and comprehensive testing strategies
                   </p>
                 </article>
               </section>
@@ -299,6 +321,7 @@ function Resume() {
           </div>
         </main>
       </div>
+      <TooltipUtil />
     </div>
   );
 }

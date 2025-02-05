@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Post } from '../features/blog_admin/types';
 
 interface UseBlogPostsParams {
@@ -12,10 +12,8 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchPosts = async () => {
+  const fetchPosts = useCallback(
+    async (signal?: AbortSignal) => {
       try {
         setIsLoadingPosts(true);
         setError(null);
@@ -32,7 +30,7 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
         const queryStr = params.toString();
         if (queryStr) urlString += `?${queryStr}`;
 
-        const response = await fetch(urlString);
+        const response = await fetch(urlString, { signal });
 
         if (!response.ok) {
           if (response.status !== 404) {
@@ -54,14 +52,20 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
       } finally {
         setIsLoadingPosts(false);
       }
-    };
+    },
+    [tag, searchTerm, slug] // Dependencies for useCallback
+  );
+  // Handle initial fetch and cleanup
+  useEffect(() => {
+    const controller = new AbortController();
 
-    fetchPosts();
+    // Pass the abort signal to the fetch function
+    fetchPosts(controller.signal);
 
     return () => {
       controller.abort();
     };
-  }, [tag, searchTerm, slug]);
+  }, [fetchPosts]);
 
   const getTitle = () => {
     if (searchTerm) return `Search by ${searchTerm}`;
@@ -69,10 +73,13 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
     else return 'Latest Posts';
   };
 
+  const refetch = () => fetchPosts();
+
   return {
     posts,
     isLoadingPosts,
     error,
     getTitle,
+    refetch,
   };
 }

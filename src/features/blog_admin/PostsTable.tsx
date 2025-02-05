@@ -1,12 +1,7 @@
-import {
-  HiOutlineTrash,
-  HiOutlinePencilSquare,
-  HiOutlineXCircle,
-  HiOutlineCheckCircle,
-} from 'react-icons/hi2';
+import { HiOutlineXCircle, HiOutlineCheckCircle } from 'react-icons/hi2';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatDateSimple } from '../../utils/helpers';
-import Button from '../../component/Button';
+import ButtonActions from './ButtonActions';
 
 function PostsTable() {
   const { posts, isLoadingPosts, error } = useBlogPosts();
@@ -41,14 +36,7 @@ function PostsTable() {
               >
                 {post.draft ? <HiOutlineXCircle /> : <HiOutlineCheckCircle />}
               </div>
-              <div>
-                <Button variant="icon">
-                  <HiOutlineTrash color="var(--color-red-700)" />
-                </Button>
-                <Button variant="icon">
-                  <HiOutlinePencilSquare color="var(--color-green-700)" />
-                </Button>
-              </div>
+              <ButtonActions />
             </div>
           );
         })

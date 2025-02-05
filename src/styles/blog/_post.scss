@@ -140,3 +140,11 @@
     }
   }
 }
+
+.post__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min-content;
+  z-index: 999;
+}

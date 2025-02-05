@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { HiOutlineDocumentPlus, HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { FiLoader } from 'react-icons/fi';
 
 import Button from '../../component/Button';
@@ -10,12 +10,17 @@ import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
 import { useModal } from '../../hooks/useModal';
 import TooltipUtil from '../../utils/TooltipUtil';
+import ButtonActions from '../blog_admin/ButtonActions';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
   const { searchTerm, tag } = useParams();
-  const { posts, isLoadingPosts, error, getTitle } = useBlogPosts({ searchTerm, tag });
+  const { posts, isLoadingPosts, error, getTitle, refetch } = useBlogPosts({ searchTerm, tag });
   const { isOpenModal, closeModal, toggleModal } = useModal();
+
+  const handlePostDeleted = () => {
+    refetch(); // Refetch posts after deletion
+  };
 
   return (
     <>
@@ -36,7 +41,14 @@ function Posts() {
           <p>{error}</p>
         ) : (
           posts.map((post) => (
-            <Link to={`/blog/posts/${post.slug}`} className="blog__main-posts-post" key={post.slug}>
+            <Link
+              to={`/blog/posts/${post.slug}`}
+              className="blog__main-posts-post"
+              key={post.slug}
+              onClick={(ev) => {
+                if (ev.defaultPrevented) return;
+              }}
+            >
               <div className="blog__main-posts-post-heading">
                 <h2>{post.title}</h2>
                 <span>{formatShortDate(post.createdAt)}</span>
@@ -49,16 +61,7 @@ function Posts() {
                   </p>
                 ))}
               </div>
-              {currentUser && (
-                <div className="blog__main-posts-post-actions">
-                  <Button variant="icon">
-                    <HiOutlineTrash color="var(--color-red-700)" />
-                  </Button>
-                  <Button variant="icon">
-                    <HiOutlinePencilSquare color="var(--color-green-700)" />
-                  </Button>
-                </div>
-              )}
+              {currentUser && <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />}
             </Link>
           ))
         )}

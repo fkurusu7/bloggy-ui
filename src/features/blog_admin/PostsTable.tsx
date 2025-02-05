@@ -4,7 +4,11 @@ import { formatDateSimple } from '../../utils/helpers';
 import ButtonActions from './ButtonActions';
 
 function PostsTable() {
-  const { posts, isLoadingPosts, error } = useBlogPosts();
+  const { posts, isLoadingPosts, error, refetch } = useBlogPosts();
+
+  const handlePostDeleted = () => {
+    refetch(); // Refetch posts after deletion
+  };
 
   return (
     <div className="blog-table" role="table">
@@ -36,7 +40,7 @@ function PostsTable() {
               >
                 {post.draft ? <HiOutlineXCircle /> : <HiOutlineCheckCircle />}
               </div>
-              <ButtonActions />
+              <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />
             </div>
           );
         })

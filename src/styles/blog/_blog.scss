@@ -132,18 +132,13 @@
         }
 
         &-actions {
-          position: absolute;
-          top: 1.3rem;
-          left: 50%;
-          transform: translateX(-50%);
-
           display: flex;
+          justify-content: space-between;
           gap: 1rem;
+          margin-top: auto;
         }
 
         & .blog__main-tags {
-          margin-top: auto;
-
           display: flex;
           justify-content: flex-end;
 
@@ -156,6 +151,9 @@
             }
           }
         }
+
+        // & .post__actions {
+        // }
       }
     }
 

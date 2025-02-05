@@ -54,14 +54,18 @@ function Posts() {
                 <span>{formatShortDate(post.createdAt)}</span>
               </div>
               <p className="blog__main-posts-post-description">{post.description}</p>
-              <div className="blog__main-tags">
-                {post.tags.map((tag) => (
-                  <p key={tag.slug} className="blog__main-tag">
-                    {tag.name}
-                  </p>
-                ))}
+              <div className="blog__main-posts-post-actions">
+                <div className="blog__main-tags">
+                  {post.tags.map((tag) => (
+                    <p key={tag.slug} className="blog__main-tag">
+                      {tag.name}
+                    </p>
+                  ))}
+                </div>
+                {currentUser && (
+                  <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />
+                )}
               </div>
-              {currentUser && <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />}
             </Link>
           ))
         )}

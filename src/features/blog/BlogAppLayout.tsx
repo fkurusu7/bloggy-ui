@@ -9,8 +9,8 @@ function BlogAppLayout() {
       <BlogHeader />
       <main className="blog__main">
         <Outlet />
-        <SearchAndTags />
       </main>
+      <SearchAndTags />
       <Footer />
     </div>
   );

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
-import { HiOutlineSearch } from 'react-icons/hi';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 function SearchAndTags() {
-  const navigate = useNavigate();
   // 1. Get Tags
   const [tags, setTags] = useState([]);
   const [errorTags, setErrorTags] = useState(null);
@@ -33,39 +32,22 @@ function SearchAndTags() {
     fetchTags();
   }, []);
 
-  // TODO: Add functionality to search for posts
-
-  const handleInputSearch = (ev: React.KeyboardEvent<HTMLInputElement>) => {
-    // /blog/search/:searchTerm
-    if (ev.currentTarget.value.trim().length && ev.key === 'Enter') {
-      const searchTerm = ev.currentTarget.value;
-      ev.currentTarget.value = '';
-      navigate(`/blog/search/${searchTerm}`);
-    }
-  };
-
   return (
-    <aside className="blog__main-st">
-      <div className="blog__main-st-search">
-        <input type="text" placeholder="Search for a post" onKeyDown={handleInputSearch} />
-        <HiOutlineSearch />
-      </div>
-      <div className="blog__main-tags">
-        {isLoadingTags ? (
-          <FiLoader className="spin" />
-        ) : errorTags ? (
-          <p>{errorTags}</p>
-        ) : (
-          tags.map((tag: any) => {
-            return (
-              <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__main-tag">
-                {tag.name}
-              </Link>
-            );
-          })
-        )}
-      </div>
-    </aside>
+    <div className="blog__main__tags">
+      {isLoadingTags ? (
+        <FiLoader className="spin" />
+      ) : errorTags ? (
+        <p>{errorTags}</p>
+      ) : (
+        tags.map((tag: any) => {
+          return (
+            <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__main-tag">
+              {tag.name}
+            </Link>
+          );
+        })
+      )}
+    </div>
   );
 }
 

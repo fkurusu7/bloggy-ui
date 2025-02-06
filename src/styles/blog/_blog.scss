@@ -6,7 +6,7 @@
 
     display: grid;
     grid-template-columns: 10rem 3fr 10rem;
-    grid-template-rows: 8rem 1fr 11rem;
+    grid-template-rows: 9rem 1fr 5rem 10rem;
   }
 
   &__header {
@@ -32,9 +32,13 @@
       grid-column: 2 / -1;
     }
   }
+  &__tags {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
   &__footer {
     grid-column: 2 / 3;
-    grid-row: 3 / -1;
+    grid-row: 4 / -1;
   }
 }
 
@@ -56,6 +60,44 @@
       &:active {
         color: var(--color-brand-400);
         transform: scale(1.1);
+      }
+    }
+
+    &-search {
+      position: relative;
+
+      & > input {
+        background-color: transparent;
+        border: none;
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--shadow-lg);
+        color: var(--color-grey-500);
+        font-size: 1.5rem;
+        outline: 2px solid var(--color-grey-400);
+        padding: 0.7rem 3.1rem;
+        transition: all 0.3s ease-out;
+        width: 100%;
+
+        &::placeholder {
+          color: var(--color-grey-400);
+          font-size: 1.4rem;
+        }
+        &:hover {
+          outline-color: var(--color-brand-500);
+        }
+        &:hover + svg {
+          color: var(--color-brand-500);
+        }
+      }
+
+      & > svg {
+        color: var(--color-grey-400);
+        height: 2.1rem;
+        position: absolute;
+        top: 0.9rem;
+        left: 0.5rem;
+        width: 2.1rem;
+        transition: all 0.3s ease-out;
       }
     }
 
@@ -177,44 +219,6 @@
       justify-content: flex-start;
       align-items: center;
       gap: 3rem;
-
-      &-search {
-        position: relative;
-
-        & > input {
-          background-color: transparent;
-          border: none;
-          border-radius: var(--border-radius-md);
-          box-shadow: var(--shadow-lg);
-          color: var(--color-grey-500);
-          font-size: 1.5rem;
-          outline: 2px solid var(--color-grey-400);
-          padding: 0.7rem 3.1rem;
-          transition: all 0.3s ease-out;
-          width: 100%;
-
-          &::placeholder {
-            color: var(--color-grey-400);
-            font-size: 1.4rem;
-          }
-          &:hover {
-            outline-color: var(--color-brand-500);
-          }
-          &:hover + svg {
-            color: var(--color-brand-500);
-          }
-        }
-
-        & > svg {
-          color: var(--color-grey-400);
-          height: 2.1rem;
-          position: absolute;
-          top: 0.9rem;
-          left: 0.5rem;
-          width: 2.1rem;
-          transition: all 0.3s ease-out;
-        }
-      }
     }
 
     // TAGs - Posts and Search components

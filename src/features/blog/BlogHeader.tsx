@@ -1,21 +1,37 @@
-import { Link } from 'react-router-dom';
-import LightOnDarkToggle from '../../component/LightOnDarkToggle';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineCog } from 'react-icons/hi2';
-import { HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi';
+import { HiOutlineLogin, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi';
 
 import Button from '../../component/Button';
-import { useAuth } from '../../hooks/useAuth';
+import LightOnDarkToggle from '../../component/LightOnDarkToggle';
 import { useAppSelector } from '../../context/useContextTypes';
+import { useAuth } from '../../hooks/useAuth';
 
 function BlogHeader() {
   const { handleSignout } = useAuth();
+  const navigate = useNavigate();
 
   const { currentUser } = useAppSelector((state) => state.user);
+
+  const handleInputSearch = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    // /blog/search/:searchTerm
+    if (ev.currentTarget.value.trim().length && ev.key === 'Enter') {
+      const searchTerm = ev.currentTarget.value;
+      ev.currentTarget.value = '';
+      navigate(`/blog/search/${searchTerm}`);
+    }
+  };
 
   return (
     <header className="blog__header">
       <div className="blog__header-logo">
         <Link to={'/'}>¯\_(ツ)_/¯</Link>
+      </div>
+
+      <div className="blog__header-search">
+        <input type="text" placeholder="Search for a post" onKeyDown={handleInputSearch} />
+        <HiOutlineSearch />
       </div>
 
       <ul className="blog__header-menu">

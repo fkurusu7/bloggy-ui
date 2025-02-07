@@ -6,7 +6,7 @@ function LightOnDarkToggle() {
 
   return (
     <button className="header-admin__btn-icon" onClick={toggleLightOnDarkMode}>
-      {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
+      {isDarkMode ? <HiOutlineSun className="light" /> : <HiOutlineMoon className="dark" />}
     </button>
   );
 }

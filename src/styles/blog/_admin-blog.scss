@@ -22,9 +22,17 @@
       height: 2.3rem;
       width: 2.3rem;
     }
-
-    &:hover {
-      color: var(--color-grey-800);
+    & > .light {
+      color: var(--color-brand-800);
+    }
+    & > .dark {
+      color: var(--color-grey-900);
+    }
+    &:hover > .light {
+      color: var(--color-brand-600);
+    }
+    &:hover > .dark {
+      color: var(--color-grey-500);
     }
 
     &:active,

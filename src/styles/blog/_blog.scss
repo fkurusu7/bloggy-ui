@@ -43,23 +43,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 
     &-logo > a {
       &:link,
       &:visited {
-        color: var(--color-grey-500);
+        color: var(--color-brand-600);
+        font-weight: bolder;
         transition: all 0.3s ease-out;
       }
 
       &:hover,
       &:active {
-        color: var(--color-brand-400);
+        color: var(--color-brand-500);
         transform: scale(1.1);
       }
     }
 
     &-search {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       & > input {
         background-color: transparent;
@@ -77,11 +82,13 @@
           color: var(--color-grey-400);
           font-size: 1.4rem;
         }
-        &:hover {
-          outline-color: var(--color-brand-500);
+        &:hover,
+        &:focus {
+          outline-color: var(--color-brand-600);
         }
-        &:hover + svg {
-          color: var(--color-brand-500);
+        &:hover + svg,
+        &:focus + svg {
+          color: var(--color-brand-600);
         }
       }
 
@@ -104,6 +111,8 @@
   }
 
   &__main {
+    border-right: 1px solid rgba($color: #57534e, $alpha: 0.4);
+
     &-title {
       color: var(--color-grey-500);
       font-size: 3rem;

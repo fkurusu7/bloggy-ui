@@ -75,7 +75,6 @@ input {
   gap: 1rem;
 
   border-top: 1px solid rgba($color: #57534e, $alpha: 0.4);
-
   font-size: 1.4rem;
   margin-top: 3rem;
   padding-top: 2rem;
@@ -88,14 +87,14 @@ input {
     gap: 0.7rem;
   }
   &__copy {
-    color: var(--color-blue-700);
+    color: var(--color-brand-900);
     gap: 0.3rem;
   }
   &__heart > svg {
-    color: var(--color-red-700);
+    color: var(--color-red-100);
   }
   &__tacos > svg {
-    color: var(--color-yellow-100);
+    color: var(--color-brand-600);
   }
   &__heart,
   &__tacos {

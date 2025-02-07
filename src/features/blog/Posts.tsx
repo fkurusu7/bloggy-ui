@@ -41,32 +41,31 @@ function Posts() {
           <p>{error}</p>
         ) : (
           posts.map((post) => (
-            <Link
-              to={`/blog/posts/${post.slug}`}
-              className="blog__main-posts-post"
-              key={post.slug}
-              onClick={(ev) => {
-                if (ev.defaultPrevented) return;
-              }}
-            >
-              <div className="blog__main-posts-post-heading">
-                <h2>{post.title}</h2>
-                <span>{formatShortDate(post.createdAt)}</span>
-              </div>
-              <p className="blog__main-posts-post-description">{post.description}</p>
-              <div className="blog__main-posts-post-actions">
-                <div className="blog__main-tags">
+            <div className="blog__main-posts-post" key={post.slug}>
+              <span>{formatShortDate(post.createdAt)}</span>
+              <Link
+                to={`/blog/posts/${post.slug}`}
+                key={post.slug}
+                onClick={(ev) => {
+                  if (ev.defaultPrevented) return;
+                }}
+              >
+                {post.title}
+                {/* TODO: add tags? */}
+                {/* <div className="blog__main-tags">
                   {post.tags.map((tag) => (
                     <p key={tag.slug} className="blog__main-tag">
                       {tag.name}
                     </p>
                   ))}
-                </div>
+                </div> */}
+              </Link>
+              <div className="blog__main-posts-post-actions">
                 {currentUser && (
                   <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />
                 )}
               </div>
-            </Link>
+            </div>
           ))
         )}
       </section>

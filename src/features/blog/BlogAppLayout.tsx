@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import BlogHeader from './BlogHeader';
-import SearchAndTags from './SearchAndTags';
+import Tags from './Tags';
 import Footer from './Footer';
 
 function BlogAppLayout() {
@@ -10,7 +10,7 @@ function BlogAppLayout() {
       <main className="blog__main">
         <Outlet />
       </main>
-      <SearchAndTags />
+      <Tags />
       <Footer />
     </div>
   );

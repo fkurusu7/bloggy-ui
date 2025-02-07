@@ -3,7 +3,7 @@ import { FiLoader } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
 
-function SearchAndTags() {
+function Tags() {
   // 1. Get Tags
   const [tags, setTags] = useState([]);
   const [errorTags, setErrorTags] = useState(null);
@@ -33,7 +33,7 @@ function SearchAndTags() {
   }, []);
 
   return (
-    <div className="blog__main__tags">
+    <div className="blog__tags">
       {isLoadingTags ? (
         <FiLoader className="spin" />
       ) : errorTags ? (
@@ -41,7 +41,7 @@ function SearchAndTags() {
       ) : (
         tags.map((tag: any) => {
           return (
-            <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__main-tag">
+            <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__tag">
               {tag.name}
             </Link>
           );
@@ -51,4 +51,4 @@ function SearchAndTags() {
   );
 }
 
-export default SearchAndTags;
+export default Tags;

@@ -34,18 +34,21 @@ function Tags() {
 
   return (
     <div className="blog__tags">
+      <h2 className="heading-2">Tags</h2>
       {isLoadingTags ? (
         <FiLoader className="spin" />
       ) : errorTags ? (
         <p>{errorTags}</p>
       ) : (
-        tags.map((tag: any) => {
-          return (
-            <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__tag">
-              {tag.name}
-            </Link>
-          );
-        })
+        <div>
+          {tags.map((tag: any) => {
+            return (
+              <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__tag">
+                {tag.name}
+              </Link>
+            );
+          })}
+        </div>
       )}
     </div>
   );

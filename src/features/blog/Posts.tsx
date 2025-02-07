@@ -1,22 +1,22 @@
 import { Link, useParams } from 'react-router-dom';
-import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { FiLoader } from 'react-icons/fi';
 
-import Button from '../../component/Button';
 import { useAppSelector } from '../../context/useContextTypes';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
+import ButtonActions from '../blog_admin/ButtonActions';
+import Button from '../../component/Button';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
+import { useModal } from '../../hooks/useModal';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
-import { useModal } from '../../hooks/useModal';
 import TooltipUtil from '../../utils/TooltipUtil';
-import ButtonActions from '../blog_admin/ButtonActions';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
+  const { isOpenModal, closeModal, toggleModal } = useModal();
   const { searchTerm, tag } = useParams();
   const { posts, isLoadingPosts, error, getTitle, refetch } = useBlogPosts({ searchTerm, tag });
-  const { isOpenModal, closeModal, toggleModal } = useModal();
 
   const handlePostDeleted = () => {
     refetch(); // Refetch posts after deletion

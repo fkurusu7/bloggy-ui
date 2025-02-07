@@ -2,7 +2,7 @@ import MeHeader from './MeHeader';
 import MeMain from './MeMain';
 import Footer from '../blog/Footer';
 
-function Me() {
+function MeLayout() {
   return (
     <div className="container-me">
       <MeHeader />
@@ -12,4 +12,4 @@ function Me() {
   );
 }
 
-export default Me;
+export default MeLayout;

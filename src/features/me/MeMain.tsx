@@ -6,7 +6,7 @@ function MeMain() {
     <div className="me-social">
       {/* Buttons to Blog and Resume */}
       <MeCTA />
-      <section className="me-projects">WIP projects WIP</section>
+      {/* TODO: <section className="me-projects">WIP projects WIP</section> */}
       <MeBackground />
     </div>
   );

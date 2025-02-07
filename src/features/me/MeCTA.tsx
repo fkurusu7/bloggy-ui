@@ -6,7 +6,7 @@ function MeCTA() {
   return (
     <>
       <section className="me-social__cta">
-        <Link to={'/resume'} className="me-social__cta-link">
+        <Link to={'/resume'} className="me-social__cta-link resume--btn">
           <HiOutlineDocumentText /> <span>See my Resume</span>
         </Link>
         <Link to={'/blog'} className="me-social__cta-link">

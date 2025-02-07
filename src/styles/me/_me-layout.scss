@@ -4,17 +4,16 @@
   justify-content: space-between;
   align-items: center;
   column-gap: 4rem;
+
   background-color: var(--color-grey-100);
   color: var(--color-grey-500);
   min-height: 100vh;
-  padding: 0 25rem;
-  width: 100%;
+  padding: 5rem 15rem;
 }
 
 .me {
   &-header {
-    // height: 50vh;
-    margin: 5rem 0;
+    margin-bottom: 5rem;
     width: 100%;
 
     display: flex;
@@ -32,19 +31,21 @@
 
     &__title {
       & h1 {
-        background: linear-gradient(var(--color-brand-500), var(--color-brand-200));
+        background: linear-gradient(var(--color-grey-400), var(--color-grey-600));
         background-clip: text;
         -webkit-text-fill-color: transparent;
+        // color: var(--color-grey-500);
         font-family: 'Sono', sans-serif;
         font-size: 5rem;
         font-weight: 600;
       }
 
       & p {
-        background: linear-gradient(var(--color-grey-400), var(--color-blue-700));
+        background: linear-gradient(var(--color-brand-500), var(--color-brand-600));
         background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 5rem;
+        font-weight: bold;
         text-align: center;
         text-transform: uppercase;
       }
@@ -77,15 +78,13 @@
       &-link {
         &:link,
         &:visited {
-          background-color: var(--color-grey-100);
-          border: 1px solid var(--color-brand-500);
-          border-radius: var(--border-radius-md);
+          border: none;
           color: var(--color-brand-500);
           font-size: 2rem;
           font-family: 'Poppins';
           font-weight: 500;
           padding: 0.9rem 1.8rem;
-          transition: all 0.1s ease-out;
+          transition: all 0.3s ease-out;
 
           display: flex;
           align-items: center;
@@ -95,15 +94,13 @@
         &:hover,
         &:active,
         &:active:link,
-        &:active:visited {
-          background-color: var(--color-brand-500);
-          color: var(--color-grey-100);
-        }
-
         &:focus,
         &:focus:link,
-        &:focus:visited {
-          transform: scale(0.9);
+        &:focus:visited,
+        &:active:visited {
+          text-decoration: underline;
+
+          transform: scale(0.99);
         }
 
         & svg {
@@ -113,11 +110,34 @@
           transition: all 0.1s ease-out;
         }
 
-        &:hover svg,
-        &:active svg,
-        &:active:link svg,
-        &:active:visited svg {
-          color: var(--color-grey-100);
+        &.resume--btn {
+          &:link,
+          &:visited {
+            background-color: var(--color-brand-600);
+            border: none;
+            border-radius: var(--border-radius-md);
+            color: var(--color-grey-200);
+            // outline: 2px solid var(--color-brand-600);
+            outline: none;
+            transition: all 0.3s ease-out;
+
+            & svg {
+              color: var(--color-grey-200);
+            }
+          }
+
+          &:hover,
+          &:active,
+          &:active:visited,
+          &:active:link {
+            background-color: var(--color-brand-500);
+            color: var(--color-grey-50);
+            text-decoration: none;
+
+            & svg {
+              color: var(--color-grey-50);
+            }
+          }
         }
       }
     }

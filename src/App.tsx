@@ -5,7 +5,7 @@ import BlogAdminLayout from './features/blog_admin/BlogAdminLayout';
 import Tmp from './features/blog_admin/Tmp';
 import { Toaster } from 'react-hot-toast';
 import { LightOnDarkProvider } from './context/LightOnDarkMode';
-import Me from './features/me/Me';
+import MeLayout from './features/me/MeLayout';
 import Resume from './features/resume/Resume';
 import UserAuth from './features/auth/UserAuth';
 import PrivateRoute from './features/auth/PrivateRoute';
@@ -18,14 +18,14 @@ function App() {
     <LightOnDarkProvider>
       <BrowserRouter>
         <Routes>
-          {/* <Route element={<Me />}>
+          {/* <Route element={<MeLayout />}>
             <Route index element={<Navigate replace to={'me'} />} />
-            <Route path="/" element={<Me />} />
+            <Route path="/" element={<MeLayout />} />
           </Route>
           <Route path="/resume" element={<Resume />} /> */}
           <Route index element={<Navigate replace to={'/me'} />} />
-          <Route path="/" element={<Me />} />
-          <Route path="/me" element={<Me />} />
+          <Route path="/" element={<MeLayout />} />
+          <Route path="/me" element={<MeLayout />} />
           <Route path="/resume" element={<Resume />} />
           {/* AUTH */}
           <Route path="/signin" element={<UserAuth type="signin" />} />

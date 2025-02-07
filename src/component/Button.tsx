@@ -15,6 +15,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   fullWidth?: boolean;
   to?: string | null;
   tooltipmsg?: string;
+  tooltipplace?: string;
 }
 
 function Button({
@@ -28,6 +29,7 @@ function Button({
   children,
   to = null,
   tooltipmsg,
+  tooltipplace = 'top',
 }: ButtonProps) {
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ function Button({
         className={`btn ${variant}`}
         data-tooltip-id="tooltipid"
         data-tooltip-content={tooltipmsg}
-        data-tooltip-place="top"
+        data-tooltip-place={tooltipplace}
       >
         {children}
       </Link>
@@ -61,7 +63,7 @@ function Button({
       className={`btn ${size} ${variant} ${goBack ? 'float' : ''}`}
       data-tooltip-id="tooltipid"
       data-tooltip-content={tooltipmsg}
-      data-tooltip-place="top"
+      data-tooltip-place={tooltipplace}
     >
       {isLoading ? <FiLoader className="spin" /> : children}
     </button>

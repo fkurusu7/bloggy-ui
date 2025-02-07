@@ -5,16 +5,10 @@ import { useAppSelector } from '../../context/useContextTypes';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
 import ButtonActions from '../blog_admin/ButtonActions';
-import Button from '../../component/Button';
-import { HiOutlineDocumentPlus } from 'react-icons/hi2';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../../component/Modal';
-import CreatePost from '../blog_admin/CreatePost';
 import TooltipUtil from '../../utils/TooltipUtil';
 
 function Posts() {
   const { currentUser } = useAppSelector((state) => state.user);
-  const { isOpenModal, closeModal, toggleModal } = useModal();
   const { searchTerm, tag } = useParams();
   const { posts, isLoadingPosts, error, getTitle, refetch } = useBlogPosts({ searchTerm, tag });
 
@@ -27,11 +21,6 @@ function Posts() {
       {/* Title Will be passed when loading posts or search term or any */}
       <div className="row row-horizontal">
         <h2 className="blog__main-title">{getTitle()}</h2>
-        {currentUser && (
-          <Button variant="icon" size="large" onClick={toggleModal} tooltipmsg="Create Post">
-            <HiOutlineDocumentPlus />
-          </Button>
-        )}
       </div>
 
       <section className="blog__main-posts">
@@ -69,13 +58,7 @@ function Posts() {
           ))
         )}
       </section>
-      {isOpenModal && (
-        <Modal onClose={closeModal}>
-          <div>
-            <CreatePost />
-          </div>
-        </Modal>
-      )}
+
       <TooltipUtil />
     </>
   );

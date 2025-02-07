@@ -30,14 +30,26 @@ function ButtonActions({ slug, onPostDeleted }: ActipnData) {
   };
 
   return (
-    <div className="post__actions">
-      <Button variant="icon">
-        <HiOutlinePencilSquare color="var(--color-green-700)" />
-      </Button>
-      <Button variant="icon" onClick={handleDeletePost}>
-        <HiOutlineTrash color="var(--color-red-700)" />
-      </Button>
-    </div>
+    <>
+      <div className="post__actions">
+        <Button
+          variant="icon"
+          tooltipmsg="Edit Post"
+          tooltipplace="left"
+          onClick={() => console.log('Edit post')}
+        >
+          <HiOutlinePencilSquare color="var(--color-green-700)" />
+        </Button>
+        <Button
+          variant="icon"
+          tooltipmsg="Delete Post"
+          tooltipplace="right"
+          onClick={handleDeletePost}
+        >
+          <HiOutlineTrash color="var(--color-red-700)" />
+        </Button>
+      </div>
+    </>
   );
 }
 

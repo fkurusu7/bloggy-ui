@@ -5,7 +5,13 @@ function LightOnDarkToggle() {
   const { isDarkMode, toggleLightOnDarkMode } = useLightOnDarkMode();
 
   return (
-    <button className="header-admin__btn-icon" onClick={toggleLightOnDarkMode}>
+    <button
+      className="header-admin__btn-icon"
+      onClick={toggleLightOnDarkMode}
+      data-tooltip-id="tooltipid"
+      data-tooltip-content={isDarkMode ? 'Light mode?' : 'Dark mode?'}
+      data-tooltip-place="left"
+    >
       {isDarkMode ? <HiOutlineSun className="light" /> : <HiOutlineMoon className="dark" />}
     </button>
   );

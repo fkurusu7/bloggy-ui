@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { HiOutlineCog, HiOutlineDocumentPlus } from 'react-icons/hi2';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { HiOutlineLogin, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi';
 
 import Button from '../../component/Button';
@@ -11,6 +11,7 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
 import TooltipUtil from '../../utils/TooltipUtil';
+import { MdOutlineAdminPanelSettings, MdSelfImprovement } from 'react-icons/md';
 
 function BlogHeader() {
   const { handleSignout } = useAuth();
@@ -32,7 +33,7 @@ function BlogHeader() {
     <>
       <header className="blog__header">
         <div className="blog__header-logo">
-          <Link to={'/'}>¯\_(ツ)_/¯</Link>
+          <Link to={'/blog'}>¯\_(ツ)_/¯</Link>
         </div>
 
         <div className="blog__header-search">
@@ -42,17 +43,24 @@ function BlogHeader() {
 
         <ul className="blog__header-menu">
           {currentUser && (
-            <li>
-              <Button
-                variant="icon"
-                size="large"
-                onClick={toggleModal}
-                tooltipmsg="Create Post"
-                tooltipplace="left"
-              >
-                <HiOutlineDocumentPlus />
-              </Button>
-            </li>
+            <>
+              <li>
+                <Button
+                  variant="icon"
+                  size="large"
+                  onClick={toggleModal}
+                  tooltipmsg="Create Post"
+                  tooltipplace="left"
+                >
+                  <HiOutlineDocumentPlus />
+                </Button>
+              </li>
+              <li>
+                <Button variant="linkicon" to="/me" tooltipmsg="ME page" tooltipplace="left">
+                  <MdSelfImprovement />
+                </Button>
+              </li>
+            </>
           )}
           <li>
             <LightOnDarkToggle />
@@ -60,19 +68,36 @@ function BlogHeader() {
           {currentUser ? (
             <>
               <li>
-                <Button variant="linkicon" to="/blog/admin">
-                  <HiOutlineCog />
+                <Button
+                  variant="linkicon"
+                  to="/blog/admin"
+                  tooltipmsg="Admin Panel"
+                  tooltipplace="left"
+                >
+                  <MdOutlineAdminPanelSettings />
                 </Button>
               </li>
               <li>
-                <Button type="button" variant="icon" onClick={handleSignout}>
+                <Button
+                  type="button"
+                  variant="icon"
+                  onClick={handleSignout}
+                  tooltipmsg="Sign out"
+                  tooltipplace="left"
+                >
                   <HiOutlineLogout />
                 </Button>
               </li>
             </>
           ) : (
             <li>
-              <Button variant="linkicon" to="/signin" onClick={handleSignout}>
+              <Button
+                variant="linkicon"
+                to="/signin"
+                onClick={handleSignout}
+                tooltipmsg="Sign in"
+                tooltipplace="left"
+              >
                 <HiOutlineLogin />
               </Button>
             </li>

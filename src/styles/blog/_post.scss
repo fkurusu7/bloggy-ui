@@ -1,5 +1,7 @@
 .blog__post-info {
-  min-height: 100vh;
+  // min-height: 30vh;
+  margin-right: 1rem;
+  overflow: hidden;
   &__heading {
     display: flex;
     justify-content: space-between;
@@ -41,9 +43,24 @@
 
     & span {
       border-radius: var(--border-radius-md);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       outline: 1px solid var(--color-grey-500);
-      padding: 0.1rem 0.5rem;
+      padding: 0.2rem 0.6rem;
+    }
+  }
+
+  &__banner {
+    margin-bottom: 3rem;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    & > img {
+      aspect-ratio: 16/9;
+      border-radius: var(--border-radius-md);
+      width: 60%;
     }
   }
 
@@ -53,12 +70,6 @@
     border-bottom: 2px solid var(--color-grey-200);
     padding-bottom: 1rem;
     margin-bottom: 3rem;
-  }
-
-  &__banner {
-    display: block;
-    width: 50%;
-    height: auto;
   }
 
   &__content {
@@ -141,6 +152,7 @@
   }
 }
 
+// ClassName is List of posts /blog and the blog admin table for each post
 .post__actions {
   display: flex;
   align-items: center;

@@ -27,19 +27,24 @@ function Post() {
   }
 
   // Handle error state
+
   if (error) {
-    return <div className="blog__post-info-error">Error loading post: {error}</div>;
+    console.log(error);
+    return (
+      <article className="blog__post-info">
+        <div className="blog__post-info-error">Error loading post: {error}</div>;
+      </article>
+    );
   }
 
   // Handle no post found
   if (!post) {
     return (
-      <>
+      <article className="blog__post-info">
         <div className="blog__post-info__heading">
-          <p className="blog__post-info__error">Post not found</p>
+          <h2>Post not found</h2>
           <Link
             to={'/blog'}
-            className="blog__post-info__error-icon"
             data-tooltip-id="tooltipid"
             data-tooltip-content="Go back"
             data-tooltip-place="top"
@@ -48,7 +53,7 @@ function Post() {
           </Link>
         </div>
         <TooltipUtil />
-      </>
+      </article>
     );
   }
   console.log(post);
@@ -67,8 +72,10 @@ function Post() {
         </div>
         <div className="blog__post-info__created">{formatDateSimple(post.createdAt)}</div>
       </div>
+      <div className="blog__post-info__banner">
+        <img src={post.banner} />
+      </div>
       <div className="blog__post-info__description">{post.description}</div>
-      {/* <img className="blog__post-info__banner" src={post.banner} /> */}
       <PostContent content={post.content} />
     </article>
   );

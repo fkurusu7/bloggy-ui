@@ -30,10 +30,11 @@ function Resume() {
             <h1>Fernando</h1>
             <h2>Cruz</h2>
             <p>
-              My name is Fernando Cruz, a passionate and versatile full-stack developer who loves
-              crafting digital solutions. With a strong foundation in front-end and back-end
-              technologies, I bring creative problem-solving and a user-centric approach to every
-              project.
+              Full-stack developer merging technical expertise with creative problem-solving.
+              Drawing from 15 years of experience at global leaders like Morgan Stanley and IBM
+              Mexico, I craft end-to-end applications that make an impact. I specialize in creating
+              seamless experiences across the JavaScript ecosystem, leveraging React and Node.js to
+              transform complex challenges into elegant digital solutions.
             </p>
           </div>
 

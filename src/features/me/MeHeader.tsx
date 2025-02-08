@@ -7,9 +7,12 @@ function MeHeader() {
         <p>Solopreneur</p>
       </div>
       <div className="me-header__intro">
-        I'm a passionate and versatile full-stack developer who loves crafting digital solutions.
-        With a strong foundation in front-end and back-end technologies, I bring creative
-        problem-solving and a user-centric approach to every project. Follow me!
+        Full-stack developer merging technical expertise with creative problem-solving. Drawing from
+        15 years of experience at global leaders like Morgan Stanley and IBM Mexico, I craft
+        end-to-end applications that make an impact. I specialize in creating seamless experiences
+        across the JavaScript ecosystem, leveraging React and Node.js to transform complex
+        challenges into elegant digital solutions. Now as a freelance developer, I'm ready to bring
+        your vision to life.
       </div>
     </header>
   );

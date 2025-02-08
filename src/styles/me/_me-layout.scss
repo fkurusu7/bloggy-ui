@@ -162,28 +162,29 @@
         &:active,
         &:hover:link,
         &:active:visited {
-          background-color: var(--color-brand-500);
+          background-color: var(--color-brand-600);
         }
 
         & svg {
           height: 5rem;
           width: 5rem;
-          fill: var(--color-brand-500);
+          fill: var(--color-grey-600);
         }
 
         &:hover svg,
         &:active svg,
         &:hover:link svg,
         &:active:visited svg {
-          fill: var(--color-grey-100);
+          fill: var(--color-grey-200);
         }
       }
     }
   }
 
   &-background {
-    margin: 1rem;
-    padding: 1rem 2rem 5rem;
+    height: 30rem;
+
+    padding: 1rem 2rem;
     width: 100%;
 
     display: flex;
@@ -199,7 +200,7 @@
     &__tabs {
       &-buttons,
       &-content {
-        width: 70%;
+        width: 55%;
       }
       &-buttons {
         display: flex;
@@ -219,8 +220,8 @@
         }
 
         &.active {
-          border-bottom: 0.3rem solid var(--color-brand-500);
-          color: var(--color-brand-500);
+          border-bottom: 0.3rem solid var(--color-brand-600);
+          color: var(--color-brand-600);
         }
       }
 
@@ -232,7 +233,7 @@
 
         & span {
           background-color: transparent;
-          border: 1px solid var(--color-brand-500);
+          outline: 1px solid var(--color-brand-500);
           border-radius: var(--border-radius-md);
           font-size: 1.4rem;
           padding: 0.7rem 2rem;

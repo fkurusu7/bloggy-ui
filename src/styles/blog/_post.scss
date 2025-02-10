@@ -1,7 +1,7 @@
 .blog__post-info {
   // min-height: 30vh;
   margin-right: 1rem;
-  overflow: hidden;
+  overflow: auto;
   &__heading {
     display: flex;
     justify-content: space-between;
@@ -40,6 +40,7 @@
   &__tags {
     display: flex;
     gap: 1rem;
+    padding-left: 0.2rem;
 
     & span {
       border-radius: var(--border-radius-md);
@@ -135,12 +136,18 @@
       }
     }
 
-    & pre {
-      display: inline-block;
+    & pre,
+    & pre[class*='language-'] {
+      display: block;
       border-radius: var(--border-radius-md);
-      width: 80%;
+
       margin: 0 auto;
       padding: 1rem 0 !important;
+
+      overflow: hidden !important; // Enables horizontal scrolling
+      white-space: pre-wrap; // Allows text to wrap
+      word-wrap: break-word; // Breaks long words if needed
+      max-width: 100%;
 
       & > code {
         font-family: 'Cutive Mono', serif;
@@ -150,6 +157,7 @@
         line-height: 1;
 
         width: 100%;
+        display: block; // Added to ensure proper width handling
       }
     }
   }

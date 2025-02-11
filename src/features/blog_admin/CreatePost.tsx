@@ -24,13 +24,19 @@ const imageSchema = z.object({
     .refine((file) => ALLOWED_IMAGE_TYPES.includes(file?.type)),
 });
 
-// const formSchema = z.object({
-//   banner: z.string(),
-//   title: z.string(),
-//   tags: z.string().array().nonempty(),
-//   description: z.string(),
-//   // content: z.object()
-// });
+// Define the error message type
+type FormError = {
+  field: string;
+  message: string;
+};
+
+const formSchema = z.object({
+  // banner: z.string(),
+  title: z.string(),
+  tags: z.string().array().nonempty(),
+  description: z.string(),
+  content: z.string(),
+});
 
 function CreatePost() {
   const navigate = useNavigate();
@@ -45,7 +51,7 @@ function CreatePost() {
   };
   const [editorFormData, setEditorFormData] = useState<PostData>(postInitialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [formDataError, setFormDataError] = useState({});
+  const [formDataError, setFormDataError] = useState<FormError[]>([]);
 
   const handleBannerImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -123,11 +129,22 @@ function CreatePost() {
     }));
   };
 
+  const getFieldError = (fieldName: string): string | undefined => {
+    return formDataError.find((error) => error.field === fieldName)?.message;
+  };
+
   const handleSubmit = async () => {
     console.log('Log');
 
     try {
       setIsSubmitting(true);
+
+      // Validate with zod the editorFormData except for the banner image
+      console.log(editorFormData);
+      const fieldValidationResults = formSchema.parse(editorFormData);
+      console.log(fieldValidationResults);
+
+      setFormDataError([]);
 
       const response = await fetch('/api/blog/create', {
         method: 'POST',
@@ -145,7 +162,12 @@ function CreatePost() {
       navigate('/blog/admin');
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.log(error);
+        const formErrors = error.errors.map((e) => ({
+          field: e.path.join('.'),
+          message: e.message,
+        }));
+        console.log('formErrors: ', formErrors);
+        setFormDataError(formErrors);
       } else {
         console.log(error);
       }
@@ -153,8 +175,6 @@ function CreatePost() {
       setIsSubmitting(false);
     }
   };
-
-  console.log(editorFormData);
 
   return (
     <div className="create__container">

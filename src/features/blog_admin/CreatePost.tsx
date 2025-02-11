@@ -31,11 +31,11 @@ type FormError = {
 };
 
 const formSchema = z.object({
-  // banner: z.string(),
-  title: z.string(),
-  tags: z.string().array().nonempty(),
-  description: z.string(),
-  content: z.string(),
+  title: z.string().min(1, 'Title is required'),
+  tags: z.string().array().nonempty('At least one tag is required'),
+  description: z.string().min(1, 'Description is required'),
+  content: z.string().min(1, 'Content is required'),
+  banner: z.string().optional(),
 });
 
 function CreatePost() {
@@ -85,6 +85,9 @@ function CreatePost() {
     const { value, id } = ev.target;
 
     setEditorFormData((prevData) => ({ ...prevData, [id]: value }));
+
+    // Remove input errors as soon as typing in the input
+    setFormDataError((prevError) => prevError.filter((error) => error.field !== id));
   };
 
   const MAX_TAGS = 5;
@@ -221,7 +224,10 @@ function CreatePost() {
               placeholder="title"
               onChange={handleFormDataChange}
               value={editorFormData.title}
+              className={`${formDataError.some((error) => error.field === 'title') ? 'error-msg-input' : ''}`}
+              autoFocus
             />
+            {getFieldError('title') && <span className="error-msg">{getFieldError('title')}</span>}
           </div>
           {/* TAGS */}
           <div className="create__main-tags">
@@ -232,7 +238,7 @@ function CreatePost() {
                 type="text"
                 name="tag"
                 id="tag"
-                className="create__main-tag"
+                className={`create__main-tag ${formDataError.some((error) => error.field === 'tags') ? 'error-msg-input' : ''}`}
                 placeholder="Add a tag (press enter or comma)"
                 onKeyDown={handleAddTag}
               />
@@ -259,12 +265,15 @@ function CreatePost() {
               rows={3}
               value={editorFormData.description}
               onChange={handleFormDataChange}
+              className={`${formDataError.some((error) => error.field === 'description') ? 'create__main-error-textarea' : ''} `}
             ></textarea>
           </div>
         </div>
 
         {/* EDITOR */}
-        <div className="create__content">
+        <div
+          className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
+        >
           <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
         </div>
 

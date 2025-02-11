@@ -92,6 +92,7 @@
 
     &-title,
     &-tags-input {
+      position: relative;
       display: flex;
       justify-content: center;
 
@@ -242,4 +243,21 @@
   &__content {
     margin-bottom: 2rem;
   }
+}
+
+// Error messages
+.error-msg-input {
+  outline-color: var(--color-red-700) !important;
+  &::placeholder {
+    color: transparent;
+    opacity: 0;
+  }
+}
+.error-msg {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.5rem;
+
+  color: var(--color-red-700);
+  font-size: 1.4rem;
 }

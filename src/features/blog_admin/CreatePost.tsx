@@ -285,6 +285,9 @@ function CreatePost() {
           className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
         >
           <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
+          {getFieldError('content') && (
+            <span className="error-msg">{getFieldError('content')}</span>
+          )}
         </div>
 
         {/* BUTTONS */}

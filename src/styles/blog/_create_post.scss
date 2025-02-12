@@ -244,11 +244,12 @@
   }
 }
 
-// Error messages
+// Form Error messages
 .create__main {
   &-title,
   &-tags-input,
-  &-description {
+  &-description,
+  &__content {
     position: relative;
   }
 }
@@ -267,4 +268,18 @@
   color: var(--color-red-700);
   font-size: 1.4rem;
   z-index: -1;
+}
+// Content Error
+.error-msg-content {
+  outline-color: var(--color-red-700) !important;
+  position: relative;
+  & > .error-msg {
+    position: absolute;
+    top: 5rem;
+    left: 0.5rem;
+
+    color: var(--color-red-700);
+    font-size: 1.4rem;
+    z-index: -1;
+  }
 }

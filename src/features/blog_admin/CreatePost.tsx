@@ -272,8 +272,11 @@ function CreatePost() {
               rows={3}
               value={editorFormData.description}
               onChange={handleFormDataChange}
-              className={`${formDataError.some((error) => error.field === 'description') ? 'create__main-error-textarea' : ''} `}
+              className={`create__main-description-ta ${formDataError.some((error) => error.field === 'description') ? 'error-msg-input' : ''}`}
             ></textarea>
+            {getFieldError('description') && (
+              <span className="error-msg">{getFieldError('description')}</span>
+            )}
           </div>
         </div>
 

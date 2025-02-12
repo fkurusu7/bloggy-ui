@@ -92,7 +92,6 @@
 
     &-title,
     &-tags-input {
-      position: relative;
       display: flex;
       justify-content: center;
 
@@ -246,6 +245,13 @@
 }
 
 // Error messages
+.create__main {
+  &-title,
+  &-tags-input,
+  &-description {
+    position: relative;
+  }
+}
 .error-msg-input {
   outline-color: var(--color-red-700) !important;
   &::placeholder {

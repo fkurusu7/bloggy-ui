@@ -16,6 +16,8 @@ function Posts() {
     refetch(); // Refetch posts after deletion
   };
 
+  console.log(!posts.length);
+
   return (
     <>
       {/* Title Will be passed when loading posts or search term or any */}
@@ -28,6 +30,13 @@ function Posts() {
           <FiLoader className="spin" />
         ) : error ? (
           <p>{error}</p>
+        ) : !posts.length ? (
+          <>
+            <p className="blog__main-posts-404">No posts were found</p>
+            <Link to={'/blog'} className="blog__main-posts-back">
+              Back - Load All Posts
+            </Link>
+          </>
         ) : (
           posts.map((post) => (
             <div className="blog__main-posts-post" key={post.slug}>
@@ -40,14 +49,6 @@ function Posts() {
                 }}
               >
                 {post.title}
-                {/* TODO: add tags? */}
-                {/* <div className="blog__main-tags">
-                  {post.tags.map((tag) => (
-                    <p key={tag.slug} className="blog__main-tag">
-                      {tag.name}
-                    </p>
-                  ))}
-                </div> */}
               </Link>
               <div className="blog__main-posts-post-actions">
                 {currentUser && (

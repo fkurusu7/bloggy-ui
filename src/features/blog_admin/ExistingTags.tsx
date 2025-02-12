@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { ExistingTagsProps, PostData } from './types';
 
-function ExistingTags({ editorFormData, setEditorFormData }: ExistingTagsProps) {
+function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: ExistingTagsProps) {
   /*
     This component loads exisitng tags in DB.
     This will help to add a tag to the post from the existing ones.
@@ -48,6 +48,7 @@ function ExistingTags({ editorFormData, setEditorFormData }: ExistingTagsProps) 
         ...prevData,
         tags: [...prevData.tags, tag],
       }));
+      setFormDataError((prevError) => prevError.filter((error) => error.field !== 'tags'));
     }
   };
 

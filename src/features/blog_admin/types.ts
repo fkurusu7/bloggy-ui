@@ -22,6 +22,7 @@ export interface Post {
 export interface ExistingTagsProps {
   editorFormData: PostData;
   setEditorFormData: Dispatch<SetStateAction<PostData>>;
+  setFormDataError: Dispatch<SetStateAction<{ field: string; message: string }[]>>;
 }
 
 export interface PostAddedTagProps {

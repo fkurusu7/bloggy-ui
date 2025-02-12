@@ -121,7 +121,9 @@ function CreatePost() {
 
       setEditorFormData((prevData) => ({ ...prevData, tags: [...prevData.tags, tagName] }));
       ev.currentTarget.value = '';
-      // TODO: handle errors
+      // handle errors
+      // Remove input errors as soon as typing in the input
+      setFormDataError((prevError) => prevError.filter((error) => error.field !== 'tags'));
     }
   };
 
@@ -232,7 +234,11 @@ function CreatePost() {
           {/* TAGS */}
           <div className="create__main-tags">
             {/* Load tags from DB */}
-            <ExistingTags editorFormData={editorFormData} setEditorFormData={setEditorFormData} />
+            <ExistingTags
+              editorFormData={editorFormData}
+              setEditorFormData={setEditorFormData}
+              setFormDataError={setFormDataError}
+            />
             <div className="create__main-tags-input">
               <input
                 type="text"
@@ -242,6 +248,7 @@ function CreatePost() {
                 placeholder="Add a tag (press enter or comma)"
                 onKeyDown={handleAddTag}
               />
+              {getFieldError('tags') && <span className="error-msg">{getFieldError('tags')}</span>}
             </div>
             <div className="create__main-tags-selected">
               {editorFormData.tags.map((tag) => {

@@ -52,7 +52,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
       {isOpenModal && (
         <Modal onClose={closeModal}>
           <div>
-            <UpdatePost />
+            <UpdatePost slug={slug} closeModal={closeModal} />
           </div>
         </Modal>
       )}

@@ -1,14 +1,19 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PostForm from './PostForm';
 import { PostData } from './types';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
+import { FiLoader } from 'react-icons/fi';
 
-function UpdatePost() {
+interface UpdatePostProps {
+  slug: string;
+  closeModal: () => void;
+}
+
+function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   const navigate = useNavigate();
-  const { slug } = useParams();
 
-  const [post, setPost] = useState<PostData | null>(null);
+  const [post, setPost] = useState<PostData | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,6 +22,7 @@ function UpdatePost() {
         const response = await fetch(`/api/blog/${slug}`);
 
         if (!response.ok) {
+          console.log(response);
           throw new Error('Error fetching post');
         }
 
@@ -25,6 +31,7 @@ function UpdatePost() {
       } catch (error) {
         toast.error('Error fetching post');
         console.log(error);
+        closeModal();
         navigate('/blog/admin');
       } finally {
         setIsLoading(false);
@@ -54,15 +61,7 @@ function UpdatePost() {
   if (isLoading) {
     return (
       <div className="create__container">
-        <div className="create__loading">Loading...</div>;
-      </div>
-    );
-  }
-
-  if (!post) {
-    return (
-      <div className="create__container">
-        <div className="create__not-found">Post not found</div>;
+        <FiLoader className="spin" />
       </div>
     );
   }

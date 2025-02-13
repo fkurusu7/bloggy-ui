@@ -242,6 +242,20 @@
   &__content {
     margin-bottom: 2rem;
   }
+
+  &__loading,
+  &__not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  & > svg {
+    height: 10rem;
+    width: 10rem;
+    color: var(--color-grey-200);
+  }
 }
 
 // Form Error messages

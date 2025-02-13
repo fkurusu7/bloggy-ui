@@ -2,13 +2,18 @@ import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import Button from '../../component/Button';
 import toast from 'react-hot-toast';
 import React from 'react';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../component/Modal';
+import UpdatePost from './UpdatePost';
 
-type ActipnData = {
+type ActionData = {
   slug: string;
   onPostDeleted?: () => void;
 };
 
-function ButtonActions({ slug, onPostDeleted }: ActipnData) {
+function ButtonActions({ slug, onPostDeleted }: ActionData) {
+  const { isOpenModal, closeModal, toggleModal } = useModal();
+
   const handleDeletePost = async (ev: React.MouseEvent) => {
     // Prevent the event from bubbling up to the parent Link
     ev.preventDefault();
@@ -32,12 +37,7 @@ function ButtonActions({ slug, onPostDeleted }: ActipnData) {
   return (
     <>
       <div className="post__actions">
-        <Button
-          variant="icon"
-          tooltipmsg="Edit Post"
-          tooltipplace="left"
-          onClick={() => console.log('Edit post')}
-        >
+        <Button variant="icon" tooltipmsg="Edit Post" tooltipplace="left" onClick={toggleModal}>
           <HiOutlinePencilSquare color="var(--color-green-700)" />
         </Button>
         <Button
@@ -49,6 +49,13 @@ function ButtonActions({ slug, onPostDeleted }: ActipnData) {
           <HiOutlineTrash color="var(--color-red-700)" />
         </Button>
       </div>
+      {isOpenModal && (
+        <Modal onClose={closeModal}>
+          <div>
+            <UpdatePost />
+          </div>
+        </Modal>
+      )}
     </>
   );
 }

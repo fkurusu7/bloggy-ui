@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import BlogAdmin from './features/blog_admin/BlogAdmin';
 import BlogAdminLayout from './features/blog_admin/BlogAdminLayout';
-import Tmp from './features/blog_admin/Tmp';
 import { Toaster } from 'react-hot-toast';
 import { LightOnDarkProvider } from './context/LightOnDarkMode';
 import MeLayout from './features/me/MeLayout';
@@ -41,7 +40,6 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route element={<BlogAdminLayout />}>
               <Route path="/blog/admin" element={<BlogAdmin />} />
-              <Route path="/blog/tmp" element={<Tmp />} />
             </Route>
           </Route>
         </Routes>

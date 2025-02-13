@@ -41,6 +41,8 @@ interface PostFormProps {
 }
 
 function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
+  console.log(initialData);
+
   const postInitialState: PostData = initialData || {
     title: '',
     banner: '',
@@ -48,6 +50,7 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
     tags: [],
     description: '',
   };
+  console.log(postInitialState);
 
   const [editorFormData, setEditorFormData] = useState<PostData>(postInitialState);
   const [isSubmitting, setIsSubmitting] = useState(false);

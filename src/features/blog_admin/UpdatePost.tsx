@@ -10,6 +10,25 @@ interface UpdatePostProps {
   closeModal: () => void;
 }
 
+// Interface to match the API response structure
+interface APIPost {
+  userId: {
+    personal_info: {
+      username: string;
+    };
+  };
+  title: string;
+  banner: string;
+  description: string;
+  content: string;
+  tags: Array<{
+    name: string;
+    slug: string;
+  }>;
+  createdAt: string;
+  slug: string;
+}
+
 function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   const navigate = useNavigate();
 
@@ -19,15 +38,25 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/blog/${slug}`);
+        const response = await fetch(`/api/blog/getPosts?slug=${slug}`);
 
         if (!response.ok) {
           console.log(response);
           throw new Error('Error fetching post');
         }
 
-        const post = await response.json();
-        setPost(post);
+        const resPost = await response.json();
+        const apiPost: APIPost = resPost.data[0];
+        // Transform API data to match PostData interface
+        const transformedPost: PostData = {
+          title: apiPost.title,
+          banner: apiPost.banner,
+          content: apiPost.content,
+          description: apiPost.description,
+          tags: apiPost.tags.map((tag) => tag.name),
+        };
+
+        setPost(transformedPost);
       } catch (error) {
         toast.error('Error fetching post');
         console.log(error);

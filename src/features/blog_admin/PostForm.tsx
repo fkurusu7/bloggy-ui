@@ -26,7 +26,7 @@ const formSchema = z.object({
   tags: z.string().array().nonempty('At least one tag is required'),
   description: z.string().min(1, 'Description is required'),
   content: z.string().min(1, 'Content is required'),
-  banner: z.string().optional(),
+  // banner: z.string().optional(),
 });
 
 type FormError = {
@@ -41,8 +41,6 @@ interface PostFormProps {
 }
 
 function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
-  console.log(initialData);
-
   const postInitialState: PostData = initialData || {
     title: '',
     banner: '',
@@ -50,7 +48,6 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
     tags: [],
     description: '',
   };
-  console.log(postInitialState);
 
   const [editorFormData, setEditorFormData] = useState<PostData>(postInitialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -126,6 +123,7 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
       setIsSubmitting(true);
       formSchema.parse(editorFormData);
       setFormDataError([]);
+
       await onSubmit(editorFormData);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -134,6 +132,7 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
           message: e.message,
         }));
         setFormDataError(formErrors);
+        console.error(formErrors);
       } else {
         console.error(error);
       }

@@ -19,6 +19,8 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
     ev.preventDefault();
     ev.stopPropagation();
 
+    console.log('Delete post', slug);
+
     try {
       const response = await fetch(`/api/blog/remove?slug=${slug}`, {
         method: 'DELETE',
@@ -26,11 +28,14 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
       if (!response.ok) {
         throw new Error('Could not delete the post');
       }
+
       toast.success('Post deleted successfully');
       onPostDeleted?.();
+      console.log('Delete post', slug);
     } catch (error) {
       toast.error('Failed to delete the post');
       console.log(error);
+      onPostDeleted?.();
     }
   };
 

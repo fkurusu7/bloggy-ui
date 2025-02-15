@@ -71,6 +71,8 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   }, [slug, navigate]);
 
   const handleSubmit = async (data: PostData) => {
+    console.log('Update post', data);
+
     const response = await fetch(`/api/blog/update/${slug}`, {
       method: 'PUT',
       headers: {

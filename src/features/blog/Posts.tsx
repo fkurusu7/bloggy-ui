@@ -16,8 +16,6 @@ function Posts() {
     refetch(); // Refetch posts after deletion
   };
 
-  console.log(!posts.length);
-
   return (
     <>
       {/* Title Will be passed when loading posts or search term or any */}
@@ -32,10 +30,18 @@ function Posts() {
           <p>{error}</p>
         ) : !posts.length ? (
           <>
-            <p className="blog__main-posts-404">No posts were found</p>
-            <Link to={'/blog'} className="blog__main-posts-back">
-              Back - Load All Posts
-            </Link>
+            <p className="blog__main-posts-404">There are no posts available.</p>
+            <p className="blog__main-posts-404">Be the first to create a post!</p>
+
+            {/* Link to load all posts when searching by a tag */}
+            {tag && (
+              <>
+                <p className="blog__main-posts-404">No posts were found</p>
+                <Link to={'/blog'} className="blog__main-posts-back">
+                  Back - Load All Posts
+                </Link>
+              </>
+            )}
           </>
         ) : (
           posts.map((post) => (

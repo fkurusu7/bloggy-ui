@@ -25,7 +25,6 @@ function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: E
           throw new Error('Failed to fetch existing tags');
         }
         const jsonResponse = await response.json();
-        console.log(jsonResponse.data);
 
         setExistingTags(jsonResponse.data.map((tag: Tag) => tag.name));
       } catch (error: any) {

@@ -39,6 +39,8 @@ function Tags() {
         <FiLoader className="spin" />
       ) : errorTags ? (
         <p>{errorTags}</p>
+      ) : !tags.length ? (
+        <p className="blog__tags-404">No tags were found</p>
       ) : (
         <div>
           {tags.map((tag: any) => {

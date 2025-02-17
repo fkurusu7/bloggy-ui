@@ -6,6 +6,12 @@ body {
     color 0.3s,
     background-color 0.3s;
 }
+// Use for blog and me pages
+.container__body {
+  background-color: var(--color-grey-100);
+  display: flex;
+  justify-content: center;
+}
 
 // Form elements
 input,

@@ -7,6 +7,9 @@
     display: grid;
     grid-template-columns: 10rem 5fr 1fr 10rem;
     grid-template-rows: 9rem 1fr 10rem;
+
+    max-width: 120rem;
+    width: 100%;
   }
 
   &__header {

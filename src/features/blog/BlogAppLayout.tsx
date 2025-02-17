@@ -5,13 +5,15 @@ import Footer from './Footer';
 
 function BlogAppLayout() {
   return (
-    <div className="blog__container">
-      <BlogHeader />
-      <main className="blog__main">
-        <Outlet />
-      </main>
-      <Tags />
-      <Footer />
+    <div className="container__body">
+      <div className="blog__container">
+        <BlogHeader />
+        <main className="blog__main">
+          <Outlet />
+        </main>
+        <Tags />
+        <Footer />
+      </div>
     </div>
   );
 }

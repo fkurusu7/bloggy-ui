@@ -4,10 +4,12 @@ import Footer from '../blog/Footer';
 
 function MeLayout() {
   return (
-    <div className="container-me">
-      <MeHeader />
-      <MeMain />
-      <Footer />
+    <div className="container__body">
+      <div className="container-me">
+        <MeHeader />
+        <MeMain />
+        <Footer />
+      </div>
     </div>
   );
 }

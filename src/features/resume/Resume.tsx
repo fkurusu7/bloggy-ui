@@ -11,8 +11,8 @@ import {
 } from 'react-icons/ai';
 import { FaNodeJs, FaReact, FaDocker, FaCss3 } from 'react-icons/fa';
 import { GiWeightLiftingUp } from 'react-icons/gi';
-import { HiOutlineBackspace, HiOutlineCodeBracket, HiOutlineFlag } from 'react-icons/hi2';
-import { MdOutlineDirectionsBike } from 'react-icons/md';
+import { HiOutlineCodeBracket, HiOutlineDocumentText, HiOutlineFlag } from 'react-icons/hi2';
+import { MdOutlineDirectionsBike, MdSelfImprovement } from 'react-icons/md';
 import { PiPersonSimpleHike } from 'react-icons/pi';
 import { VscVscodeInsiders } from 'react-icons/vsc';
 import Button from '../../component/Button';
@@ -21,10 +21,19 @@ import TooltipUtil from '../../utils/TooltipUtil';
 function Resume() {
   return (
     <div className="resume__container">
-      <Button goBack={true} variant="ghost">
-        <HiOutlineBackspace />
-      </Button>
       <div className="resume__layout">
+        <ul className="resume__header">
+          <li>
+            <Button variant="linkicon" to="/me" tooltipmsg="ME page" tooltipplace="left">
+              <MdSelfImprovement />
+            </Button>
+          </li>
+          <li>
+            <Button variant="linkicon" to="/blog" tooltipmsg="Blog" tooltipplace="left">
+              <HiOutlineDocumentText />
+            </Button>
+          </li>
+        </ul>
         <div className="resume__introduction">
           <div className="resume__introduction-profile">
             <h1>Fernando</h1>

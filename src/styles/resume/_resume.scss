@@ -8,6 +8,10 @@
       20px 20px;
     padding: 3rem 8rem;
     position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &__layout {
     background-color: rgba(41, 37, 36, 0.7);
@@ -15,6 +19,8 @@
     min-height: 100vh;
     text-align: justify;
     padding: 1rem 0 4rem;
+    max-width: 120rem;
+    width: 100%;
 
     display: grid;
     --gutter: 1rem;

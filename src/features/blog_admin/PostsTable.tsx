@@ -20,7 +20,7 @@ function PostsTable() {
         <div>Published</div>
         <div></div>
       </div>
-      {/* TABLE BODY - MAP ==> Post Data */}
+
       {isLoadingPosts ? (
         <p>Loading...</p>
       ) : error ? (

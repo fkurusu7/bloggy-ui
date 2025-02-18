@@ -107,7 +107,7 @@ function BlogHeader() {
       {isOpenModal && (
         <Modal onClose={closeModal}>
           <div>
-            <CreatePost />
+            <CreatePost closeModal={closeModal} />
           </div>
         </Modal>
       )}

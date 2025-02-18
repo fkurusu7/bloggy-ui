@@ -86,6 +86,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
     }
 
     toast.success('Post updated successfully!');
+    closeModal();
     navigate('/blog/admin');
   };
 

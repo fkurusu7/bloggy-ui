@@ -4,7 +4,11 @@ import { PostData } from './types';
 import { useNavigate } from 'react-router-dom';
 import PostForm from './PostForm';
 
-function CreatePost() {
+interface CreatePostProps {
+  closeModal: () => void;
+}
+
+function CreatePost({ closeModal }: CreatePostProps) {
   const navigate = useNavigate();
 
   const handleSubmit = async (data: PostData) => {
@@ -21,6 +25,7 @@ function CreatePost() {
     }
 
     toast.success('Post created successfully!');
+    closeModal();
     navigate('/blog/admin');
   };
 

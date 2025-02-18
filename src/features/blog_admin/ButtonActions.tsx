@@ -12,7 +12,16 @@ type ActionData = {
 };
 
 function ButtonActions({ slug, onPostDeleted }: ActionData) {
-  const { isOpenModal, closeModal, toggleModal } = useModal();
+  const {
+    isOpenModal: isUpdateModal,
+    closeModal: closeUpdateModal,
+    toggleModal: toggleModalUpdate,
+  } = useModal();
+  const {
+    isOpenModal: isDeleteModal,
+    closeModal: closeDeleteModal,
+    toggleModal: toggleModalDelete,
+  } = useModal();
 
   const handleDeletePost = async (ev: React.MouseEvent) => {
     // Prevent the event from bubbling up to the parent Link
@@ -42,22 +51,46 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
   return (
     <>
       <div className="post__actions">
-        <Button variant="icon" tooltipmsg="Edit Post" tooltipplace="left" onClick={toggleModal}>
+        <Button
+          variant="icon"
+          tooltipmsg="Edit Post"
+          tooltipplace="left"
+          onClick={toggleModalUpdate}
+        >
           <HiOutlinePencilSquare color="var(--color-green-700)" />
         </Button>
         <Button
           variant="icon"
           tooltipmsg="Delete Post"
           tooltipplace="right"
-          onClick={handleDeletePost}
+          onClick={toggleModalDelete}
         >
           <HiOutlineTrash color="var(--color-red-700)" />
         </Button>
       </div>
-      {isOpenModal && (
-        <Modal onClose={closeModal}>
+      {isUpdateModal && (
+        <Modal onClose={closeUpdateModal}>
           <div>
-            <UpdatePost slug={slug} closeModal={closeModal} />
+            <UpdatePost slug={slug} closeModal={closeUpdateModal} />
+          </div>
+        </Modal>
+      )}
+      {isDeleteModal && (
+        <Modal onClose={closeDeleteModal}>
+          <div className="delete__confirmation">
+            <h2 className="heading-2">Confirm Deletion</h2>
+            <div>
+              <p>Are you sure you want to delete this post?</p>
+              <p className="delete__undone">This action cannot be undone.</p>
+            </div>
+            <div className="delete__actions">
+              <Button variant="secondary" size="small" onClick={closeDeleteModal}>
+                Cancel
+              </Button>
+              <Button variant="danger" size="small" onClick={handleDeletePost}>
+                Delete
+              </Button>
+            </div>
           </div>
         </Modal>
       )}

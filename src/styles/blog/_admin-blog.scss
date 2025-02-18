@@ -135,3 +135,30 @@
     }
   }
 }
+
+.delete {
+  &__confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    text-align: center;
+    padding-inline: 3rem;
+    margin: 0 auto;
+
+    & p {
+      font-size: 1.5rem;
+      color: var(--color-grey-400);
+    }
+    & p.delete__undone {
+      font-size: 1.4rem;
+      color: var(--color-red-800);
+    }
+  }
+  &__actions {
+    display: flex;
+    gap: 2rem;
+  }
+}

@@ -41,6 +41,19 @@
     outline: 2px solid var(--color-brand-400);
     color: var(--color-brand-400);
   }
+  &.secondary {
+    background-color: var(--color-grey-200);
+    outline: 2px solid var(--color-grey-300);
+    color: var(--color-grey-700);
+  }
+  &.danger {
+    background-color: var(--color-red-700);
+    outline: 2px solid var(--color-red-800);
+    color: var(--color-grey-900);
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
   &.ghost {
     background-color: transparent;
@@ -130,6 +143,7 @@
     right: 13rem;
   }
 }
+
 @keyframes spinLoader {
   from {
     transform: rotate(0deg);

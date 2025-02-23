@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import MeHeader from '../features/me/MeHeader';
 import { BrowserRouter } from 'react-router-dom';
 import MeCTA from '../features/me/MeCTA';
@@ -59,5 +59,16 @@ describe('Test Tabs in background', () => {
     // check if initial skills are displayed
     expect(screen.getByText('html')).toBeInTheDocument();
     expect(screen.getByText('javascript')).toBeInTheDocument();
+  });
+
+  it('changes content when different tab is clicked', () => {
+    render(<MeBackground />);
+
+    // click hobbies tab
+    fireEvent.click(screen.getByRole('button', { name: /hobbies/i }));
+
+    // check if hobbies content is displayed
+    expect(screen.getByText('coding')).toBeInTheDocument();
+    expect(screen.getByText('chess')).toBeInTheDocument();
   });
 });

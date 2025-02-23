@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest ",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
     "lintTmp": "eslint .",

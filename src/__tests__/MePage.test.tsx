@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import MeHeader from '../features/me/MeHeader';
 import { BrowserRouter } from 'react-router-dom';
 import MeCTA from '../features/me/MeCTA';
+import MeBackground from '../features/me/MeBackground';
 
 describe('Test MeHeader', () => {
   it('renders header with correct content', () => {
@@ -40,5 +41,23 @@ describe('Test Me CTA', () => {
     );
     // expect(screen.getByLabelText('LinkedIn Profile')).toHaveAttribute('href', '#');
     expect(screen.getByLabelText('X Profile')).toHaveAttribute('href', 'https://x.com/FerCuVa');
+  });
+});
+
+describe('Test Tabs in background', () => {
+  it('renders with initial skilss tab active', () => {
+    render(<MeBackground />);
+
+    // check if title is present
+    expect(screen.getByText('Background')).toBeInTheDocument();
+
+    // check if all tab buttons are present
+    expect(screen.getByRole('button', { name: /skills/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /hobbies/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /stack/i })).toBeInTheDocument();
+
+    // check if initial skills are displayed
+    expect(screen.getByText('html')).toBeInTheDocument();
+    expect(screen.getByText('javascript')).toBeInTheDocument();
   });
 });

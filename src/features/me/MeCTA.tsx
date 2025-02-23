@@ -20,10 +20,17 @@ function MeCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className="me-social__media-link"
+          aria-label="GitHub Profile"
         >
           <AiOutlineGithub />
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" className="me-social__media-link">
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="me-social__media-link"
+          aria-label="LinkedIn Profile"
+        >
           <AiOutlineLinkedin />
         </a>
         <a
@@ -31,6 +38,7 @@ function MeCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className="me-social__media-link"
+          aria-label="X Profile"
         >
           <AiOutlineX />
         </a>

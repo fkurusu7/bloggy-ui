@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ function Button({
 }: ButtonProps) {
   const navigate = useNavigate();
 
-  const handleClick = (ev: any) => {
+  const handleClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
     if (goBack) {
       navigate(-1);
     } else if (onClick) {

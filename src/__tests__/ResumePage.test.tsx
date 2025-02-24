@@ -43,6 +43,22 @@ describe('Test Resume', () => {
       expect(window.location.pathname).toBe('/me');
     });
 
-    it('when clicking Blog link goes to Blog Page', async () => {});
+    it('when clicking Blog link goes to Blog Page', async () => {
+      const user = userEvent.setup();
+
+      await act(async () => {
+        render(
+          <BrowserRouter>
+            <Resume />
+          </BrowserRouter>
+        );
+      });
+
+      const blogLink = screen.getByLabelText('Blog Page');
+      await user.click(blogLink);
+
+      // check if the naviagation occurred
+      expect(window.location.pathname).toBe('/blog');
+    });
   });
 });

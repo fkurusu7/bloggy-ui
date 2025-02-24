@@ -25,7 +25,7 @@ describe('Test Resume', () => {
       expect(blogLink).toHaveAttribute('href', '/blog');
     });
 
-    it('when clicking Me link goes to Me Page', async () => {
+    it('goes to Me Page when clicking Me link', async () => {
       const user = userEvent.setup();
 
       await act(async () => {
@@ -43,7 +43,7 @@ describe('Test Resume', () => {
       expect(window.location.pathname).toBe('/me');
     });
 
-    it('when clicking Blog link goes to Blog Page', async () => {
+    it('goes to Blog Page when clicking Blog link', async () => {
       const user = userEvent.setup();
 
       await act(async () => {
@@ -59,6 +59,21 @@ describe('Test Resume', () => {
 
       // check if the naviagation occurred
       expect(window.location.pathname).toBe('/blog');
+    });
+  });
+
+  describe('Test Resume Introduction', () => {
+    it('renders Resume Introduction', async () => {
+      await act(async () => {
+        render(
+          <BrowserRouter>
+            <Resume />
+          </BrowserRouter>
+        );
+      });
+
+      expect(screen.getByText('Fernando')).toBeInTheDocument();
+      expect(screen.getByText(/Full-stack developer merging/i)).toBeInTheDocument();
     });
   });
 });

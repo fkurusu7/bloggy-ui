@@ -16,6 +16,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   to?: string | null;
   tooltipmsg?: string;
   tooltipplace?: string;
+  arialabel?: string;
 }
 
 function Button({
@@ -30,6 +31,7 @@ function Button({
   to = null,
   tooltipmsg,
   tooltipplace = 'top',
+  arialabel,
 }: ButtonProps) {
   const navigate = useNavigate();
 
@@ -49,6 +51,7 @@ function Button({
         data-tooltip-id="tooltipid"
         data-tooltip-content={tooltipmsg}
         data-tooltip-place={tooltipplace}
+        aria-label={arialabel}
       >
         {children}
       </Link>

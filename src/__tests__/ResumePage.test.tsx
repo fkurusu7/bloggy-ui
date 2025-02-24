@@ -1,0 +1,31 @@
+import { act, render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import Resume from '../features/resume/Resume';
+import { BrowserRouter } from 'react-router-dom';
+
+describe('Test Resume', () => {
+  describe('Test Resume Header', () => {
+    it('renders header buttons', async () => {
+      await act(async () => {
+        render(
+          <BrowserRouter>
+            <Resume />
+          </BrowserRouter>
+        );
+      });
+      // check if both buttons are present
+      const meLink = screen.getByLabelText('Me Page');
+      const blogLink = screen.getByLabelText('Blog Page');
+
+      expect(meLink).toBeInTheDocument();
+      expect(blogLink).toBeInTheDocument();
+
+      expect(meLink).toHaveAttribute('href', '/me');
+      expect(blogLink).toHaveAttribute('href', '/blog');
+    });
+
+    it('when clicking Me link goes to Me Page', () => {});
+
+    it('when clicking Blog link goes to Blog Page', () => {});
+  });
+});

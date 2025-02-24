@@ -24,12 +24,24 @@ function Resume() {
       <div className="resume__layout">
         <ul className="resume__header">
           <li>
-            <Button variant="linkicon" to="/me" tooltipmsg="ME page" tooltipplace="left">
+            <Button
+              variant="linkicon"
+              to="/me"
+              tooltipmsg="ME page"
+              tooltipplace="left"
+              arialabel="Me Page"
+            >
               <MdSelfImprovement />
             </Button>
           </li>
           <li>
-            <Button variant="linkicon" to="/blog" tooltipmsg="Blog" tooltipplace="left">
+            <Button
+              variant="linkicon"
+              to="/blog"
+              tooltipmsg="Blog"
+              tooltipplace="left"
+              arialabel="Blog Page"
+            >
               <HiOutlineDocumentText />
             </Button>
           </li>

@@ -63,7 +63,7 @@ describe('Test Resume', () => {
   });
 
   describe('Test Resume Introduction', () => {
-    it('renders Resume Introduction', async () => {
+    it('renders Resume Introduction and profile image', async () => {
       await act(async () => {
         render(
           <BrowserRouter>
@@ -74,6 +74,12 @@ describe('Test Resume', () => {
 
       expect(screen.getByText('Fernando')).toBeInTheDocument();
       expect(screen.getByText(/Full-stack developer merging/i)).toBeInTheDocument();
+
+      // image test
+      const profileImage = screen.getByAltText('profile pic of Fernando');
+      expect(profileImage).toBeInTheDocument();
+      expect(profileImage).toHaveAttribute('src', '/me_temp.png');
+      expect(profileImage).toHaveClass('resume__introduction-image');
     });
   });
 });

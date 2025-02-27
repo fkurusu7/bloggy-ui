@@ -1,9 +1,18 @@
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, ReactNode, useContext, useEffect } from 'react';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
-const LightOnDarkContext = createContext();
+interface LightOnDarkContextType {
+  isDarkMode: boolean;
+  toggleLightOnDarkMode: () => void;
+}
 
-function LightOnDarkProvider({ children }) {
+const LightOnDarkContext = createContext<LightOnDarkContextType | undefined>(undefined);
+
+interface LightOnDarkProviderProps {
+  children: ReactNode;
+}
+
+function LightOnDarkProvider({ children }: LightOnDarkProviderProps) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(true, 'isDarkMode');
 
   useEffect(function () {
@@ -17,7 +26,7 @@ function LightOnDarkProvider({ children }) {
   });
 
   function toggleLightOnDarkMode() {
-    setIsDarkMode((isDark) => !isDark);
+    setIsDarkMode((isDark: boolean) => !isDark);
   }
   return (
     <LightOnDarkContext.Provider value={{ isDarkMode, toggleLightOnDarkMode }}>

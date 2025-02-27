@@ -1,4 +1,17 @@
-function InputBox({ name, type, id, value, placeholder, icon, handleChange }) {
+// @typescript-eslint/no-unused-vars
+
+export interface InputData {
+  name: string;
+  type: string;
+  id: string;
+  value: string;
+  placeholder: string;
+  icon: string;
+  handleChange: () => void;
+}
+
+function InputBox({ name, type, id, value, placeholder, icon, handleChange }: InputData) {
+  icon;
   return (
     <div>
       <input
@@ -10,7 +23,6 @@ function InputBox({ name, type, id, value, placeholder, icon, handleChange }) {
         onChange={handleChange}
         className="input-box"
       />
-      {/* TODO: add icon and handle password visibility */}
     </div>
   );
 }

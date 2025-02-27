@@ -27,7 +27,7 @@ function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: E
         const jsonResponse = await response.json();
 
         setExistingTags(jsonResponse.data.map((tag: Tag) => tag.name));
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.log(error);
         setErrorTags("Error loading Tags. Please add by hand your post's tag(s)");
         setExistingTags([]);

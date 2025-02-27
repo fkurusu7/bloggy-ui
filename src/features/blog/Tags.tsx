@@ -3,10 +3,15 @@ import { FiLoader } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
 
+interface Tag {
+  name: string;
+  slug: string;
+}
+
 function Tags() {
   // 1. Get Tags
-  const [tags, setTags] = useState([]);
-  const [errorTags, setErrorTags] = useState(null);
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [errorTags, setErrorTags] = useState<string | null>(null);
   const [isLoadingTags, setIsLoadingTags] = useState(false);
 
   // Load pre-existing Tags in the DB
@@ -22,8 +27,13 @@ function Tags() {
         }
         const jsonRes = await response.json();
         setTags(jsonRes.data);
-      } catch (error: any) {
-        setErrorTags(error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setErrorTags(error.message);
+        } else {
+          // Handle cases where it's not an Error object
+          setErrorTags('An unknown error occurred');
+        }
       } finally {
         setIsLoadingTags(false);
       }
@@ -43,7 +53,7 @@ function Tags() {
         <p className="blog__tags-404">No tags were found</p>
       ) : (
         <div>
-          {tags.map((tag: any) => {
+          {tags.map((tag: Tag) => {
             return (
               <Link to={`/blog/tag/${tag.slug}`} key={tag.slug} className="blog__tag">
                 {tag.name}

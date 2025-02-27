@@ -68,7 +68,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
     };
 
     fetchPost();
-  }, [slug, navigate]);
+  }, [slug, navigate, closeModal]);
 
   const handleSubmit = async (data: PostData) => {
     console.log('Update post', data);

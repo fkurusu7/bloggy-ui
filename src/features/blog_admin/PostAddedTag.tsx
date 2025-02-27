@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { HiOutlineXMark } from 'react-icons/hi2';
-import { PostAddedTagProps } from './types';
+import { PostAddedTagProps, PostData } from './types';
 
 function PostAddedTag({ tagName, setEditorFormData, editorFormData }: PostAddedTagProps) {
   const [isEditingTag, setIsEditingTag] = useState(false);
@@ -10,7 +10,7 @@ function PostAddedTag({ tagName, setEditorFormData, editorFormData }: PostAddedT
   const MAX_TAG_LENGTH = 20;
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setEditorFormData((prevData: any) => ({
+    setEditorFormData((prevData: PostData) => ({
       ...prevData,
       tags: prevData.tags.filter((tag: string) => tag !== tagToRemove),
     }));
@@ -36,7 +36,7 @@ function PostAddedTag({ tagName, setEditorFormData, editorFormData }: PostAddedT
         return;
       }
 
-      setEditorFormData((prevData: any) => ({
+      setEditorFormData((prevData: PostData) => ({
         ...prevData,
         tags: prevData.tags.map((tag: string) =>
           tag === oldTag ? tag : editedTag.trim().toLowerCase()

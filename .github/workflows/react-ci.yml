@@ -26,8 +26,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
-          cache-dependency-path: "./blog-ui/package-lock.json"
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ./blog-ui/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('./blog-ui/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci

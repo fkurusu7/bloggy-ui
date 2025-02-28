@@ -15,9 +15,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./blog-ui
+    # defaults:
+    #   run:
+    #     working-directory: ./blog-ui
 
     steps:
       - uses: actions/checkout@v4

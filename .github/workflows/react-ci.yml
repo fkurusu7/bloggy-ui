@@ -1,5 +1,5 @@
 # .github/workflows/react-ci.yml
-name: React App CI/CD
+name: Blog UI App CI/CD
 
 on:
   push:
@@ -21,15 +21,6 @@ jobs:
 
       - name: Clear npm cache
         run: npm cache clean --force
-
-      # Remove cache step for now since it might be causing issues
-      # - name: Cache node modules
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: node_modules
-      #     key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
 
       - name: Install dependencies the safe way
         run: |
@@ -53,6 +44,7 @@ jobs:
         with:
           name: react-build
           path: dist/
+          retention-days: 7
 
   # Add this job if you want to deploy to a hosting service
   # deploy:
@@ -66,12 +58,3 @@ jobs:
   #         name: react-build
   #         path: dist
   #
-  #     - name: Deploy to hosting service
-  #       # Add deployment steps based on your hosting provider
-  #       # For example, for Firebase:
-  #       # uses: FirebaseExtended/action-hosting-deploy@v0
-  #       # with:
-  #       #   repoToken: '${{ secrets.GITHUB_TOKEN }}'
-  #       #   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-  #       #   projectId: your-firebase-project-id
-  #       #   channelId: live

@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
+import { PlacesType } from 'react-tooltip';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'form' | 'icon' | 'linkicon';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -15,7 +16,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'typ
   fullWidth?: boolean;
   to?: string | null;
   tooltipmsg?: string;
-  tooltipplace?: string;
+  tooltipplace?: PlacesType;
   arialabel?: string;
 }
 
@@ -30,7 +31,7 @@ function Button({
   children,
   to = null,
   tooltipmsg,
-  tooltipplace = 'top',
+  tooltipplace = 'top' as PlacesType,
   arialabel,
 }: ButtonProps) {
   const navigate = useNavigate();

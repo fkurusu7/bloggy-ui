@@ -1,8 +1,13 @@
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import { ReactNode } from 'react';
 
-function Modal({ onClose, children }) {
+interface ModalProps {
+  onClose: () => void;
+  children: ReactNode;
+}
+function Modal({ onClose, children }: ModalProps) {
   const ref = useOutsideClick(onClose);
 
   return createPortal(

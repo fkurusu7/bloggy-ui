@@ -1,5 +1,7 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
+
+// @ts-ignore
 import eslint from "vite-plugin-eslint";
 
 export default defineConfig({

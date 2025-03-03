@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { HiOutlineLogin, HiOutlineLogout, HiOutlineSearch } from 'react-icons/hi';
+import { MdOutlineAdminPanelSettings, MdSelfImprovement } from 'react-icons/md';
 
 import Button from '../../component/Button';
 import LightOnDarkToggle from '../../component/LightOnDarkToggle';
@@ -11,7 +12,7 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../../component/Modal';
 import CreatePost from '../blog_admin/CreatePost';
 import TooltipUtil from '../../utils/TooltipUtil';
-import { MdOutlineAdminPanelSettings, MdSelfImprovement } from 'react-icons/md';
+import LogoSVG from '../../component/LogoSVG';
 
 function BlogHeader() {
   const { handleSignout } = useAuth();
@@ -33,7 +34,10 @@ function BlogHeader() {
     <>
       <header className="blog__header">
         <div className="blog__header-logo">
-          <Link to={'/blog'}>¯\_(ツ)_/¯</Link>
+          {/* <Link to={'/blog'}>¯\_(ツ)_/¯</Link> */}
+          <Link to={'/blog'}>
+            <LogoSVG />
+          </Link>
         </div>
 
         <div className="blog__header-search">

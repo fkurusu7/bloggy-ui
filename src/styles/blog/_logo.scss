@@ -1,0 +1,7 @@
+.logo {
+  & svg {
+    height: 10rem;
+    width: 10rem;
+    color: var(--color-brand-700);
+  }
+}

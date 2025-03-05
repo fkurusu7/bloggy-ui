@@ -27,8 +27,8 @@ jobs:
           rm -rf node_modules package-lock.json
           npm install
 
-      - name: Install specific Rollup dependencies
-        run: npm install @rollup/rollup-linux-x64-gnu
+      # - name: Install specific Rollup dependencies
+      #   run: npm install @rollup/rollup-linux-x64-gnu
 
       - name: Check style
         run: npm run lint

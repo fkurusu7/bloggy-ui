@@ -61,13 +61,20 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
       - name: Deploy to Vercel
-        uses: vercel/actions@v1.0.5
-        with:
-          # Pass '--prod' to deploy as Production,
-          # or omit it to do a preview deployment
-          args: "--prod"
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      # - name: Deploy to Vercel
+      #   uses: vercel/actions@v1.0.5
+      #   with:
+      #     args: "--prod"
+      #   env:
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

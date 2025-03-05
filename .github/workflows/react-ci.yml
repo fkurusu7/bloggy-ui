@@ -43,15 +43,31 @@ jobs:
           path: dist/
           retention-days: 7
 
-  # Add this job if you want to deploy to a hosting service
-  # deploy:
-  #   needs: build-and-test
-  #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: react-build
-  #         path: dist
-  #
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
+          path: dist
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Deploy to Vercel
+        uses: vercel/actions@v1
+        with:
+          # Pass '--prod' to deploy as Production,
+          # or omit it to do a preview deployment
+          args: "--prod"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

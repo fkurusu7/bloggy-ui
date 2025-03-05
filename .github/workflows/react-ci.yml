@@ -62,7 +62,7 @@ jobs:
           node-version: "20"
 
       - name: Deploy to Vercel
-        uses: vercel/actions@v1
+        uses: vercel/actions@v1.0.5
         with:
           # Pass '--prod' to deploy as Production,
           # or omit it to do a preview deployment

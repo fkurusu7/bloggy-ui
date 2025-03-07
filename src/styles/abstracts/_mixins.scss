@@ -7,3 +7,10 @@
 @mixin transition($properties...) {
   transition: map-get($properties, 0.3s);
 }
+
+// Responsive Content
+@mixin respond-from($width) {
+  @media screen and (max-width: #{$width}px) {
+    @content;
+  }
+}

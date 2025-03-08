@@ -1,3 +1,5 @@
+@import './../abstracts/mixins';
+
 .resume {
   &__container {
     // background-color: var(--color-grey-50);
@@ -7,8 +9,14 @@
       20px 20px,
       20px 20px;
     padding: 3rem 8rem;
-    position: relative;
+    @include respond-from(1000) {
+      padding: 1.5rem 4rem;
+    }
+    @include respond-from(900) {
+      padding: 0;
+    }
 
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,8 +35,17 @@
     // minmax(var(--gutter), calc(1fr / 4))
     grid-template-columns: 3rem 25rem 2fr 3rem;
     grid-template-rows: 5rem 30rem 3fr;
+
+    @include respond-from(1000) {
+      grid-template-columns: 1.5rem 25rem 2fr 1.5rem;
+    }
+
+    @include respond-from(850) {
+      grid-template-rows: repeat(3, auto);
+    }
   }
 
+  // Navigation Links
   &__header {
     grid-row: 1 / 2;
     grid-column: 2 / 4;
@@ -50,6 +67,7 @@
       }
     }
   }
+
   &__introduction {
     grid-column: 2/4;
     grid-row: 2/2;
@@ -60,31 +78,44 @@
     gap: 4rem;
 
     border-left: 2rem solid var(--color-grey-400);
-
-    padding-left: 2rem;
-    padding: 2rem 0;
     margin-bottom: 5rem;
+    padding: 2rem 0;
+
+    @include respond-from(850) {
+      border-left: 1rem solid var(--color-grey-400);
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+
+      flex-direction: column-reverse; // sets the profile image first
+      height: min-content;
+    }
 
     &-profile {
       font-family: 'Sono', sans-serif;
       padding-left: 4rem;
+      @include respond-from(850) {
+        padding-left: 2rem;
+      }
 
       & h1 {
-        font-weight: 100;
+        color: var(--color-brand-300);
         font-size: 3rem;
-        color: var(--color-brand-200);
+        font-weight: 100;
       }
 
       & h2 {
         color: var(--color-brand-300);
-        margin-top: -1.5rem;
         font-size: 5rem;
         font-weight: 500;
+        margin-top: -1.5rem;
       }
 
       & p {
         font-family: 'Sono', sans-serif;
         font-size: 1.6rem;
+        @include respond-from(850) {
+          font-size: 1.5rem;
+        }
       }
     }
     &-image {

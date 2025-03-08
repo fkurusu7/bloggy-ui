@@ -51,11 +51,10 @@ function Resume() {
             <h1>Fernando</h1>
             <h2>Cruz</h2>
             <p>
-              Full-stack developer merging technical expertise with creative problem-solving.
-              Drawing from 15 years of experience at global leaders like Morgan Stanley and IBM
-              Mexico, I craft end-to-end applications that make an impact. I specialize in creating
-              seamless experiences across the JavaScript ecosystem, leveraging React and Node.js to
-              transform complex challenges into elegant digital solutions.
+              I'm a full-stack developer who combines technical know-how with creative thinking.
+              With 15 years of experience at major companies like Morgan Stanley and IBM Mexico, I
+              build end-to-end solutions using React and Node.js to make complex ideas simple and
+              impactful.
             </p>
           </div>
 

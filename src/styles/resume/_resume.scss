@@ -1,4 +1,4 @@
-@import './../abstracts/mixins';
+@use './../abstracts/mixins' as *;
 
 .resume {
   &__container {
@@ -9,18 +9,20 @@
       20px 20px,
       20px 20px;
     padding: 3rem 8rem;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     @include respond-from(1000) {
       padding: 1.5rem 4rem;
     }
     @include respond-from(900) {
       padding: 0;
     }
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
+
   &__layout {
     background-color: rgba(41, 37, 36, 0.7);
     border-radius: var(--border-radius-lg);
@@ -41,7 +43,15 @@
     }
 
     @include respond-from(850) {
-      grid-template-rows: repeat(3, auto);
+      grid-template-columns: 1.5rem 1fr 1.5rem;
+      grid-template-rows: repeat(4, auto);
+      padding: 1rem 3rem;
+    }
+    @include respond-from(700) {
+      padding: 1rem;
+    }
+    @include respond-from(600) {
+      padding: 0.5rem;
     }
   }
 
@@ -82,12 +92,15 @@
     padding: 2rem 0;
 
     @include respond-from(850) {
-      border-left: 1rem solid var(--color-grey-400);
+      border-left: none;
       margin-bottom: 3rem;
-      padding: 1rem 0;
+      padding: 2rem 0;
 
       flex-direction: column-reverse; // sets the profile image first
+      gap: 1rem;
       height: min-content;
+
+      grid-column: 2/2;
     }
 
     &-profile {
@@ -95,6 +108,9 @@
       padding-left: 4rem;
       @include respond-from(850) {
         padding-left: 2rem;
+      }
+      @include respond-from(700) {
+        padding-left: 0rem;
       }
 
       & h1 {
@@ -109,6 +125,12 @@
         font-weight: 500;
         margin-top: -1.5rem;
       }
+      @include respond-from(850) {
+        & h1,
+        & h2 {
+          text-align: center;
+        }
+      }
 
       & p {
         font-family: 'Sono', sans-serif;
@@ -120,34 +142,34 @@
     }
     &-image {
       display: inline-block;
+      filter: drop-shadow(-10px -10px 2px var(--color-grey-200));
       height: 20rem;
       width: auto;
-      position: relative;
-      filter: drop-shadow(-10px -10px 2px var(--color-grey-200));
 
-      /*
-      &::before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        height: 100%;
-        width: 100%;
-        background-color: var(--color-grey-400);
-        z-index: -1;
-        transform: translate(0.5rem, 0.5rem);
-      }*/
+      @include respond-from(850) {
+        height: 18rem;
+      }
     }
   }
 
   &__background {
     grid-column: 2 / 3;
-    grid-row: 3 / -1;
+    grid-row: 3 / 3;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
+
+    @include respond-from(850) {
+      grid-column: 2/2;
+      grid-row: 4 / 4;
+
+      // change FLEX to GRID
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
 
     &-option {
       border-left: 1rem solid var(--color-grey-500);
@@ -219,6 +241,12 @@
     grid-column: 3 / 4;
     grid-row: 3 / -1;
     margin-left: 5rem;
+
+    @include respond-from(850) {
+      grid-column: 2 / 2;
+      grid-row: 3 / 3;
+      margin-left: 0;
+    }
 
     &-container {
       display: flex;

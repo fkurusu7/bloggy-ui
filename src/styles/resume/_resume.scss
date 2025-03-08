@@ -252,6 +252,11 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      @include respond-from(850) {
+        & > h2 {
+          text-align: center;
+        }
+      }
     }
 
     &-jobs,
@@ -268,6 +273,13 @@
       align-items: flex-start;
       justify-content: flex-start;
       gap: 2rem;
+
+      @include respond-from(850) {
+        border-bottom: 1px solid var(--color-grey-200);
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 1rem;
+      }
     }
     &-where {
       flex: 0 0 17rem;
@@ -285,6 +297,15 @@
         font-size: 1.4rem;
         color: var(--color-grey-400);
       }
+
+      @include respond-from(850) {
+        flex: 0 0 0;
+        margin-bottom: 2rem;
+
+        & h3 {
+          font-size: 1.8rem;
+        }
+      }
     }
     &-description {
       flex: 1;
@@ -298,6 +319,12 @@
       & p {
         font-size: 1.5rem;
         font-family: 'Poppins', sans-serif;
+
+        @include respond-from(850) {
+          & strong small {
+            display: none;
+          }
+        }
       }
     }
   }

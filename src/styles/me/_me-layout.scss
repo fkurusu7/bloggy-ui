@@ -1,3 +1,5 @@
+@use './../abstracts/mixins' as *;
+
 .container-me {
   display: flex;
   flex-direction: column;
@@ -5,12 +7,23 @@
   align-items: center;
   column-gap: 4rem;
 
+  border: 1px solid red;
   background-color: var(--color-grey-100);
   color: var(--color-grey-500);
   min-height: 100vh;
   padding: 5rem 15rem;
   max-width: 120rem;
   width: 100%;
+
+  @include respond-from(900) {
+    padding: 3rem 7rem;
+  }
+  @include respond-from(800) {
+    padding: 3rem 5rem;
+  }
+  @include respond-from(700) {
+    padding: 3rem;
+  }
 }
 
 .me {
@@ -29,17 +42,26 @@
       width: auto;
       border-radius: 50%;
       border: 1px solid var(--color-grey-400);
+
+      @include respond-from(700) {
+        height: 18rem;
+      }
     }
 
     &__title {
       & h1 {
-        background: linear-gradient(var(--color-grey-400), var(--color-grey-600));
+        background: linear-gradient(var(--color-brand-400), var(--color-brand-600));
         background-clip: text;
         -webkit-text-fill-color: transparent;
         // color: var(--color-grey-500);
         font-family: 'Sono', sans-serif;
         font-size: 5rem;
         font-weight: 600;
+
+        @include respond-from(700) {
+          font-size: 4rem;
+          font-weight: 500;
+        }
       }
 
       & p {
@@ -50,6 +72,11 @@
         font-weight: bold;
         text-align: center;
         text-transform: uppercase;
+
+        @include respond-from(700) {
+          font-size: 4rem;
+          font-weight: 600;
+        }
       }
     }
 
@@ -58,7 +85,12 @@
       font-size: 1.7rem;
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
-      text-align: center;
+      text-align: justify;
+
+      @include respond-from(700) {
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
     }
   }
 

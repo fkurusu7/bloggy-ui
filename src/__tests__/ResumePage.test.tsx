@@ -74,7 +74,7 @@ describe('Test Resume', () => {
 
       // Test headings
       expect(screen.getByText('Fernando')).toBeInTheDocument();
-      expect(screen.getByText(/Full-stack developer merging/i)).toBeInTheDocument();
+      expect(screen.getByText(/I'm a full-stack developer who combines/i)).toBeInTheDocument();
       // expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Fernando');
       // expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Cruz');
 

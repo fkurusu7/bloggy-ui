@@ -7,7 +7,6 @@
   align-items: center;
   column-gap: 4rem;
 
-  border: 1px solid red;
   background-color: var(--color-grey-100);
   color: var(--color-grey-500);
   min-height: 100vh;
@@ -217,7 +216,6 @@
 
   &-background {
     height: 30rem;
-
     padding: 1rem 2rem;
     width: 100%;
 
@@ -232,9 +230,9 @@
     }
 
     &__tabs {
-      &-buttons,
       &-content {
-        width: 55%;
+        width: 40rem;
+        width: max(50%, 40rem);
       }
       &-buttons {
         display: flex;

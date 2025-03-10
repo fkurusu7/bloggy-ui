@@ -108,6 +108,10 @@
       justify-content: space-evenly;
       gap: 5rem;
 
+      @include respond-from(700) {
+        gap: 2rem;
+      }
+
       &-link {
         &:link,
         &:visited {
@@ -122,6 +126,15 @@
           display: flex;
           align-items: center;
           gap: 1.5rem;
+
+          @include respond-from(700) {
+            font-size: 1.7rem;
+            padding: 0.9rem 1.4rem;
+          }
+          @include respond-from(500) {
+            font-size: 1.5rem;
+            padding: 0.9rem 1rem;
+          }
         }
 
         &:hover,

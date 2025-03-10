@@ -195,6 +195,10 @@
       gap: 4rem;
       width: 100%;
 
+      @include respond-from(700) {
+        gap: 3rem;
+      }
+
       &-link {
         &:link,
         &:visited {
@@ -203,6 +207,11 @@
           display: flex;
           align-items: center;
           padding: 2rem;
+
+          @include respond-from(700) {
+            background-color: var(--color-brand-600);
+            padding: 1.3rem;
+          }
         }
         &:hover,
         &:active,
@@ -215,6 +224,9 @@
           height: 5rem;
           width: 5rem;
           fill: var(--color-grey-600);
+          @include respond-from(700) {
+            fill: var(--color-grey-100);
+          }
         }
 
         &:hover svg,

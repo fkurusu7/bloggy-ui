@@ -17,6 +17,10 @@
   &.large {
     padding: 2rem 5rem;
     font-size: 2.4rem;
+    /* 
+    @include respond-from(700) {
+    }
+     */
   }
 
   // &:focus-visible {
@@ -104,12 +108,20 @@
     & svg {
       height: 2.3rem;
       width: 2.3rem;
+      @include respond-from(700) {
+        height: 2rem;
+        width: 2rem;
+      }
     }
 
     &.large {
       & > svg {
         height: 3rem;
         width: 3rem;
+        @include respond-from(700) {
+          height: 2.5rem;
+          width: 2.5rem;
+        }
       }
     }
     &.medium {

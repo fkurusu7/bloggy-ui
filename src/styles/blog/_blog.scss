@@ -22,6 +22,9 @@
     @include respond-from(850) {
       grid-template-columns: 1rem 5fr 1fr 1rem;
     }
+    @include respond-from(700) {
+      grid-template-columns: 1rem 5fr 1rem;
+    }
   }
 
   &__header {
@@ -84,6 +87,10 @@
         left: 40%;
         transform: translate(-40%, -50%);
       }
+      @include respond-from(700) {
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
       & > input {
         background-color: transparent;
@@ -100,6 +107,10 @@
         @include respond-from(850) {
           font-size: 1.4rem;
           outline: 1px solid var(--color-grey-400);
+          width: 90%;
+        }
+        @include respond-from(700) {
+          width: 80%;
         }
 
         &::placeholder {
@@ -156,6 +167,9 @@
   // TODO: add
   &__main {
     border-right: 1px solid rgba($color: #57534e, $alpha: 0.4);
+    @include respond-from(700) {
+      border: none;
+    }
 
     &-title {
       color: var(--color-grey-500);
@@ -252,6 +266,10 @@
     justify-content: flex-start;
     gap: 4rem;
     margin-left: 2rem;
+
+    @include respond-from(700) {
+      display: none;
+    }
 
     & div {
       display: flex;

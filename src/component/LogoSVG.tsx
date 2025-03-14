@@ -1,5 +1,6 @@
 function LogoSVG() {
   return (
+    // styles/blog/_logo.scss
     <div className="logo">
       <svg width="300" height="200" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
         {/* Background */}

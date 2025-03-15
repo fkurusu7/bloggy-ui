@@ -160,6 +160,13 @@
       @include respond-from(850) {
         gap: 1rem;
       }
+      @include respond-from(700) {
+        position: absolute;
+        top: 3rem;
+        right: 1.5rem;
+
+        flex-direction: column;
+      }
     }
   }
 
@@ -224,6 +231,9 @@
           font-size: 1.4rem;
           color: var(--color-brand-800);
           width: 7rem;
+          @include respond-from(600) {
+            display: none;
+          }
         }
 
         & a:link,
@@ -251,6 +261,7 @@
             width: 2.1rem !important;
           }
         }
+        // TODO: fix properly posts into a centered layout
 
         @include respond-from(700) {
           &.no-user {
@@ -263,7 +274,15 @@
               text-align: start;
               width: 50%;
             }
+
+            &-actions {
+              margin-left: 4rem;
+              display: none;
+            }
           }
+        }
+        @include respond-from(600) {
+          width: 65%;
         }
       }
     }

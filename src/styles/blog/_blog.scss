@@ -10,7 +10,7 @@
     width: 100%;
 
     display: grid;
-    grid-template-columns: 10rem 5fr 1fr 10rem;
+    grid-template-columns: 10rem 4fr 1fr 10rem;
     grid-template-rows: 9rem 1fr 10rem;
 
     @include respond-from(1050) {
@@ -83,14 +83,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      @include respond-from(850) {
-        left: 40%;
-        transform: translate(-40%, -50%);
-      }
-      @include respond-from(700) {
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
 
       & > input {
         background-color: transparent;
@@ -164,7 +156,7 @@
     text-align: center;
     width: 100%;
   }
-  // TODO: add
+
   &__main {
     border-right: 1px solid rgba($color: #57534e, $alpha: 0.4);
     @include respond-from(700) {
@@ -186,7 +178,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      position: relative;
+
       gap: 1rem;
 
       & > svg {
@@ -220,9 +213,6 @@
         & a:link,
         & a:visited {
           color: var(--color-grey-500);
-        }
-
-        & a:link {
           font-size: 1.5rem;
           text-decoration: underline;
           transition: all 0.3s ease-out;
@@ -233,6 +223,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
         }
+
         & a:hover,
         & a:active {
           color: var(--color-brand-600);
@@ -242,6 +233,20 @@
           & svg {
             height: 2.1rem !important;
             width: 2.1rem !important;
+          }
+        }
+
+        @include respond-from(700) {
+          &.no-user {
+            overflow: hidden;
+            width: 65%;
+            justify-content: center;
+
+            & a:link,
+            & a:visited {
+              text-align: start;
+              width: 50%;
+            }
           }
         }
       }

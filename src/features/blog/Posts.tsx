@@ -45,7 +45,7 @@ function Posts() {
           </>
         ) : (
           posts.map((post) => (
-            <div className="blog__main-posts-post" key={post.slug}>
+            <div className={`blog__main-posts-post ${currentUser || 'no-user'}`} key={post.slug}>
               <span>{formatShortDate(post.createdAt)}</span>
               <Link
                 to={`/blog/posts/${post.slug}`}

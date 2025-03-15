@@ -3,7 +3,6 @@
 // LAYOUT
 .blog {
   &__container {
-    border: 1px solid red;
     background-color: var(--color-grey-100);
     min-height: 100vh;
     max-width: 120rem;
@@ -30,6 +29,11 @@
   &__header {
     grid-column: 2 / 4;
     grid-row: 1 / 2;
+    margin-top: 1px;
+
+    @include respond-from(700) {
+      grid-column: 2 / 3;
+    }
   }
   &__main {
     // Parent Grid
@@ -42,6 +46,10 @@
 
     margin-top: 2rem;
     width: 100%;
+
+    @include respond-from(700) {
+      grid-column: 2 / 3;
+    }
   }
 
   &__tags {
@@ -52,6 +60,10 @@
   &__footer {
     grid-column: 2 / 4;
     grid-row: 3 / 4;
+
+    @include respond-from(700) {
+      grid-column: 2 / 3;
+    }
   }
 }
 
@@ -84,6 +96,14 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
+      width: 25rem;
+
+      @include respond-from(500) {
+        left: 60%;
+        transform: translate(-60%, -50%);
+        width: 20rem;
+      }
+
       & > input {
         background-color: transparent;
         border: none;
@@ -99,10 +119,6 @@
         @include respond-from(850) {
           font-size: 1.4rem;
           outline: 1px solid var(--color-grey-400);
-          width: 90%;
-        }
-        @include respond-from(700) {
-          width: 80%;
         }
 
         &::placeholder {

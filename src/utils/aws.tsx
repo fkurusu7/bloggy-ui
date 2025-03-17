@@ -1,3 +1,5 @@
+import { API_BASE_URL } from './helpers';
+
 export const uploadImageToAWS = async (image: File) => {
   // Validate file type and size
   if (!image.type.includes('image/')) {
@@ -9,7 +11,7 @@ export const uploadImageToAWS = async (image: File) => {
   }
 
   // Fetch AWS-S3 signed URL to upload image from frontend
-  const response = await fetch('/api/blog/getImageUploadUrl');
+  const response = await fetch(`${API_BASE_URL}/api/blog/getImageUploadUrl`);
   if (!response.ok) {
     throw new Error('Failed to get upload URL');
   }

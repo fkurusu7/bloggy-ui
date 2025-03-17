@@ -15,3 +15,5 @@ export function formatDateSimple(isoString: string) {
     minute: '2-digit',
   });
 }
+
+export const API_BASE_URL = (import.meta as any).env.PROD ? 'https://api.barudesu.codes' : '';

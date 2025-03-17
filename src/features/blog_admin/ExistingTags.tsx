@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { ExistingTagsProps, PostData } from './types';
+import { API_BASE_URL } from '../../utils/helpers';
 
 function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: ExistingTagsProps) {
   /*
@@ -20,7 +21,7 @@ function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: E
     const fetchTags = async () => {
       try {
         setIsLoadingTags(true);
-        const response = await fetch('/api/blog/getTags?limit=5');
+        const response = await fetch(`${API_BASE_URL}/api/blog/getTags?limit=5`);
         if (!response.ok) {
           throw new Error('Failed to fetch existing tags');
         }

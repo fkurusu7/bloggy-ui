@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Post } from '../features/blog_admin/types';
+import { API_BASE_URL } from '../utils/helpers';
 
 interface UseBlogPostsParams {
   searchTerm?: string;
@@ -18,7 +19,7 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
         setIsLoadingPosts(true);
         setError(null);
 
-        let urlString = '/api/blog/getPosts';
+        let urlString = `${API_BASE_URL}/api/blog/getPosts`;
         const params = new URLSearchParams();
         if (searchTerm) {
           params.append('searchTerm', searchTerm);

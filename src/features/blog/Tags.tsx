@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../../utils/helpers';
 
 interface Tag {
   name: string;
@@ -21,7 +22,7 @@ function Tags() {
         setIsLoadingTags(true);
         setErrorTags(null);
 
-        const response = await fetch('/api/blog/getTags');
+        const response = await fetch(`${API_BASE_URL}/api/blog/getTags`);
         if (!response.ok) {
           throw new Error('Error fetching tags');
         }

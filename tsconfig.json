@@ -6,6 +6,5 @@
   ],
   "compilerOptions": {
     "skipLibCheck": true
-  },
-  "include": ["src", "vite-env.d.ts"]
+  }
 }

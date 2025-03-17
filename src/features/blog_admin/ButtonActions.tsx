@@ -5,6 +5,7 @@ import React from 'react';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../component/Modal';
 import UpdatePost from './UpdatePost';
+import { API_BASE_URL } from '../../utils/helpers';
 
 type ActionData = {
   slug: string;
@@ -31,7 +32,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
     console.log('Delete post', slug);
 
     try {
-      const response = await fetch(`/api/blog/remove?slug=${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blog/remove?slug=${slug}`, {
         method: 'DELETE',
       });
       if (!response.ok) {

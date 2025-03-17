@@ -21,6 +21,7 @@ import {
   signupStart,
   signupSuccess,
 } from '../../context/userSlice';
+import { API_BASE_URL } from '../../utils/helpers';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -130,7 +131,7 @@ function UserAuth({ type }: UserAuthProps) {
 
       // generate auth path ==> /signin or /signup
       const path = type === 'signin' ? 'signin' : 'signup';
-      const response = await fetch(`/api/auth/${path}`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/${path}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(result),

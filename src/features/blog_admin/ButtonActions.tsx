@@ -34,6 +34,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
     try {
       const response = await fetch(`${API_BASE_URL}/api/blog/remove?slug=${slug}`, {
         method: 'DELETE',
+        credentials: 'include',
       });
       if (!response.ok) {
         throw new Error('Could not delete the post');

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1000" height="1000">
+  <g clip-path="url(#SvgjsClipPath1640)">
+    
+    <g transform="matrix(3.3333333333333335,0,0,3.3333333333333335,0,0)">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="300" height="300">
+        <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Large arc (first “split”) -->
+          <path d="M 30 180 
+       A 120 120 0 0 1 270 180" fill="none" stroke="#ffcf46" stroke-width="22"></path>
+          <!-- Medium arc (second “split”) -->
+          <path d="M 70 170 
+       A 80 80 0 0 1 230 170" fill="none" stroke="#ffcf46" stroke-width="22"></path>
+          <!-- Small arc (third “split”) -->
+          <path d="M 110 160 
+       A 40 40 0 0 1 190 160" fill="none" stroke="#ffcf46" stroke-width="22"></path>
+          <!-- Central “found” point -->
+          <circle cx="150" cy="160" r="15" fill="#ffcf46"></circle>
+        </svg>
+      </svg>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="SvgjsClipPath1640">
+      <rect width="1000" height="1000" x="0" y="0" rx="500" ry="500"></rect>
+    </clipPath>
+  </defs>
+</svg>

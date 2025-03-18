@@ -12,7 +12,7 @@ function LogoSVG() {
        A 100 100 0 0 1 250 200"
           fill="none"
           stroke="currentColor"
-          strokeWidth="11"
+          strokeWidth="18"
         />
 
         {/* Medium arc (second “split”) */}
@@ -21,7 +21,7 @@ function LogoSVG() {
        A 60 60 0 0 1 210 190"
           fill="none"
           stroke="currentColor"
-          strokeWidth="11"
+          strokeWidth="16"
         />
 
         {/* Small arc (third “split”) */}
@@ -30,11 +30,11 @@ function LogoSVG() {
        A 30 30 0 0 1 180 180"
           fill="none"
           stroke="currentColor"
-          strokeWidth="11"
+          strokeWidth="14"
         />
 
         {/* Central “found” point */}
-        <circle cx="150" cy="180" r="10" fill="currentColor" />
+        <circle cx="150" cy="180" r="14" fill="currentColor" />
       </svg>
     </div>
   );

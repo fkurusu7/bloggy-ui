@@ -11,6 +11,7 @@ export const useAuth = () => {
     try {
       const response = await fetch('/api/auth/signout', {
         method: 'POST',
+        credentials: 'include',
       });
 
       if (response.ok) {

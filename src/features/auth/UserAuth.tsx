@@ -21,7 +21,7 @@ import {
   signupStart,
   signupSuccess,
 } from '../../context/userSlice';
-import { API_BASE_URL } from '../../utils/helpers';
+import { API_BASE_URL, logger } from '../../utils/helpers';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -162,7 +162,7 @@ function UserAuth({ type }: UserAuthProps) {
           message: e.message,
         }));
         setErrors(formErrors);
-        console.log(formErrors);
+        logger(formErrors);
         focusOnError(formErrors);
       } else if (error instanceof ApiError) {
         if (type === 'signup') {
@@ -182,7 +182,7 @@ function UserAuth({ type }: UserAuthProps) {
           dispatch(signinFailure(error));
           emailRef.current?.focus();
         }
-        console.error('Unexpected error:', apiError);
+        logger(`Unexpected error:, ${apiError}`);
         toast.error('An unexpected error occurred. Please try again later.');
       }
     }

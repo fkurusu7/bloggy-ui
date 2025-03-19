@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { FiLoader } from 'react-icons/fi';
-import { formatDateSimple } from '../../utils/helpers';
+import { formatDateSimple, logger } from '../../utils/helpers';
 import { HiOutlineArrowLeftCircle } from 'react-icons/hi2';
 import TooltipUtil from '../../utils/TooltipUtil';
 import PostContent from './PostContent';
@@ -29,7 +29,7 @@ function Post() {
   // Handle error state
 
   if (error) {
-    console.log(error);
+    logger(error);
     return (
       <article className="blog__post-info">
         <div className="blog__post-info-error">Error loading post: {error}</div>;
@@ -56,7 +56,7 @@ function Post() {
       </article>
     );
   }
-  console.log(post);
+  logger(post);
 
   return (
     <article className="blog__post-info">

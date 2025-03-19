@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
 import { ExistingTagsProps, PostData } from './types';
-import { API_BASE_URL } from '../../utils/helpers';
+import { API_BASE_URL, logger } from '../../utils/helpers';
 
 function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: ExistingTagsProps) {
   /*
@@ -29,7 +29,7 @@ function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: E
 
         setExistingTags(jsonResponse.data.map((tag: Tag) => tag.name));
       } catch (error: unknown) {
-        console.log(error);
+        logger(error);
         setErrorTags("Error loading Tags. Please add by hand your post's tag(s)");
         setExistingTags([]);
       } finally {

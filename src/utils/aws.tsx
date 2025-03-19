@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './helpers';
+import { API_BASE_URL, logger } from './helpers';
 
 export const uploadImageToAWS = async (image: File) => {
   // Validate file type and size
@@ -32,6 +32,6 @@ export const uploadImageToAWS = async (image: File) => {
   }
 
   // return the public URL
-  console.log('AWS url: ', urlUploadImage);
+  logger(`AWS url:  ${urlUploadImage}`);
   return urlUploadImage.split('?')[0];
 };

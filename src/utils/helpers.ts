@@ -19,3 +19,7 @@ export function formatDateSimple(isoString: string) {
 // @ts-ignore
 // export const API_BASE_URL = (import.meta as any).env.PROD ? 'https://api.barudesu.codes' : '';
 export const API_BASE_URL = import.meta.env?.PROD ? 'https://api.barudesu.codes' : '';
+
+export const logger = (message: any) => {
+  import.meta.env?.PROD ? '' : console.log(message);
+};

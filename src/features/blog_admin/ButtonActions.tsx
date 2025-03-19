@@ -5,7 +5,7 @@ import React from 'react';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../component/Modal';
 import UpdatePost from './UpdatePost';
-import { API_BASE_URL } from '../../utils/helpers';
+import { API_BASE_URL, logger } from '../../utils/helpers';
 
 type ActionData = {
   slug: string;
@@ -41,16 +41,16 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
 
       toast.success('Post deleted successfully');
       onPostDeleted?.();
-      console.log('Delete post', slug);
+      logger(`Delete post, ${slug}`);
     } catch (error) {
       // Check if error is an Error object
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
-        console.log('Unknown error:', error);
+        logger(`Unknown error: ${error}`);
         toast.error(`Failed to delete the post: ${error}`);
       }
-      console.log(error);
+      logger(error);
       onPostDeleted?.();
     }
   };

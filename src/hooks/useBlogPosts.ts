@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Post } from '../features/blog_admin/types';
-import { API_BASE_URL } from '../utils/helpers';
+import { API_BASE_URL, logger } from '../utils/helpers';
 
 interface UseBlogPostsParams {
   searchTerm?: string;
@@ -49,7 +49,7 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
           return;
         }
         setError(error instanceof Error ? error.message : 'An error occurred');
-        console.log(error);
+        logger(error);
       } finally {
         setIsLoadingPosts(false);
       }

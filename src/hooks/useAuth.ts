@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDipatch } from '../context/useContextTypes';
 import toast from 'react-hot-toast';
 import { signoutSuccess } from '../context/userSlice';
-import { API_BASE_URL } from '../utils/helpers';
+import { API_BASE_URL, logger } from '../utils/helpers';
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const useAuth = () => {
         navigate('/me', { replace: true });
       }
     } catch (error) {
-      console.log(error);
+      logger(error);
       toast.error('Error signing out');
     }
   };

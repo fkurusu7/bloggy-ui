@@ -4,7 +4,7 @@ import { PostData } from './types';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { FiLoader } from 'react-icons/fi';
-import { API_BASE_URL } from '../../utils/helpers';
+import { API_BASE_URL, logger } from '../../utils/helpers';
 
 interface UpdatePostProps {
   slug: string;
@@ -42,7 +42,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
         const response = await fetch(`${API_BASE_URL}/api/blog/getPosts?slug=${slug}`);
 
         if (!response.ok) {
-          console.log(response);
+          logger(response);
           throw new Error('Error fetching post');
         }
 
@@ -60,7 +60,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
         setPost(transformedPost);
       } catch (error) {
         toast.error('Error fetching post');
-        console.log(error);
+        logger(error);
         closeModal();
         navigate('/blog/admin');
       } finally {
@@ -72,7 +72,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   }, [slug, navigate, closeModal]);
 
   const handleSubmit = async (data: PostData) => {
-    console.log('Update post', data);
+    logger('Update post', data);
 
     const response = await fetch(`${API_BASE_URL}/api/blog/update/${slug}`, {
       method: 'PUT',

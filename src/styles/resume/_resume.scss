@@ -3,7 +3,8 @@
 .resume {
   &__container {
     // background-color: var(--color-grey-50);
-    background-image: linear-gradient(to bottom, transparent 50%, var(--color-grey-50) 50%),
+    background-image:
+      linear-gradient(to bottom, transparent 50%, var(--color-grey-50) 50%),
       linear-gradient(to right, var(--color-grey-100) 50%, var(--color-grey-50) 50%);
     background-size:
       20px 20px,
@@ -64,6 +65,11 @@
     align-self: center;
     justify-content: flex-end;
     gap: 2rem;
+
+    @include respond-from(850) {
+      grid-column: 2/2;
+      padding-top: 0.5rem;
+    }
 
     & svg {
       cursor: pointer;

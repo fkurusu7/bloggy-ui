@@ -29,22 +29,27 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
     ev.preventDefault();
     ev.stopPropagation();
 
-    console.log('Delete post', slug);
-
     try {
       const response = await fetch(`${API_BASE_URL}/api/blog/remove?slug=${slug}`, {
         method: 'DELETE',
         credentials: 'include',
       });
+      const resJson = await response.json();
       if (!response.ok) {
-        throw new Error('Could not delete the post');
+        throw new Error(resJson.message);
       }
 
       toast.success('Post deleted successfully');
       onPostDeleted?.();
       console.log('Delete post', slug);
     } catch (error) {
-      toast.error('Failed to delete the post');
+      // Check if error is an Error object
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        console.log('Unknown error:', error);
+        toast.error(`Failed to delete the post: ${error}`);
+      }
       console.log(error);
       onPostDeleted?.();
     }

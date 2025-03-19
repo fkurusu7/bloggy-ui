@@ -233,6 +233,11 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
         keepMarks: true,
         keepAttributes: false,
       },
+      // Disable these in StarterKit since they're already added separately
+      document: false,
+      paragraph: false,
+      listItem: false,
+      codeBlock: false, // Disable the default as CustomCodeBlock is already used
     }),
   ];
 

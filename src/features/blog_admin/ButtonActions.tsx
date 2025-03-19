@@ -34,8 +34,8 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
         method: 'DELETE',
         credentials: 'include',
       });
-      const resJson = await response.json();
       if (!response.ok) {
+        const resJson = await response.json();
         throw new Error(resJson.message);
       }
 

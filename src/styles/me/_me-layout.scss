@@ -23,6 +23,10 @@
   @include respond-from(700) {
     padding: 3rem;
   }
+
+  @include respond-from(500) {
+    padding: 1rem;
+  }
 }
 
 .me {
@@ -89,6 +93,7 @@
       @include respond-from(700) {
         font-size: 1.6rem;
         font-weight: 500;
+        text-align: left;
       }
     }
   }
@@ -111,6 +116,9 @@
       @include respond-from(700) {
         gap: 2rem;
       }
+      @include respond-from(500) {
+        flex-direction: column;
+      }
 
       &-link {
         &:link,
@@ -131,10 +139,6 @@
             font-size: 1.7rem;
             padding: 0.9rem 1.4rem;
           }
-          @include respond-from(500) {
-            font-size: 1.5rem;
-            padding: 0.9rem 1rem;
-          }
         }
 
         &:hover,
@@ -154,6 +158,11 @@
           height: 2.4rem;
           width: 2.4rem;
           transition: all 0.1s ease-out;
+
+          @include respond-from(500) {
+            height: 3rem;
+            width: 3rem;
+          }
         }
 
         &.resume--btn {
@@ -198,6 +207,9 @@
       @include respond-from(700) {
         gap: 3rem;
       }
+      @include respond-from(500) {
+        gap: 2rem;
+      }
 
       &-link {
         &:link,
@@ -211,6 +223,9 @@
           @include respond-from(700) {
             background-color: var(--color-brand-600);
             padding: 1.3rem;
+          }
+          @include respond-from(500) {
+            padding: 1rem;
           }
         }
         &:hover,
@@ -258,6 +273,10 @@
       &-content {
         width: 40rem;
         width: max(50%, 40rem);
+        @include respond-from(500) {
+          width: 30rem;
+          width: max(50%, 30rem);
+        }
       }
       &-buttons {
         display: flex;

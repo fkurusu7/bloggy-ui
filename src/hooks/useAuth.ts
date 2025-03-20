@@ -21,7 +21,7 @@ export const useAuth = () => {
         navigate('/me', { replace: true });
       }
     } catch (error) {
-      logger(error);
+      logger.error(error);
       toast.error('Error signing out');
     }
   };

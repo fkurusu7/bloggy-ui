@@ -49,7 +49,7 @@ export function useBlogPosts({ searchTerm, tag, slug }: UseBlogPostsParams = {})
           return;
         }
         setError(error instanceof Error ? error.message : 'An error occurred');
-        logger(error);
+        logger.error(error);
       } finally {
         setIsLoadingPosts(false);
       }

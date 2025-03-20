@@ -42,7 +42,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
         const response = await fetch(`${API_BASE_URL}/api/blog/getPosts?slug=${slug}`);
 
         if (!response.ok) {
-          logger(response);
+          logger.error(response);
           throw new Error('Error fetching post');
         }
 
@@ -60,7 +60,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
         setPost(transformedPost);
       } catch (error) {
         toast.error('Error fetching post');
-        logger(error);
+        logger.error(error);
         closeModal();
         navigate('/blog/admin');
       } finally {
@@ -72,7 +72,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
   }, [slug, navigate, closeModal]);
 
   const handleSubmit = async (data: PostData) => {
-    logger('Update post', data);
+    logger.info('Update post', data);
 
     const response = await fetch(`${API_BASE_URL}/api/blog/update/${slug}`, {
       method: 'PUT',

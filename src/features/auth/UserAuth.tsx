@@ -162,7 +162,7 @@ function UserAuth({ type }: UserAuthProps) {
           message: e.message,
         }));
         setErrors(formErrors);
-        logger(formErrors);
+        logger.error(formErrors);
         focusOnError(formErrors);
       } else if (error instanceof ApiError) {
         if (type === 'signup') {
@@ -182,7 +182,7 @@ function UserAuth({ type }: UserAuthProps) {
           dispatch(signinFailure(error));
           emailRef.current?.focus();
         }
-        logger(`Unexpected error:, ${apiError}`);
+        logger.error(`Unexpected error:, ${apiError}`);
         toast.error('An unexpected error occurred. Please try again later.');
       }
     }

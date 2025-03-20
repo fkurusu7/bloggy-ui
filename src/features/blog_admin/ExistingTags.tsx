@@ -29,7 +29,7 @@ function ExistingTags({ editorFormData, setEditorFormData, setFormDataError }: E
 
         setExistingTags(jsonResponse.data.map((tag: Tag) => tag.name));
       } catch (error: unknown) {
-        logger(error);
+        logger.error(error);
         setErrorTags("Error loading Tags. Please add by hand your post's tag(s)");
         setExistingTags([]);
       } finally {

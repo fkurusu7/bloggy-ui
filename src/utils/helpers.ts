@@ -20,6 +20,20 @@ export function formatDateSimple(isoString: string) {
 // export const API_BASE_URL = (import.meta as any).env.PROD ? 'https://api.barudesu.codes' : '';
 export const API_BASE_URL = import.meta.env?.PROD ? 'https://api.barudesu.codes' : '';
 
-export const logger = (message: any) => {
+export const logger = {
+  info: (...args: any[]) => {
+    if (!import.meta.env?.PROD) {
+      console.log(...args);
+    }
+  },
+  error: (...args: any[]) => {
+    if (!import.meta.env?.PROD) {
+      console.error(...args);
+    }
+  },
+};
+
+/* (message: any) => {
   import.meta.env?.PROD ? '' : console.log(message);
 };
+ */

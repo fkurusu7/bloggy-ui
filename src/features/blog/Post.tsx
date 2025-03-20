@@ -29,7 +29,7 @@ function Post() {
   // Handle error state
 
   if (error) {
-    logger(error);
+    logger.error(error);
     return (
       <article className="blog__post-info">
         <div className="blog__post-info-error">Error loading post: {error}</div>;
@@ -56,7 +56,7 @@ function Post() {
       </article>
     );
   }
-  logger(post);
+  logger.info(post);
 
   return (
     <article className="blog__post-info">

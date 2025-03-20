@@ -41,16 +41,16 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
 
       toast.success('Post deleted successfully');
       onPostDeleted?.();
-      logger(`Delete post, ${slug}`);
+      logger.info(`Delete post, ${slug}`);
     } catch (error) {
       // Check if error is an Error object
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
-        logger(`Unknown error: ${error}`);
+        logger.error(`Unknown error: ${error}`);
         toast.error(`Failed to delete the post: ${error}`);
       }
-      logger(error);
+      logger.error(error);
       onPostDeleted?.();
     }
   };

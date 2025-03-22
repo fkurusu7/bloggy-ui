@@ -26,35 +26,3 @@ export const verifyToken = async () => {
     return false;
   }
 };
-
-/**
- * Handles logout on token expiration
- */
-export const handleSessionExpiration = () => {
-  // Sign out
-  const dispatch = useDispatch();
-  dispatch(signoutSuccess());
-
-  toast.error('Your session has expired. Please sign in again.');
-
-  // redirect to sign in page
-  window.location.href = '/signin';
-};
-
-export const setupTokenVerification = (intervalMs = 5 * 60 * 1000) => {
-  const { currentUser } = useAppSelector((state) => state.user);
-
-  const checkAndHandleTokenValidity = async () => {
-    const isValid = await verifyToken();
-    if (!isValid && currentUser) {
-      handleSessionExpiration();
-    }
-
-    checkAndHandleTokenValidity();
-
-    // set up interval for checking
-    return setInterval(() => {
-      checkAndHandleTokenValidity;
-    }, intervalMs);
-  };
-};

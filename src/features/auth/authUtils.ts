@@ -1,4 +1,3 @@
-import { useAppSelector } from '../../context/useContextTypes';
 import { API_BASE_URL, logger } from '../../utils/helpers';
 
 /**
@@ -7,10 +6,6 @@ import { API_BASE_URL, logger } from '../../utils/helpers';
  */
 export const verifyToken = async () => {
   try {
-    const { currentUser } = useAppSelector((state) => state.user);
-
-    if (!currentUser) return false;
-
     const response = await fetch(`${API_BASE_URL}/api/auth/verify-token`, {
       method: 'GET',
       headers: { 'Content-type': 'application/json' },

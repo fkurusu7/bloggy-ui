@@ -5,6 +5,13 @@ import { signoutSuccess } from '../../context/userSlice';
 import toast from 'react-hot-toast';
 import { logger } from '../../utils/helpers';
 
+/* 
+  React Hooks (both built-in and custom) must follow 
+  React's Hook Rules, which require:
+  Hooks must only be called:
+    - At the top level of a React function component or custom hook.
+    - Not inside regular functions, conditionals, loops, or nested functions.
+*/
 export const useTokenVerification = (intervalMs = 5 * 60 * 1000) => {
   const { currentUser } = useAppSelector((state) => state.user);
   const dispatch = useAppDipatch();

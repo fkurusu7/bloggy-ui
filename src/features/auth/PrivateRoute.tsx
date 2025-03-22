@@ -1,9 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAppSelector } from '../../context/useContextTypes';
-import { useEffect, useState } from 'react';
-import { logger } from '../../utils/helpers';
-import { verifyToken } from './authUtils';
-import toast from 'react-hot-toast';
+import { useTokenVerification } from './useTokenVerification';
 
 /*{
   "success": true,
@@ -15,42 +11,15 @@ import toast from 'react-hot-toast';
 }*/
 
 function PrivateRoute() {
-  const { currentUser } = useAppSelector((state) => state.user);
-  const [isTokenValid, setIsTokenValid] = useState(true);
-  const [isChecking, setIsChecking] = useState(true);
-
-  useEffect(() => {
-    if (!currentUser) {
-      setIsChecking(false);
-      return;
-    }
-
-    const validateToken = async () => {
-      try {
-        const valid = await verifyToken();
-        setIsTokenValid(valid);
-
-        if (!valid) {
-          toast.error('Your session has expired. Please sign in again.');
-        }
-      } catch (error) {
-        logger.error('Error validating token: ', error);
-        setIsTokenValid(false);
-      } finally {
-        setIsChecking(true);
-      }
-    };
-
-    validateToken();
-  }, [currentUser]);
+  const { isTokenValid, isChecking } = useTokenVerification();
 
   // Show Loading indicator while checking token
-  if (currentUser && isChecking) {
+  if (isChecking) {
     return <div>Verifying session...</div>;
   }
 
   // If token does not exist in redux or tiekn is invalid, redirect to /signin
-  if (!currentUser || !isTokenValid) {
+  if (!isTokenValid) {
     return <Navigate to={'/signin'} />;
   }
 

@@ -11,23 +11,10 @@ import PrivateRoute from './features/auth/PrivateRoute';
 import BlogAppLayout from './features/blog/BlogAppLayout';
 import Posts from './features/blog/Posts';
 import Post from './features/blog/Post';
-import { useAppSelector } from './context/useContextTypes';
-import { useEffect } from 'react';
-import { setupTokenVerification } from './features/auth/authUtils';
+import { useTokenVerification } from './features/auth/useTokenVerification';
 
 function App() {
-  const { currentUser } = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    // Only setup verification if user is signed in
-    let intervalId: number | void | undefined;
-
-    if (currentUser) intervalId = setupTokenVerification();
-
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [currentUser]);
+  useTokenVerification();
 
   return (
     <LightOnDarkProvider>

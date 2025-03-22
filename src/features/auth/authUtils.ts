@@ -1,8 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../context/useContextTypes';
 import { API_BASE_URL, logger } from '../../utils/helpers';
-import { signoutSuccess } from '../../context/userSlice';
-import toast from 'react-hot-toast';
 
 /**
  * Verifies if the current user's token is valid

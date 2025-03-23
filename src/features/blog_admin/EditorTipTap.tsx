@@ -1,5 +1,5 @@
 import { Color } from '@tiptap/extension-color';
-// import CodeBlock from '@tiptap/extension-code-block';
+import CodeBlock from '@tiptap/extension-code-block';
 import CustomCodeBlock from './CustomCodeBlock';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
@@ -219,7 +219,7 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
   const extensions = [
     TextStyle,
     ListItem,
-    // CodeBlock,
+    CodeBlock,
     Document,
     Paragraph,
     CustomCodeBlock,
@@ -234,10 +234,10 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
         keepAttributes: false,
       },
       // Disable these in StarterKit since they're already added separately
-      document: false,
-      paragraph: false,
-      listItem: false,
-      codeBlock: false, // Disable the default as CustomCodeBlock is already used
+      // document: false,
+      // paragraph: false,
+      // listItem: false,
+      // codeBlock: false, // Disable the default as CustomCodeBlock is already used
     }),
   ];
 

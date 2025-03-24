@@ -9,7 +9,6 @@ import { EditorProvider, useCurrentEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import {
   HiMiniBold,
-  // HiMiniH1,
   HiMiniH2,
   HiMiniH3,
   HiMiniItalic,
@@ -225,6 +224,9 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
     CustomCodeBlock,
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
     StarterKit.configure({
+      heading: {
+        levels: [2, 3],
+      },
       bulletList: {
         keepMarks: true,
         keepAttributes: false,
@@ -245,6 +247,51 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
           content={content}
           onUpdate={({ editor }) => {
             onChange(editor.getHTML());
+          }}
+          editorProps={{
+            handleKeyDown: (view, event) => {
+              const { state, dispatch } = view;
+
+              // Handle Enter for Heading -> Paragraph or Paragraph -> List
+              if (event.key === 'Enter') {
+                if (state.selection.$from.parent.type.name === 'heading') {
+                  event.preventDefault();
+                  return dispatch(
+                    state.tr.setNodeMarkup(state.selection.$from.pos, undefined, {
+                      type: 'paragraph',
+                    })
+                  );
+                }
+
+                if (state.selection.$from.parent.type.name === 'paragraph') {
+                  event.preventDefault();
+                  return dispatch(
+                    state.tr.replaceSelectionWith(
+                      state.schema.nodes.bulletList.createChecked({}, [
+                        state.schema.nodes.listItem.createChecked(),
+                      ])
+                    )
+                  );
+                }
+              }
+
+              // Handle Backspace for ListItem to Paragraph
+              if (event.key === 'Backspace') {
+                if (
+                  state.selection.$from.parent.type.name === 'listItem' &&
+                  state.selection.$from.parent.textContent === ''
+                ) {
+                  event.preventDefault();
+                  return dispatch(
+                    state.tr.setNodeMarkup(state.selection.$from.pos, undefined, {
+                      type: 'paragraph',
+                    })
+                  );
+                }
+              }
+
+              return false;
+            },
           }}
         />
       </div>

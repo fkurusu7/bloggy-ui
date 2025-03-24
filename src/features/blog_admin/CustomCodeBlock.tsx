@@ -100,6 +100,7 @@ const CodeBlock = ({ node, updateAttributes, editor }: NodeViewProps) => {
 const CustomCodeBlock = Node.create({
   name: 'codeBlock',
   group: 'block',
+  content: 'text*',
   code: true,
   defining: true,
 

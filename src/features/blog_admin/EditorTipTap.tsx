@@ -5,8 +5,10 @@ import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
-import { EditorProvider, useCurrentEditor } from '@tiptap/react';
+import { EditorProvider, Extension, useCurrentEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { TextSelection } from '@tiptap/pm/state';
+
 import {
   HiMiniBold,
   HiMiniH2,
@@ -69,13 +71,6 @@ const MenuBar = () => {
       >
         <HiOutlineStrikethrough />
       </button>
-      {/* <button
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        disabled={!editor.can().chain().focus().toggleCode().run()}
-        className={editor.isActive('code') ? 'is-active' : ''}
-      >
-        Code
-      </button> */}
       <button
         onClick={() => editor.chain().focus().unsetAllMarks().run()}
         data-tooltip-id="tooltipid"
@@ -103,15 +98,6 @@ const MenuBar = () => {
       >
         <PiParagraph />
       </button>
-      {/* <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-        data-tooltip-id="tooltipid"
-        data-tooltip-content="Heading H1"
-        data-tooltip-place="top"
-      >
-        <HiMiniH1 />
-      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
@@ -131,7 +117,23 @@ const MenuBar = () => {
         <HiMiniH3 />
       </button>
       <button
-        onClick={() => editor.chain().focus().toggleBulletList().run()}
+        // onClick={() => editor.chain().focus().toggleBulletList().run()}
+        onClick={() => {
+          const { state, dispatch } = editor.view;
+          const { $from } = state.selection;
+
+          // Apply list item only if it's not already a list
+          if ($from.parent.type.name !== 'listItem') {
+            editor.chain().focus().toggleBulletList().run();
+          } else {
+            // Exit list item if pressed again
+            dispatch(
+              state.tr.setNodeMarkup($from.before($from.depth), undefined, {
+                type: 'paragraph',
+              })
+            );
+          }
+        }}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
         data-tooltip-id="tooltipid"
         data-tooltip-content="Unordered List"
@@ -214,11 +216,63 @@ const MenuBar = () => {
   );
 };
 
+// Custom extension to handle Enter key behavior
+const CustomKeyboardExtension = Extension.create({
+  name: 'customKeyboard',
+
+  addKeyboardShortcuts() {
+    return {
+      Enter: () => {
+        const { editor } = this;
+
+        if (!editor) return false;
+
+        const { state, dispatch } = editor.view;
+        const { $from, $to } = state.selection;
+
+        // Determine the current node type
+        const currentNodeType = $from.parent.type.name;
+
+        // Special handling for different node types
+        switch (currentNodeType) {
+          case 'heading':
+          case 'codeBlock':
+          case 'paragraph': {
+            // If the current node is empty, split it
+            if (!$from.parent.textContent.trim()) {
+              // Move cursor to the start of the next paragraph or create a new one
+              const insertPosition = $to.after($from.depth);
+              const newNode = state.schema.nodes.paragraph.create();
+
+              const tr = state.tr
+                .insert(insertPosition, newNode)
+                .setSelection(TextSelection.create(state.tr.doc, insertPosition + 1));
+
+              dispatch(tr);
+              return true;
+            }
+
+            // If the current node is not empty, proceed with default behavior
+            return false;
+          }
+
+          case 'listItem': {
+            // For list items, allow default list behavior
+            return false;
+          }
+
+          default:
+            return false;
+        }
+      },
+    };
+  },
+});
+
 const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
   const extensions = [
     TextStyle,
     ListItem,
-    // CodeBlock,
     Document,
     Paragraph,
     CustomCodeBlock,
@@ -236,6 +290,7 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
         keepAttributes: false,
       },
     }),
+    CustomKeyboardExtension,
   ];
 
   return (
@@ -250,49 +305,68 @@ const EditorTiptap = ({ content, onChange }: TiptapEditorProps) => {
           }}
           editorProps={{
             handleKeyDown: (view, event) => {
-              const { state, dispatch } = view;
+              // Additional custom key handling if needed
+              console.log(view, event);
 
-              // Handle Enter for Heading -> Paragraph or Paragraph -> List
+              return false;
+            },
+          }}
+          /* editorProps={{
+            handleKeyDown: (view, event) => {
+              const { state, dispatch } = view;
+              const { $from } = state.selection;
+
+              // Exit heading and convert to paragraph on Enter
               if (event.key === 'Enter') {
-                if (state.selection.$from.parent.type.name === 'heading') {
+                console.log($from.parent.type.name);
+                console.log(
+                  event.key,
+                  $from.before($from.depth),
+                  state.selection,
+                  $from.parent.attrs
+                );
+                // For headings
+                if ($from.parent.type.name === 'heading') {
                   event.preventDefault();
-                  return dispatch(
-                    state.tr.setNodeMarkup(state.selection.$from.pos, undefined, {
-                      type: 'paragraph',
-                    })
+                  dispatch(
+                    state.tr
+                      .setSelection(state.selection)
+                      .setNodeMarkup(
+                        $from.before($from.depth),
+                        state.schema.nodes.paragraph,
+                        $from.parent.attrs
+                      )
                   );
+                  return true;
                 }
 
-                if (state.selection.$from.parent.type.name === 'paragraph') {
+                // Exit list and convert to paragraph when list item is empty and Enter is pressed twice
+                if ($from.parent.type.name === 'listItem' && !$from.parent.textContent.trim()) {
                   event.preventDefault();
-                  return dispatch(
-                    state.tr.replaceSelectionWith(
-                      state.schema.nodes.bulletList.createChecked({}, [
-                        state.schema.nodes.listItem.createChecked(),
-                      ])
-                    )
+                  dispatch(
+                    state.tr.setNodeMarkup($from.before($from.depth), state.schema.nodes.paragraph)
                   );
+                  return true;
                 }
               }
 
-              // Handle Backspace for ListItem to Paragraph
+              // Backspace in empty list item converts to paragraph
               if (event.key === 'Backspace') {
                 if (
                   state.selection.$from.parent.type.name === 'listItem' &&
                   state.selection.$from.parent.textContent === ''
                 ) {
                   event.preventDefault();
-                  return dispatch(
-                    state.tr.setNodeMarkup(state.selection.$from.pos, undefined, {
-                      type: 'paragraph',
-                    })
+                  dispatch(
+                    state.tr.setNodeMarkup(state.selection.$from.pos, state.schema.nodes.paragraph)
                   );
+                  return true;
                 }
               }
 
               return false;
             },
-          }}
+          }} */
         />
       </div>
       <TooltipUtil />

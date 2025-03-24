@@ -78,7 +78,17 @@ const CodeBlock = ({ node, updateAttributes, editor }: NodeViewProps) => {
             suppressContentEditableWarning
             className="bg-gray-700 text-white px-2 py-1 rounded outline-none"
             value={currentLanguage}
-            onChange={(ev) => updateAttributes({ language: ev.target.value })}
+            onChange={(ev) => {
+              const newLanguage = ev.target.value;
+              updateAttributes({ language: newLanguage });
+
+              // Ensure language attribute is updated both in Tiptap state and HTML
+              editor
+                ?.chain()
+                .focus()
+                .updateAttributes('codeBlock', { language: newLanguage })
+                .run();
+            }}
           >
             {languages.map((lang) => (
               <option key={lang.value} value={lang.value}>
@@ -89,7 +99,11 @@ const CodeBlock = ({ node, updateAttributes, editor }: NodeViewProps) => {
         </div>
         <div className="code-block-content">
           <pre>
-            <NodeViewContent as="code" className={`language-${currentLanguage}`} />
+            <NodeViewContent
+              as="code"
+              className={`language-${currentLanguage}`}
+              data-language={currentLanguage}
+            />
           </pre>
         </div>
       </div>
@@ -117,18 +131,38 @@ const CustomCodeBlock = Node.create({
       language: {
         default: 'javascript',
         parseHTML: (element) => {
-          const [, language] = element.getAttribute('class')?.split('language-') || [];
-          return language || 'javascript';
+          // Check multiple ways to parse language
+          const classLanguage = element.getAttribute('class')?.split('language-')[1];
+          const dataLanguage = element.getAttribute('data-language');
+          return classLanguage || dataLanguage || 'javascript';
         },
-        renderHTML: (attributes) => ({
-          class: `language-${attributes.language || 'javascript'}`,
-        }),
+        renderHTML: (attributes) => {
+          const language = attributes.language || 'javascript';
+          return {
+            class: `language-${language}`,
+            'data-language': language,
+          };
+        },
       },
     };
   },
 
   parseHTML() {
-    return [{ tag: 'pre', preserveWhitespace: 'full' }];
+    return [
+      {
+        tag: 'pre',
+        preserveWhitespace: 'full',
+        getAttrs: (node) => {
+          const codeElement = node.querySelector('code');
+          return {
+            language:
+              codeElement?.getAttribute('data-language') ||
+              codeElement?.className.split('language-')[1] ||
+              'javascript',
+          };
+        },
+      },
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
@@ -142,45 +176,10 @@ const CustomCodeBlock = Node.create({
   addKeyboardShortcuts() {
     return {
       'Mod-Alt-c': () => this.editor.commands.toggleCodeBlock(),
-      Tab: ({ editor }) => {
-        return editor.commands.insertContent('  ');
-      },
-      Enter: ({ editor }) => {
-        const { state } = editor;
-        const { selection } = state;
-        const { $from } = selection;
-
-        // Get the text before the cursor
-        const textBefore = $from.doc.textBetween(Math.max(0, $from.pos - 2), $from.pos, '\n');
-
-        // Check for double newline (triple Enter press)
-        if (textBefore === '\n\n' && this.options.exitOnTripleEnter) {
-          // return editor.chain().lift(selection.$from.pos, selection.$to.pos).run();
-          return editor.chain().lift('codeBlock').run();
-        }
-
-        // Get the current line's content
-        const currentLine = $from.nodeBefore?.text;
-
-        if (currentLine && this.options.indentOnEnter) {
-          // Match the indentation of the current line
-          const indentMatch = currentLine.match(/^[ \t]*/);
-          const indent = indentMatch ? indentMatch[0] : '';
-
-          // Additional indent after lines ending with brackets
-          const shouldAddIndent = /[{[(]$/.test(currentLine.trim());
-          const extraIndent = shouldAddIndent ? '  ' : '';
-
-          return editor
-            .chain()
-            .insertContent('\n' + indent + extraIndent)
-            .run();
-        }
-
-        return editor.commands.insertContent('\n');
-      },
+      Enter: ({ editor }) => editor.commands.insertContent('\n'),
+      Tab: ({ editor }) => editor.commands.insertContent('  '), // Adds indentation on Tab key
       Backspace: ({ editor }) => {
-        const { state } = editor;
+        const { state, dispatch } = editor.view;
         const { selection } = state;
         const { empty, $from } = selection;
 
@@ -190,7 +189,7 @@ const CustomCodeBlock = Node.create({
         if (currentLine && /^[ \t]+$/.test(currentLine)) {
           // If the line only contains whitespace, delete it
           const tr = state.tr.delete($from.pos - currentLine.length, $from.pos);
-          editor.view.dispatch(tr);
+          dispatch(tr);
           return true;
         }
         return false;

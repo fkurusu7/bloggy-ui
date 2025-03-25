@@ -72,9 +72,11 @@ function Post() {
         </div>
         <div className="blog__post-info__created">{formatDateSimple(post.createdAt)}</div>
       </div>
-      <div className="blog__post-info__banner">
-        <img src={post.banner} />
-      </div>
+      {post.banner && (
+        <div className="blog__post-info__banner">
+          <img src={post.banner} />
+        </div>
+      )}
       <div className="blog__post-info__description">{post.description}</div>
       <PostContent content={post.content} />
     </article>

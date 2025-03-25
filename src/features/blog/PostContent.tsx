@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import DOMPurify from 'dompurify';
-import { logger } from '../../utils/helpers';
 
 // Core
 import Prism from 'prismjs';
@@ -50,7 +49,6 @@ function PostContent({ content }: PostContentProps) {
     ADD_TAGS: ['code'],
     ADD_ATTR: ['class'],
   });
-  logger.info(cleanContent);
 
   return (
     <div className="blog__post-info__content" dangerouslySetInnerHTML={{ __html: cleanContent }} />

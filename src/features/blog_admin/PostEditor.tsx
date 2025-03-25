@@ -13,7 +13,22 @@ import html from 'highlight.js/lib/languages/xml';
 // Custom code block
 import PostEditorCodeBlock from './PostEditorCodeBlock';
 
-import { HiMiniBold, HiMiniItalic, HiOutlineStrikethrough } from 'react-icons/hi2';
+import {
+  HiMiniBold,
+  HiMiniH2,
+  HiMiniH3,
+  HiMiniItalic,
+  HiMiniListBullet,
+  HiOutlineNumberedList,
+  HiOutlineStrikethrough,
+} from 'react-icons/hi2';
+import { PiMarkerCircleLight, PiParagraph } from 'react-icons/pi';
+import { HiOutlineCode } from 'react-icons/hi';
+import { TbBlockquote } from 'react-icons/tb';
+import { CgFormatSeparator } from 'react-icons/cg';
+import { ImClearFormatting, ImPagebreak } from 'react-icons/im';
+import { LuRedoDot, LuUndoDot } from 'react-icons/lu';
+import { AiOutlineClear } from 'react-icons/ai';
 
 interface TiptapEditorProps {
   content: string;
@@ -59,46 +74,39 @@ const MenuBar = () => {
       >
         <HiOutlineStrikethrough />
       </button>
-      {/* <button
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        disabled={!editor.can().chain().focus().toggleCode().run()}
-        className={editor.isActive('code') ? 'is-active' : ''}
-      >
-        Code
-      </button> */}
-      <button
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive('codeBlock') ? 'is-active' : ''}
-      >
-        Toggle code block
+      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+        {/* Clear marks - Inline formatting */}
+        <ImClearFormatting />
       </button>
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>Clear marks</button>
-      <button onClick={() => editor.chain().focus().clearNodes().run()}>Clear nodes</button>
+      <button onClick={() => editor.chain().focus().clearNodes().run()}>
+        {/* Clear nodes */}
+        <AiOutlineClear />
+      </button>
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive('paragraph') ? 'is-active' : ''}
       >
-        Paragraph
+        <PiParagraph />
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
       >
         H1
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
       >
-        H2
+        <HiMiniH2 />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
       >
-        H3
+        <HiMiniH3 />
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
         className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}
       >
@@ -115,52 +123,56 @@ const MenuBar = () => {
         className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}
       >
         H6
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
       >
-        Bullet list
+        <HiMiniListBullet />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive('orderedList') ? 'is-active' : ''}
       >
-        Ordered list
+        <HiOutlineNumberedList />
       </button>
-      {/* <button
+      <button
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         className={editor.isActive('codeBlock') ? 'is-active' : ''}
       >
-        Code block
-      </button> */}
+        <HiOutlineCode />
+      </button>
       <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={editor.isActive('blockquote') ? 'is-active' : ''}
       >
-        Blockquote
+        <TbBlockquote />
       </button>
       <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-        Horizontal rule
+        {/* Horizontal rule */}
+        <CgFormatSeparator />
       </button>
-      <button onClick={() => editor.chain().focus().setHardBreak().run()}>Hard break</button>
+      <button onClick={() => editor.chain().focus().setHardBreak().run()}>
+        <ImPagebreak />
+      </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
       >
-        Undo
+        <LuUndoDot />
       </button>
       <button
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
       >
-        Redo
+        <LuRedoDot />
       </button>
       <button
         onClick={() => editor.chain().focus().setColor('#958DF1').run()}
         className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
       >
-        Purple
+        {/* Highlight */}
+        <PiMarkerCircleLight />
       </button>
     </div>
   );

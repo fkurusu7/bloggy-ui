@@ -9,6 +9,7 @@ import ExistingTags from './ExistingTags';
 import PostAddedTag from './PostAddedTag';
 import EditorTiptap from './EditorTipTap';
 import { PostData } from './types';
+import PostEditor from './PostEditor';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -230,10 +231,17 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
         </div>
       </div>
 
+      {/* EDITOR */}
       <div
         className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
       >
         <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
+        {getFieldError('content') && <span className="error-msg">{getFieldError('content')}</span>}
+      </div>
+      <div
+        className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
+      >
+        <PostEditor content={editorFormData.content} onChange={handleContentChange} />
         {getFieldError('content') && <span className="error-msg">{getFieldError('content')}</span>}
       </div>
 

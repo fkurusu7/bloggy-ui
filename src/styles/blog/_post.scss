@@ -63,6 +63,12 @@
       border-radius: var(--border-radius-md);
       width: 60%;
     }
+
+    // No image in the Post Content
+    &-no {
+      // TODO: add this .blog__post-info__banner-no to hide image space
+      display: none;
+    }
   }
 
   &__description {
@@ -75,74 +81,86 @@
 
   &__content {
     overflow: hidden;
-    & h1 {
-      font-size: 2rem;
+
+    & h2,
+    & h3 {
+      color: var(--color-grey-500);
+      font-weight: 500;
+      margin-left: 1rem;
+      text-decoration: underline;
     }
     & h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
     & h3 {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
     }
-    & > p {
-      font-size: 1.4rem;
+
+    & p {
+      color: var(--color-grey-600);
+      font-size: 1.6rem;
       font-weight: 200;
     }
 
-    & > ul {
-      list-style: square;
-      margin-left: 3rem;
+    & ul,
+    & ol {
+      color: var(--color-grey-800);
+      margin-left: 4rem;
     }
-    & > ol {
+    & ul {
+      list-style: disc;
+    }
+    & ol {
       list-style: decimal;
-      margin-left: 3rem;
+    }
+
+    & ul li p,
+    & ol li p {
+      color: var(--color-grey-600);
+      font-size: 1.5rem;
     }
 
     & strong {
-      font-weight: 600;
+      font-weight: 700;
     }
 
     & hr {
-      color: var(--color-grey-200);
-      margin: 1rem;
+      color: var(--color-grey-300);
+      margin: 0.5rem;
     }
 
     & blockquote {
-      // border-left: 0.5rem solid var(--color-grey-300);
       border-radius: var(--border-radius-sm);
-      font-size: 1.3rem;
+      margin: 3rem 0;
       padding: 0.2rem 5rem;
-      padding-right: 8rem;
       position: relative;
 
       &:before {
         content: open-quote;
-        left: -2rem;
-      }
-
-      &:after {
-        content: close-quote;
-        right: 3rem;
-      }
-
-      &:before,
-      &:after {
-        color: var(--color-grey-200);
+        color: var(--color-grey-400);
         display: inline-block;
-        font-size: 10rem;
+        font-size: 8rem;
 
         position: absolute;
         top: -0.4em;
+        left: 0.5rem;
+      }
+
+      & p {
+        color: var(--color-grey-500);
+        font-size: 1.8rem;
+        font-style: italic;
       }
     }
 
     & pre,
     & pre[class*='language-'] {
-      display: block;
+      background-color: #1c1917;
       border-radius: var(--border-radius-md);
-
+      display: block;
       margin: 0 auto;
-      padding: 1rem 0 !important;
+      padding: 2rem;
 
       overflow: hidden !important; // Enables horizontal scrolling
       white-space: pre-wrap; // Allows text to wrap
@@ -151,10 +169,11 @@
 
       & > code {
         font-family: 'Cutive Mono', serif;
-        font-size: 1.55rem;
+        font-size: 1.6rem;
         font-style: normal;
         font-weight: 400;
-        line-height: 1;
+        line-height: 1.15;
+        letter-spacing: 0.01rem;
 
         width: 100%;
         display: block; // Added to ensure proper width handling

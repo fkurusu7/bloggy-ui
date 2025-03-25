@@ -22,18 +22,15 @@
       grid-template-columns: 1rem 5fr 1fr 1rem;
     }
     @include respond-from(700) {
-      grid-template-columns: 1rem 5fr 1rem;
+      grid-template-columns: 1rem 5fr 2rem;
+      // border: 1px solid red;
     }
   }
 
   &__header {
-    grid-column: 2 / 4;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
     margin-top: 1px;
-
-    @include respond-from(700) {
-      grid-column: 2 / 3;
-    }
   }
   &__main {
     // Parent Grid
@@ -46,16 +43,16 @@
 
     margin-top: 2rem;
     width: 100%;
-
-    @include respond-from(700) {
-      grid-column: 2 / 3;
-    }
   }
 
   &__tags {
     margin-top: 2rem;
     grid-column: 3 / 4;
     grid-row: 2 / 3;
+
+    @include respond-from(700) {
+      display: none;
+    }
   }
   &__footer {
     grid-column: 2 / 4;

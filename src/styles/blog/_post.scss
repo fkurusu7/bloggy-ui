@@ -1,7 +1,9 @@
+@use './../abstracts/mixins' as *;
+
 .blog__post-info {
   // min-height: 30vh;
-  margin-right: 1rem;
-  overflow: auto;
+  overflow: hidden;
+
   &__heading {
     margin-bottom: 0.5rem;
 
@@ -26,6 +28,10 @@
     font-size: 3rem;
     font-weight: 100;
     text-transform: uppercase;
+
+    @include respond-from(700) {
+      font-size: 3.7rem;
+    }
   }
 
   &__meta {
@@ -36,6 +42,13 @@
     color: var(--color-grey-500);
     font-size: 1.2rem;
     margin-bottom: 2rem;
+
+    @include respond-from(700) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      justify-content: flex-start;
+    }
 
     &-read {
       color: var(--color-brand-400);
@@ -51,6 +64,11 @@
       font-size: 1.1rem;
       outline: 2px solid var(--color-grey-400);
       padding: 0.2rem 0.6rem;
+
+      @include respond-from(700) {
+        font-size: 0.9rem;
+        outline-width: 1px;
+      }
     }
   }
 
@@ -85,8 +103,6 @@
   }
 
   &__content {
-    overflow: hidden;
-
     & h2,
     & h3 {
       color: var(--color-grey-600);
@@ -156,12 +172,21 @@
         position: absolute;
         top: -0.4em;
         left: 0.5rem;
+
+        @include respond-from(700) {
+          font-size: 6rem;
+          left: 1rem;
+        }
       }
 
       & p {
         color: var(--color-grey-500);
         font-size: 1.8rem;
         font-style: italic;
+
+        @include respond-from(700) {
+          font-size: 1.6rem;
+        }
       }
     }
 
@@ -169,14 +194,23 @@
     & pre[class*='language-'] {
       background-color: #1c1917;
       border-radius: var(--border-radius-md);
-      display: block;
       margin: 0 auto;
       padding: 2rem;
 
-      overflow: hidden !important; // Enables horizontal scrolling
-      white-space: pre-wrap; // Allows text to wrap
-      word-wrap: break-word; // Breaks long words if needed
+      // ✅ Scrolling logic
+      display: inline-block;
+      overflow-x: scroll;
+      white-space: pre;
       max-width: 100%;
+      width: 100%;
+
+      @include respond-from(700) {
+        padding-inline: 0.5rem;
+        // width: 95%;
+      }
+      @include respond-from(600) {
+        padding-inline: 0.5rem;
+      }
 
       & > code {
         font-family: 'Cutive Mono', serif;
@@ -186,8 +220,19 @@
         line-height: 1.15;
         letter-spacing: 0.01rem;
 
-        width: 100%;
-        display: block; // Added to ensure proper width handling
+        width: 95%;
+        display: inline-block;
+
+        @include respond-from(700) {
+          font-size: 1.5rem;
+        }
+        @include respond-from(600) {
+          width: 40rem;
+          font-size: 1.4rem;
+        }
+        @include respond-from(450) {
+          width: 33rem;
+        }
       }
     }
   }

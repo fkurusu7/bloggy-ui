@@ -37,7 +37,7 @@ function Post() {
     );
   }
 
-  // Handle no post found
+  // Handle post NOT found
   if (!post) {
     return (
       <article className="blog__post-info">
@@ -62,15 +62,18 @@ function Post() {
     <article className="blog__post-info">
       <div className="blog__post-info__heading">
         <h1 className="blog__post-info__title">{post.title}</h1>
-        <span>{calculateReadingTime(post.content)}</span>
       </div>
       <div className="blog__post-info__meta">
         <div className="blog__post-info__tags">
           {post.tags.map((tag, index) => (
             <span key={`${tag.slug}-${index}`}>{tag.name}</span>
           ))}
+          {/* <span>tag.name</span>
+          <span>tag.name</span>
+          <span>tag.name</span> */}
         </div>
         <div className="blog__post-info__created">{formatDateSimple(post.createdAt)}</div>
+        <span className="blog__post-info__meta-read">{calculateReadingTime(post.content)}</span>
       </div>
       {post.banner && (
         <div className="blog__post-info__banner">

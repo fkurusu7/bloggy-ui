@@ -9,7 +9,7 @@ function PostEditorCodeBlock({
   updateAttributes?: (_attrs: { language: string }) => void;
   extension?: { options?: { lowlight?: { listLanguages?: () => string[] } } };
 }) {
-  const defaultLanguage = node?.attrs?.language || 'null';
+  const defaultLanguage = node?.attrs?.language || 'javascript';
 
   return (
     <NodeViewWrapper className="code-block">

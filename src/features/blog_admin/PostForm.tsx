@@ -7,7 +7,6 @@ import Button from '../../component/Button';
 import { uploadImageToAWS } from '../../utils/aws';
 import ExistingTags from './ExistingTags';
 import PostAddedTag from './PostAddedTag';
-import EditorTiptap from './EditorTipTap';
 import { PostData } from './types';
 import PostEditor from './PostEditor';
 
@@ -231,13 +230,6 @@ function PostForm({ initialData, onSubmit, submitButtonText }: PostFormProps) {
         </div>
       </div>
 
-      {/* EDITOR */}
-      <div
-        className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
-      >
-        <EditorTiptap content={editorFormData.content} onChange={handleContentChange} />
-        {getFieldError('content') && <span className="error-msg">{getFieldError('content')}</span>}
-      </div>
       <div
         className={`create__content ${formDataError.some((error) => error.field === 'content') ? 'error-msg-content' : ''}`}
       >

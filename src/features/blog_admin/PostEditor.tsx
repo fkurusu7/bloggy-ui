@@ -1,14 +1,33 @@
+// @ts-nocheck
 import { Color } from '@tiptap/extension-color';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
-import { EditorProvider, useCurrentEditor } from '@tiptap/react';
+import { EditorProvider, ReactNodeViewRenderer, useCurrentEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { all, createLowlight } from 'lowlight';
+import css from 'highlight.js/lib/languages/css';
+import js from 'highlight.js/lib/languages/javascript';
+import ts from 'highlight.js/lib/languages/typescript';
+import html from 'highlight.js/lib/languages/xml';
+// Custom code block
+import PostEditorCodeBlock from './PostEditorCodeBlock';
+
 import { HiMiniBold, HiMiniItalic, HiOutlineStrikethrough } from 'react-icons/hi2';
 
 interface TiptapEditorProps {
   content: string;
   onChange: (_content: string) => void;
 }
+
+// create a lowlight instance
+const lowlight = createLowlight(all);
+
+// register individual languages
+lowlight.register('html', html);
+lowlight.register('css', css);
+lowlight.register('js', js);
+lowlight.register('ts', ts);
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -40,12 +59,18 @@ const MenuBar = () => {
       >
         <HiOutlineStrikethrough />
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleCode().run()}
         disabled={!editor.can().chain().focus().toggleCode().run()}
         className={editor.isActive('code') ? 'is-active' : ''}
       >
         Code
+      </button> */}
+      <button
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        className={editor.isActive('codeBlock') ? 'is-active' : ''}
+      >
+        Toggle code block
       </button>
       <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>Clear marks</button>
       <button onClick={() => editor.chain().focus().clearNodes().run()}>Clear nodes</button>
@@ -145,6 +170,11 @@ const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   //@ts-ignore
   TextStyle.configure({ types: [ListItem.name] }),
+  CodeBlockLowlight.extend({
+    addNodeView() {
+      return ReactNodeViewRenderer(PostEditorCodeBlock);
+    },
+  }).configure({ lowlight }),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,

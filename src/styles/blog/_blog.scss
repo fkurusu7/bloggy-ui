@@ -308,6 +308,10 @@
       display: none;
     }
 
+    & > h2 {
+      color: var(--color-brand-950);
+    }
+
     & div {
       display: flex;
       justify-content: space-between;
@@ -322,9 +326,9 @@
     &:visited {
       border-radius: var(--border-radius-md);
       box-shadow: var(--shadow-sm);
-      color: var(--color-grey-500);
+      color: var(--color-brand-500);
       font-family: 'Cutive Mono', serif;
-      font-size: 1.45rem;
+      font-size: 1.6rem;
       font-style: normal;
       font-weight: normal;
       outline: 1px solid transparent;

@@ -10,7 +10,7 @@ function LightOnDarkToggle() {
       onClick={toggleLightOnDarkMode}
       data-tooltip-id="tooltipid"
       data-tooltip-content={isDarkMode ? 'Light mode?' : 'Dark mode?'}
-      data-tooltip-place="left"
+      data-tooltip-place="bottom"
     >
       {isDarkMode ? <HiOutlineSun className="light" /> : <HiOutlineMoon className="dark" />}
     </button>

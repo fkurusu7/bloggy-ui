@@ -22,6 +22,7 @@ import {
   signupSuccess,
 } from '../../context/userSlice';
 import { API_BASE_URL, logger } from '../../utils/helpers';
+import LogoSVG from '../../component/LogoSVG';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -277,6 +278,10 @@ function UserAuth({ type }: UserAuthProps) {
             </div>
           )}
         </form>
+        <Link to={'/blog'} className="auth__form-container-logo">
+          <LogoSVG />
+          <h2>Barudesu</h2>
+        </Link>
       </div>
     </div>
   );

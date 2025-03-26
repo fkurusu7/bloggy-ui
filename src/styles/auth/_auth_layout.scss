@@ -1,3 +1,5 @@
+@use './../abstracts/mixins' as *;
+
 .auth {
   &__container {
     background-color: var(--color-grey-100);
@@ -22,12 +24,50 @@
       font-family: 'Sono', sans-serif;
       font-size: 4rem;
       text-transform: uppercase;
+
+      @include respond-from(500) {
+        font-size: 3.5rem;
+        font-weight: 500;
+      }
+    }
+
+    &-logo {
+      display: inline-block;
+      height: fit-content;
+      margin-top: auto;
+      text-align: center;
+
+      position: absolute;
+      bottom: -20rem;
+      left: 50%;
+      transform: translateX(-50%);
+
+      // SVG container
+      & .logo {
+        height: 6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & svg {
+          color: var(--color-brand-500);
+          height: 15rem;
+          width: 15rem;
+        }
+      }
+
+      & h2 {
+        color: var(--color-brand-500);
+        font-family: 'Cutive Mono', monospace;
+        font-size: 3rem;
+        text-align: center;
+      }
     }
   }
 
   &__form {
     background-color: inherit;
-    border: 3px solid var(--color-grey-200);
+    outline: 3px solid var(--color-grey-200);
     border-radius: var(--border-radius-md);
     min-width: 30rem;
     padding: 3rem 5rem;
@@ -38,6 +78,10 @@
     align-items: center;
     justify-content: space-evenly;
     gap: 1rem;
+
+    @include respond-from(500) {
+      outline: none;
+    }
 
     &:hover {
       border-color: var(--color-brand-500);

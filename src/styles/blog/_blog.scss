@@ -28,9 +28,12 @@
   }
 
   &__header {
-    grid-column: 2 / 3;
+    grid-column: 2 / 4;
     grid-row: 1 / 2;
     margin-top: 1px;
+    @include respond-from(700) {
+      grid-column: 2 / 3;
+    }
   }
   &__main {
     // Parent Grid
@@ -184,29 +187,22 @@
     }
 
     &-title {
-      color: var(--color-grey-500);
+      color: var(--color-brand-800);
+      font-family: 'Sono', sans-serif;
       font-size: 3rem;
       font-weight: 100;
-      font-family: 'Sono', sans-serif;
       text-align: center;
       width: 100%;
-
-      grid-row: 1 / 2;
     }
     &-posts {
       // Many psots in the Posts component - Link
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 0.1rem;
+
+      padding: 2rem;
       position: relative;
-
-      gap: 1rem;
-
-      & > svg {
-        color: var(--color-brand-500);
-        height: 4rem;
-        width: 4rem;
-      }
 
       &-back {
         &:link,
@@ -218,47 +214,45 @@
         }
       }
 
+      // LINK
       &-post {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-family: 'Sono', sans-serif;
-
-        & span {
-          font-size: 1.4rem;
-          color: var(--color-brand-800);
-          width: 7rem;
-          @include respond-from(600) {
-            display: none;
-          }
-        }
-
-        & a:link,
-        & a:visited {
+        &:link,
+        &:visited {
+          border-radius: var(--border-radius-md);
           color: var(--color-grey-500);
-          font-size: 1.5rem;
-          text-decoration: underline;
+          font-size: 1.6rem;
+          margin-left: 10rem;
+          padding: 0.5rem 1rem;
           transition: all 0.3s ease-out;
 
-          display: block;
-          width: 25rem;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+          width: 50rem; // related to the post title width
+          display: flex;
+          align-items: center;
+          gap: 2rem;
 
-        & a:hover,
-        & a:active {
-          color: var(--color-brand-600);
-        }
-
-        &-actions {
-          & svg {
-            height: 2.1rem !important;
-            width: 2.1rem !important;
+          font-family: 'Sono', sans-serif;
+          & a:hover,
+          & a:active {
+            color: var(--color-brand-600);
           }
         }
-        // TODO: fix properly posts into a centered layout
+
+        &:hover {
+          background-color: var(--color-grey-50);
+        }
+
+        &-date {
+          color: var(--color-brand-800);
+          width: 8rem;
+        }
+        &-title {
+          display: block;
+          width: 50rem; // related to the post width
+          overflow: hidden;
+          text-decoration: underline;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
 
         @include respond-from(700) {
           &.no-user {

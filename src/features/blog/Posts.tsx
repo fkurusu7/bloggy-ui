@@ -1,20 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import { FiLoader } from 'react-icons/fi';
 
-import { useAppSelector } from '../../context/useContextTypes';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
-import ButtonActions from '../blog_admin/ButtonActions';
 import TooltipUtil from '../../utils/TooltipUtil';
 
 function Posts() {
-  const { currentUser } = useAppSelector((state) => state.user);
   const { searchTerm, tag } = useParams();
-  const { posts, isLoadingPosts, error, getTitle, refetch } = useBlogPosts({ searchTerm, tag });
-
-  const handlePostDeleted = () => {
-    refetch(); // Refetch posts after deletion
-  };
+  const { posts, isLoadingPosts, error, getTitle } = useBlogPosts({ searchTerm, tag });
 
   return (
     <>
@@ -45,23 +38,17 @@ function Posts() {
           </>
         ) : (
           posts.map((post) => (
-            <div className={`blog__main-posts-post ${currentUser || 'no-user'}`} key={post.slug}>
-              <span>{formatShortDate(post.createdAt)}</span>
-              <Link
-                to={`/blog/posts/${post.slug}`}
-                key={post.slug}
-                onClick={(ev) => {
-                  if (ev.defaultPrevented) return;
-                }}
-              >
-                {post.title}
-              </Link>
-              <div className="blog__main-posts-post-actions">
-                {currentUser && (
-                  <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />
-                )}
-              </div>
-            </div>
+            <Link
+              className="blog__main-posts-post"
+              key={post.slug}
+              to={`/blog/posts/${post.slug}`}
+              onClick={(ev) => {
+                if (ev.defaultPrevented) return;
+              }}
+            >
+              <span className="blog__main-posts-post-date">{formatShortDate(post.createdAt)}</span>
+              <span className="blog__main-posts-post-title">{post.title}</span>
+            </Link>
           ))
         )}
       </section>

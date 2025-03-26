@@ -73,10 +73,8 @@ describe('Test Resume', () => {
       });
 
       // Test headings
-      expect(screen.getByText('Fernando')).toBeInTheDocument();
-      expect(screen.getByText(/I'm a full-stack developer who combines/i)).toBeInTheDocument();
-      // expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Fernando');
-      // expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Cruz');
+      expect(screen.getByText('Fernando C.')).toBeInTheDocument();
+      expect(screen.getByText(/full-stack developer transforming complex /i)).toBeInTheDocument();
 
       // image test
       const profileImage = screen.getByAltText('profile pic of Fernando');

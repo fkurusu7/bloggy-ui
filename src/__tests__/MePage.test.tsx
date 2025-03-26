@@ -16,7 +16,7 @@ describe('Test MeHeader', () => {
 
     // check if intro text is present
     expect(
-      screen.getByText(/Full-stack developer merging technical expertise/i)
+      screen.getByText(/full-stack developer passionate about transforming /i)
     ).toBeInTheDocument();
   });
 });

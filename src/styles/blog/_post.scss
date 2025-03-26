@@ -31,7 +31,9 @@
     text-transform: uppercase;
 
     @include respond-from(700) {
-      font-size: 3.7rem;
+      font-size: 3rem;
+      padding-right: 2rem;
+      padding-left: 0.2rem;
     }
   }
 
@@ -41,13 +43,13 @@
     align-items: center;
 
     color: var(--color-grey-500);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
 
     @include respond-from(700) {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 0.5rem;
       justify-content: flex-start;
     }
 
@@ -61,13 +63,14 @@
     padding-left: 0.2rem;
 
     & span {
+      background-color: var(--color-brand-100);
       border-radius: var(--border-radius-md);
+      color: var(--color-grey-900);
       font-size: 1.1rem;
-      outline: 2px solid var(--color-grey-400);
+      outline: 2px solid var(--color-grey-100);
       padding: 0.2rem 0.6rem;
 
       @include respond-from(700) {
-        font-size: 0.9rem;
         outline-width: 1px;
       }
     }
@@ -97,10 +100,10 @@
   &__description {
     font-size: 1.5rem;
     font-family: 'Sono', sans-serif;
-    color: var(--color-grey-500);
+    color: var(--color-grey-600);
     border-bottom: 1px dotted var(--color-brand-100);
     padding-bottom: 1rem;
-    margin: 3rem 0;
+    margin: 2rem 0;
   }
 
   &__content {
@@ -134,7 +137,7 @@
     & ul,
     & ol {
       color: var(--color-blue-700);
-      margin-left: 4rem;
+      margin-left: 2rem;
     }
     & ul {
       list-style: disc;

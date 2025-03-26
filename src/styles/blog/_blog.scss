@@ -81,6 +81,13 @@
         color: var(--color-brand-600);
         font-weight: light;
         transition: all 0.3s ease-out;
+
+        @include respond-from(700) {
+          & > .logo svg {
+            height: 6.5rem;
+            width: 6.5rem;
+          }
+        }
       }
 
       &:hover,

@@ -18,7 +18,7 @@ import { VscVscodeInsiders } from 'react-icons/vsc';
 import Button from '../../component/Button';
 import TooltipUtil from '../../utils/TooltipUtil';
 
-function Resume() {
+function Xercytvubino9876() {
   return (
     <div className="resume__container">
       <div className="resume__layout">
@@ -48,12 +48,13 @@ function Resume() {
         </ul>
         <div className="resume__introduction">
           <div className="resume__introduction-profile">
-            <h2>Fernando C.</h2>
+            <h1>Fernando</h1>
+            <h2>C.</h2>
             <p>
-              A full-stack developer transforming complex challenges into streamlined digital
-              solutions. Specializing in end-to-end web applications using modern JavaScript
-              technologies. I bridge technical complexity with innovative design across technology
-              and financial sectors.
+              I'm a full-stack developer who combines technical know-how with creative thinking.
+              With 15 years of experience at major companies like Morgan Stanley and IBM Mexico, I
+              build end-to-end solutions using React and Node.js to make complex ideas simple and
+              impactful.
             </p>
           </div>
 
@@ -198,9 +199,9 @@ function Resume() {
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
                   <h3>Freelance</h3>
-                  <i>Mexico</i>
+                  <i>Mexico City, Mexico</i>
                   <p>
-                    2023 <span>-</span> Present
+                    Jan, 2023 <span>-</span> Present
                   </p>
                 </article>
                 <article className="resume__experience-description">
@@ -218,51 +219,44 @@ function Resume() {
                 <article className="resume__experience-where">
                   <h3
                     data-tooltip-id="tooltipid"
-                    data-tooltip-content="Through a subcontractor"
+                    data-tooltip-content="SVAM International, Inc"
                     data-tooltip-place="top"
                   >
-                    Financial svcs. Company
+                    Morgan Stanley
                   </h3>
-                  <i>USA</i>
+                  <i>New York, USA</i>
                   <p>
-                    2019 <span>-</span> 2022
+                    Sep, 2019 <span>-</span> Jul, 2022
                   </p>
                 </article>
                 <article className="resume__experience-description">
                   <h3>Java Tech Lead</h3>
                   <p>
-                    Led development of enterprise Java applications using modern software
-                    architecture. Drove continuous improvement through performance optimization and
-                    system reliability. Managed complex software development lifecycles and CI/CD
-                    processes.
+                    Lead development and maintenance of enterprise Java applications utilizing
+                    Spring Core and RESTful architecture. Drive continuous improvement through
+                    performance optimization and fault correction in mission-critical systems.
+                    Manage CI/CD pipelines using TeamCity across Linux environments.
                   </p>
-                  <p>
-                    <span>Tech Stack:</span> Enterprise Java Technologies, Cloud Infrastructure,
-                    DevOps Tools
-                  </p>
+                  <p>Tech Stack: Java SE 8, Spring Core, DB2, TeamCity, Linux</p>
                 </article>
               </section>
               <section className="resume__experience-job">
                 <article className="resume__experience-where">
-                  <h3>Technology Company</h3>
-                  <i>Mexico</i>
+                  <h3>IBM</h3>
+                  <i>Guadalajara, Mexico</i>
                   <p>
-                    2018 <span>-</span> 2019
+                    Dic, 2018 <span>-</span> Jul, 2019
                   </p>
                 </article>
                 <article className="resume__experience-description">
                   <h3>Java Developer</h3>
                   <p>
-                    Designed and implemented enterprise-level distributed systems using
-                    microservices architecture. Developed robust data transformation pipelines and
-                    message processing solutions. Created scalable backend services with
-                    containerization and advanced integration technologies.
+                    Architected and implemented RESTful services with Spring Boot and Spring Core
+                    Developed data transformation pipelines handling JSON, Java beans, and Avro
+                    schemas Built and maintained Kafka-based message processing systems Orchestrated
+                    containerized deployments using Docker and OpenShift.
                   </p>
-                  <p>
-                    <span>Tech Stack:</span> Java Enterprise Technologies, Message Streaming,
-                    Microservices, Container Orchestration Platforms, NoSQL Databases, Continuous
-                    Integration Tools
-                  </p>
+                  <p>Tech Stack: Java SE 8, Spring Boot, Couchbase, Kafka, Docker, GitLab</p>
                 </article>
               </section>
               <section className="resume__experience-job">
@@ -272,15 +266,15 @@ function Resume() {
                     data-tooltip-content="Mexican Social Security Institute"
                     data-tooltip-place="top"
                   >
-                    Government Healthcare Organization
+                    IMSS
                   </h3>
-                  <i>Mexico</i>
+                  <i>Mexico City, Mexico</i>
                   <p>
-                    2009 <span>-</span> 2017
+                    Aug, 2009 <span>-</span> Mar, 2017
                   </p>
                 </article>
                 <article className="resume__experience-description">
-                  <h3>Senior Java Architect</h3>
+                  <h3>Java Tech Lead</h3>
                   <p>
                     <strong
                       data-tooltip-id="tooltipid"
@@ -304,7 +298,7 @@ function Resume() {
                       <br/>
                       <br/>
                       <p class='tooltip__tech-stack'>
-                      <strong>Tech Stack</strong> Java 1.6, Hibernate, Oracle DB, SOAP, ESB (ALSB), OSB, WebLogic Server, ALDSP, SQL, XQuery, WebLogic Server, Oracle Linux.
+                      <strong>Tech Stack:</strong> Java 1.6, Hibernate, Oracle DB, SOAP, ESB (ALSB), OSB, WebLogic Server, ALDSP, SQL, XQuery, WebLogic Server, Oracle Linux.
                       </p>
                       "
                       style={{ cursor: 'pointer' }}
@@ -313,26 +307,13 @@ function Resume() {
                     </strong>
                   </p>
                   <p>
-                    Delivered enterprise-level integration solutions for large-scale government
-                    healthcare technology infrastructure. Specialized in:{' '}
-                  </p>
-                  <p>- Developing web service architectures </p>
-                  <p>- Creating cross-platform system integrations </p>
-                  <p>- Designing robust middleware solutions </p>
-                  <p>- Implementing complex data transformation strategies Key Achievements: </p>
-                  <p>- Architected enterprise integration solutions using web services</p>
-                  <p>
-                    - Designed service transformations for mobile and legacy system integrations
-                  </p>
-                  <p>- Developed high-performance database solutions</p>
-                  <p>
-                    - Established technical standards through comprehensive architecture reviews
-                  </p>
-
-                  <p>
-                    <span>Tech Stack:</span> - Enterprise Java Technologies - Web Services
-                    (SOAP/REST) - Database Management Systems - Linux Server Environments -
-                    Enterprise Service Bus Platforms
+                    Architected and developed enterprise integration solutions using SOAP/REST web
+                    services and ESB patterns Designed and implemented service transformations
+                    (JSON/XML) for mobile and legacy system integrations Built database solutions
+                    utilizing SQL, Hibernate, and Oracle DB with focus on performance optimization
+                    Managed WebLogic Server deployments across Linux environments and Mainframe 3270
+                    systems Established technical standards through architecture reviews,
+                    documentation, and comprehensive testing strategies
                   </p>
                 </article>
               </section>
@@ -343,10 +324,10 @@ function Resume() {
             <section className="resume__experience-education">
               <section className="resume__experience-school">
                 <article className="resume__experience-where">
-                  <h3>University</h3>
-                  <i>Mexico</i>
+                  <h3>UNITEC</h3>
+                  <i>Mexico City, Mexico</i>
                   <p>
-                    2004 <span>-</span> 2007
+                    Aug, 2004 <span>-</span> Aug, 2007
                   </p>
                 </article>
                 <article className="resume__experience-description">
@@ -366,4 +347,4 @@ function Resume() {
   );
 }
 
-export default Resume;
+export default Xercytvubino9876;

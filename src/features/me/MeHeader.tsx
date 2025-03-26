@@ -7,12 +7,11 @@ function MeHeader() {
         <p>Solopreneur</p>
       </div>
       <div className="me-header__intro">
-        Full-stack developer merging technical expertise with creative problem-solving. Drawing from
-        15 years of experience at global leaders like Morgan Stanley and IBM Mexico, I craft
-        end-to-end applications that make an impact. I specialize in creating seamless experiences
-        across the JavaScript ecosystem, leveraging React and Node.js to transform complex
-        challenges into elegant digital solutions. Now as a freelance developer, I'm ready to bring
-        your vision to life.
+        I'm a full-stack developer passionate about transforming complex challenges into streamlined
+        digital solutions. Leveraging extensive experience across technology and financial sectors,
+        I specialize in creating end-to-end web applications using modern JavaScript technologies.
+        My approach combines technical expertise with innovative problem-solving, delivering robust
+        solutions that bridge technical complexity and user-friendly design.
       </div>
     </header>
   );

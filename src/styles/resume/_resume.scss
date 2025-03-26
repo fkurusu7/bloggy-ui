@@ -346,6 +346,10 @@
             display: none;
           }
         }
+
+        & span {
+          color: var(--color-brand-600);
+        }
       }
     }
   }

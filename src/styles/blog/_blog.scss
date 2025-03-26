@@ -195,6 +195,7 @@
       width: 100%;
     }
     &-posts {
+      // outline: 1px solid red;
       // Many psots in the Posts component - Link
       display: flex;
       flex-direction: column;
@@ -235,6 +236,25 @@
           & a:active {
             color: var(--color-brand-600);
           }
+
+          // outline: 1px solid red;
+          @include respond-from(800) {
+            margin-left: 0;
+          }
+          @include respond-from(700) {
+            width: 50rem;
+          }
+          @include respond-from(600) {
+            font-size: 1.5rem;
+            gap: 0.5rem;
+            margin-left: -5rem;
+            padding-inline: 0;
+            width: 40rem;
+          }
+          @include respond-from(500) {
+            margin-left: -2rem;
+            width: 30rem;
+          }
         }
 
         &:hover {
@@ -246,34 +266,20 @@
           width: 8rem;
         }
         &-title {
+          // outline: 1px solid green;
           display: block;
           width: 50rem; // related to the post width
           overflow: hidden;
           text-decoration: underline;
           text-overflow: ellipsis;
           white-space: nowrap;
-        }
 
-        @include respond-from(700) {
-          &.no-user {
-            overflow: hidden;
-            width: 65%;
-            justify-content: center;
-
-            & a:link,
-            & a:visited {
-              text-align: start;
-              width: 50%;
-            }
-
-            &-actions {
-              margin-left: 4rem;
-              display: none;
-            }
+          @include respond-from(700) {
+            width: 30rem; // related to the post width
           }
-        }
-        @include respond-from(600) {
-          width: 65%;
+          @include respond-from(500) {
+            width: 25rem; // related to the post width
+          }
         }
       }
     }

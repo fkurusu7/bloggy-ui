@@ -58,31 +58,43 @@
   font-size: 1.4rem;
   overflow: hidden;
 
-  &__header {
+  &__header,
+  &__body-row {
     display: grid;
     align-items: center;
     column-gap: 2.4rem;
-    // img, post, tags, date, draft, actions
-    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 1fr 1fr;
+    // img 1, post 2, tags 3, date 4, published 5, actions 6
+    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
+  }
 
+  &__header {
     background-color: var(--color-grey-50);
     border-bottom: 2px solid var(--color-grey-200);
     color: var(--color-grey-500);
     font-weight: 600;
     letter-spacing: 0.4px;
-    padding: 1.6rem 2.4rem;
+    padding: 1.6rem 0rem;
     text-transform: uppercase;
+
+    &-published {
+      font-size: 1.2rem;
+    }
+
+    // & div {
+    //   outline: 1px solid red;
+    // }
   }
 
   // Table body
   &__body-row {
     display: grid;
+    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
     column-gap: 2.4rem;
     align-items: center;
-    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 1fr 1fr;
 
     background-color: var(--color-grey-50);
-    padding: 1.4rem 3rem;
+    padding: 1.6rem 0rem;
+    position: relative;
 
     &:nth-child(even) {
       background-color: transparent;
@@ -90,29 +102,46 @@
     &:hover {
       opacity: 0.9;
     }
-
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-grey-200);
     }
 
     &_img {
+      grid-column: 1 / 2;
       aspect-ratio: 3/2;
       border-radius: var(--border-radius-sm);
-      display: block;
+      display: inline-block;
       object-fit: cover;
       object-position: center;
-      transform: scale(1.5) translateX(-7px);
-      width: 4.4rem;
+      padding-left: 0.5rem;
+      width: 100%;
+      // outline: 1px solid red;
+    }
+    &_svg {
+      // No Image, so show the SVG
+      height: 3rem;
+      width: 3rem;
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
     }
 
     &_post {
-      color: var(--color-grey-700);
+      grid-column: 2 / 3;
+      color: var(--color-brand-600);
       font-family: 'Sono';
       font-size: 1.5rem;
-      font-weight: 600;
+      font-weight: 400;
+
+      width: 100%;
+      overflow: hidden;
+      text-decoration: underline;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &_tags {
+      // outline: 1px solid red;
       font-family: 'Sono';
       font-weight: 400;
     }
@@ -126,6 +155,7 @@
       font-family: 'Sono';
       font-weight: 500;
       text-align: center;
+      width: 6.6rem;
 
       &-true {
         color: var(--color-green-700);

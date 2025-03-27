@@ -7,9 +7,10 @@ import { API_BASE_URL } from '../../utils/helpers';
 
 interface CreatePostProps {
   closeModal: () => void;
+  onPostCreatedRefetch?: () => void;
 }
 
-function CreatePost({ closeModal }: CreatePostProps) {
+function CreatePost({ closeModal, onPostCreatedRefetch }: CreatePostProps) {
   const navigate = useNavigate();
 
   const handleSubmit = async (data: PostData) => {
@@ -27,6 +28,9 @@ function CreatePost({ closeModal }: CreatePostProps) {
     }
 
     toast.success('Post created successfully!');
+    // Cannot invoke an object which is possibly 'undefined'.ts(2722)
+    // onPostCreatedRefetch();
+    onPostCreatedRefetch?.();
     closeModal();
     navigate('/blog/admin');
   };

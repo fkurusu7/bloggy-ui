@@ -5,9 +5,11 @@ import Button from '../../component/Button';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { useModal } from '../../hooks/useModal';
 import TooltipUtil from '../../utils/TooltipUtil';
+import { useBlogPosts } from '../../hooks/useBlogPosts';
 
 function BlogAdmin() {
   const { isOpenModal, closeModal, toggleModal } = useModal();
+  const { refetch } = useBlogPosts();
 
   return (
     <>
@@ -23,7 +25,7 @@ function BlogAdmin() {
       {isOpenModal && (
         <Modal onClose={closeModal}>
           <div>
-            <CreatePost closeModal={closeModal} />
+            <CreatePost closeModal={closeModal} onPostCreatedRefetch={refetch} />
           </div>
         </Modal>
       )}

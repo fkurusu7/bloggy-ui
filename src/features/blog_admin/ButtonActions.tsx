@@ -9,10 +9,10 @@ import { API_BASE_URL, logger } from '../../utils/helpers';
 
 type ActionData = {
   slug: string;
-  onPostDeleted?: () => void;
+  onPostChange?: () => void;
 };
 
-function ButtonActions({ slug, onPostDeleted }: ActionData) {
+function ButtonActions({ slug, onPostChange }: ActionData) {
   const {
     isOpenModal: isUpdateModal,
     closeModal: closeUpdateModal,
@@ -40,7 +40,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
       }
 
       toast.success('Post deleted successfully');
-      onPostDeleted?.();
+      onPostChange?.();
       logger.info(`Delete post, ${slug}`);
     } catch (error) {
       // Check if error is an Error object
@@ -51,7 +51,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
         toast.error(`Failed to delete the post: ${error}`);
       }
       logger.error(error);
-      onPostDeleted?.();
+      onPostChange?.();
     }
   };
 
@@ -78,7 +78,7 @@ function ButtonActions({ slug, onPostDeleted }: ActionData) {
       {isUpdateModal && (
         <Modal onClose={closeUpdateModal}>
           <div>
-            <UpdatePost slug={slug} closeModal={closeUpdateModal} />
+            <UpdatePost slug={slug} closeModal={closeUpdateModal} onPostChange={onPostChange} />
           </div>
         </Modal>
       )}

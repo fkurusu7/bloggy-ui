@@ -9,6 +9,7 @@ import { API_BASE_URL, logger } from '../../utils/helpers';
 interface UpdatePostProps {
   slug: string;
   closeModal: () => void;
+  onPostChange?: () => void;
 }
 
 // Interface to match the API response structure
@@ -30,7 +31,7 @@ interface APIPost {
   slug: string;
 }
 
-function UpdatePost({ slug, closeModal }: UpdatePostProps) {
+function UpdatePost({ slug, closeModal, onPostChange }: UpdatePostProps) {
   const navigate = useNavigate();
 
   const [post, setPost] = useState<PostData | undefined>(undefined);
@@ -88,6 +89,7 @@ function UpdatePost({ slug, closeModal }: UpdatePostProps) {
     }
 
     toast.success('Post updated successfully!');
+    onPostChange?.();
     closeModal();
     navigate('/blog/admin');
   };

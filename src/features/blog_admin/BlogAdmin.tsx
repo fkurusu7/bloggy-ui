@@ -9,7 +9,7 @@ import { useBlogPosts } from '../../hooks/useBlogPosts';
 
 function BlogAdmin() {
   const { isOpenModal, closeModal, toggleModal } = useModal();
-  const { refetch } = useBlogPosts();
+  const { posts, isLoadingPosts, error, refetch } = useBlogPosts();
 
   return (
     <>
@@ -20,7 +20,7 @@ function BlogAdmin() {
         </Button>
       </div>
       <div className="row row-vertical">
-        <PostsTable />
+        <PostsTable posts={posts} isLoadingPosts={isLoadingPosts} error={error} refetch={refetch} />
       </div>
       {isOpenModal && (
         <Modal onClose={closeModal}>

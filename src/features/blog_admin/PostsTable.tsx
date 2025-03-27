@@ -1,14 +1,19 @@
 import { HiOutlineXCircle, HiOutlineCheckCircle } from 'react-icons/hi2';
 import { RiImageLine } from 'react-icons/ri';
-import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { formatShortDate } from '../../utils/helpers';
 import ButtonActions from './ButtonActions';
 import { Link } from 'react-router-dom';
+import { Post } from './types';
 
-function PostsTable() {
-  const { posts, isLoadingPosts, error, refetch } = useBlogPosts();
+interface PostsTableProps {
+  posts: Post[];
+  isLoadingPosts: boolean;
+  error: string | null;
+  refetch: () => void;
+}
 
-  const handlePostDeleted = () => {
+function PostsTable({ posts, isLoadingPosts, error, refetch }: PostsTableProps) {
+  const handlePostChange = () => {
     refetch(); // Refetch posts after deletion
   };
 
@@ -52,7 +57,7 @@ function PostsTable() {
               >
                 {post.draft ? <HiOutlineXCircle /> : <HiOutlineCheckCircle />}
               </div>
-              <ButtonActions slug={post.slug} onPostDeleted={handlePostDeleted} />
+              <ButtonActions slug={post.slug} onPostChange={handlePostChange} />
             </div>
           );
         })

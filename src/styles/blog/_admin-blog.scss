@@ -64,7 +64,20 @@
     align-items: center;
     column-gap: 2.4rem;
     // img 1, post 2, tags 3, date 4, published 5, actions 6
-    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
+    grid-template-columns: 0.5fr 2.3fr 1.8fr 0.5fr 0.5fr 1.5fr;
+
+    @include respond-from(900) {
+      // img 1, post 2, tags 3, published 4, actions 5
+      grid-template-columns: 0.6fr 2.2fr 1.8fr 0.5fr 1fr;
+    }
+    @include respond-from(800) {
+      // img 1, post 2, published 3, actions 4
+      grid-template-columns: 0.6fr 2.2fr 0.5fr 1fr;
+    }
+    @include respond-from(700) {
+      //  post 1, published 2, actions 3
+      grid-template-columns: 3fr 0.5fr 1fr;
+    }
   }
 
   &__header {
@@ -76,6 +89,26 @@
     padding: 1.6rem 0rem;
     text-transform: uppercase;
 
+    &-img {
+      @include respond-from(700) {
+        display: none;
+      }
+    }
+    &-post {
+      @include respond-from(700) {
+        margin-left: 1rem;
+      }
+    }
+    &-tags {
+      @include respond-from(800) {
+        display: none;
+      }
+    }
+    &-date {
+      @include respond-from(900) {
+        display: none;
+      }
+    }
     &-published {
       font-size: 1.2rem;
     }
@@ -88,7 +121,7 @@
   // Table body
   &__body-row {
     display: grid;
-    grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
+    // grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
     column-gap: 2.4rem;
     align-items: center;
 
@@ -116,6 +149,10 @@
       padding-left: 0.5rem;
       width: 100%;
       // outline: 1px solid red;
+
+      @include respond-from(700) {
+        display: none;
+      }
     }
     &_svg {
       // No Image, so show the SVG
@@ -124,6 +161,10 @@
       position: absolute;
       top: 1.5rem;
       left: 2rem;
+
+      @include respond-from(700) {
+        display: none;
+      }
     }
 
     &_post {
@@ -138,18 +179,30 @@
       text-decoration: underline;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      @include respond-from(700) {
+        margin-left: 1rem;
+        grid-column: 1 / 2;
+      }
     }
 
     &_tags {
       // outline: 1px solid red;
       font-family: 'Sono';
       font-weight: 400;
+      @include respond-from(800) {
+        display: none;
+      }
     }
     &_date {
       font-family: 'Sono';
       font-size: 1.3rem;
       font-weight: 300;
       color: var(--color-grey-500);
+
+      @include respond-from(900) {
+        display: none;
+      }
     }
     &_draft {
       font-family: 'Sono';

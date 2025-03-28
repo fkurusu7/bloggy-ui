@@ -20,10 +20,10 @@ function PostsTable({ posts, isLoadingPosts, error, refetch }: PostsTableProps) 
   return (
     <div className="blog-table" role="table">
       <div className="blog-table__header" role="row">
-        <div></div>
-        <div>Post</div>
-        <div>Tags</div>
-        <div>Date</div>
+        <div className="blog-table__header-img"></div>
+        <div className="blog-table__header-post">Post</div>
+        <div className="blog-table__header-tags">Tags</div>
+        <div className="blog-table__header-date">Date</div>
         <div className="blog-table__header-published">Published</div>
         <div></div>
       </div>

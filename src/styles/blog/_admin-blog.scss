@@ -64,7 +64,7 @@
     align-items: center;
     column-gap: 2.4rem;
     // img 1, post 2, tags 3, date 4, published 5, actions 6
-    grid-template-columns: 0.5fr 2.3fr 1.8fr 0.5fr 0.5fr 1.5fr;
+    grid-template-columns: 0.5fr 2.3fr 1.8fr 0.5fr 0.5fr 1fr;
 
     @include respond-from(900) {
       // img 1, post 2, tags 3, published 4, actions 5
@@ -121,7 +121,6 @@
   // Table body
   &__body-row {
     display: grid;
-    // grid-template-columns: 0.6fr 2.2fr 1.8fr 1fr 0.5fr 1fr;
     column-gap: 2.4rem;
     align-items: center;
 
@@ -220,11 +219,26 @@
       & svg {
         height: 2.5rem;
         width: 2.5rem;
+        @include respond-from(800) {
+          height: 2.2rem;
+          width: 2.2rem;
+        }
       }
     }
   }
 }
 
+// ClassName is List of posts in blog admin table for each post
+.post__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min-content;
+  z-index: 2;
+  margin-left: 3rem;
+}
+
+// Delete Modal Confirmation inside ButtonActions.tsx
 .delete {
   &__confirmation {
     display: flex;

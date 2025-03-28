@@ -13,7 +13,10 @@ function BlogAdminSidebar() {
   return (
     <>
       {/* Mobile Menu Toggle Button */}
-      <button className="sidebar-toggle" onClick={toggleSideBar}>
+      <button
+        className={`sidebar-toggle ${isSidebarOpen ? 'sidebar-toggle-open' : ''}`}
+        onClick={toggleSideBar}
+      >
         {isSidebarOpen ? <HiOutlineX /> : <HiOutlineMenu />}
       </button>
       <aside className={`sidebar-admin ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>

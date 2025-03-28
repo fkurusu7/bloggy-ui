@@ -1,8 +1,14 @@
+@use './../abstracts/mixins' as *;
+
 .container-admin {
   display: grid;
-  grid-template-columns: 26rem 1fr;
+  grid-template-columns: 17rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
+
+  @include respond-from(800) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .header-admin {
@@ -11,10 +17,27 @@
   padding: 1.2rem 4.8rem;
 }
 
+.sidebar-toggle {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  background-color: var(--color-grey-300);
+  z-index: 1000;
+
+  & svg {
+    color: red;
+  }
+
+  @include respond-from(800) {
+    display: block;
+  }
+}
 .sidebar-admin {
   background-color: var(--color-grey-50);
   border-right: 1px solid var(--color-grey-200);
-  padding: 3.2rem 2.4rem;
+  padding: 3.2rem 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +45,12 @@
   gap: 2rem;
 
   grid-row: 1 / -1;
+
+  @include respond-from(800) {
+    position: fixed;
+    top: 0;
+    left: -17rem;
+  }
 
   // SIDEBAR MENU
   &__logo {
@@ -42,7 +71,7 @@
     gap: 0.8rem;
   }
   &__li {
-    width: 20rem;
+    width: 16rem;
   }
 
   &__link {
@@ -87,5 +116,5 @@
 
 .main-admin {
   background-color: var(--color-grey-100);
-  padding: 4rem 4.8rem 6.4rem;
+  padding: 4rem 2rem 6.4rem;
 }

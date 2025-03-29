@@ -29,7 +29,13 @@
 
   &__email {
     color: var(--color-blue-700);
+    font-size: 1.8rem;
     text-decoration: underline;
+  }
+
+  &__posts {
+    color: var(--color-brand-700);
+    font-size: 2rem;
   }
 
   & hr {

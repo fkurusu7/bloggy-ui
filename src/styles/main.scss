@@ -31,3 +31,6 @@
 @use 'blog/admin-blog' as *;
 @use 'blog/editor' as *;
 @use 'blog/create_post' as *;
+
+// User
+@use 'user/user' as *;

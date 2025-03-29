@@ -32,7 +32,7 @@ function BlogAdminSidebar() {
               </NavLink>
             </li>
             <li className="sidebar-admin__li">
-              <NavLink to={'blog/tmp'} className="sidebar-admin__link">
+              <NavLink to={'blog/admin/user'} className="sidebar-admin__link">
                 <HiOutlineUserCircle />
                 <span>User</span>
               </NavLink>

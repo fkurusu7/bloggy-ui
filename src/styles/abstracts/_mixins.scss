@@ -14,3 +14,12 @@
     @content;
   }
 }
+
+// ******************************
+// Extends
+
+%image-shadow {
+  border-radius: var(--border-radius-md);
+  display: inline-block;
+  filter: drop-shadow(-10px -10px 2px var(--color-grey-200));
+}

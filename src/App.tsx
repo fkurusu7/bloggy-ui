@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import BlogAdmin from './features/blog_admin/BlogAdmin';
 import BlogAdminLayout from './features/blog_admin/BlogAdminLayout';
-import { Toaster } from 'react-hot-toast';
+import BlogUserAdmin from './features/user/BlogUserAdmin';
+import BlogAdminPosts from './features/blog_admin/BlogAdminPosts';
 import { LightOnDarkProvider } from './context/LightOnDarkMode';
 import MeLayout from './features/me/MeLayout';
 import Resume from './features/resume/Resume';
@@ -12,6 +12,7 @@ import BlogAppLayout from './features/blog/BlogAppLayout';
 import Posts from './features/blog/Posts';
 import Post from './features/blog/Post';
 import { useTokenVerification } from './features/auth/useTokenVerification';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   useTokenVerification();
@@ -42,7 +43,8 @@ function App() {
           {/* BLOG ADMIN */}
           <Route element={<PrivateRoute />}>
             <Route element={<BlogAdminLayout />}>
-              <Route path="/blog/admin" element={<BlogAdmin />} />
+              <Route path="/blog/admin" element={<BlogAdminPosts />} />
+              <Route path="/blog/admin/user" element={<BlogUserAdmin />} />
             </Route>
           </Route>
         </Routes>

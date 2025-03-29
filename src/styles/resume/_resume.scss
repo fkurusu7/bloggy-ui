@@ -147,8 +147,7 @@
       }
     }
     &-image {
-      display: inline-block;
-      filter: drop-shadow(-10px -10px 2px var(--color-grey-200));
+      @extend %image-shadow;
       height: 20rem;
       width: auto;
 

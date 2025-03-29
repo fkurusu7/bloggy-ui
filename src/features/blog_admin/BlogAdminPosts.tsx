@@ -7,7 +7,7 @@ import { useModal } from '../../hooks/useModal';
 import TooltipUtil from '../../utils/TooltipUtil';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 
-function BlogAdmin() {
+function BlogAdminPosts() {
   const { isOpenModal, closeModal, toggleModal } = useModal();
   const { posts, isLoadingPosts, error, refetch } = useBlogPosts();
 
@@ -34,4 +34,4 @@ function BlogAdmin() {
   );
 }
 
-export default BlogAdmin;
+export default BlogAdminPosts;

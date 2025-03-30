@@ -1,8 +1,25 @@
+import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
 
 function UserForm() {
   return (
     <form className="user__form">
+      <div className="user__form-box">
+        <label htmlFor="profileimg" className="user__form-img">
+          <HiOutlinePhoto />
+          <span>Click to update image</span>
+
+          <input
+            type="file"
+            hidden
+            name="profileimg"
+            id="profileimg"
+            accept=".png, .jpg, .jpeg"
+            onChange={() => {}}
+            disabled={false} // set it when uploading
+          />
+        </label>
+      </div>
       <div className="user__form-box">
         <label htmlFor="fullname">Fullname</label>
         <input

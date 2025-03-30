@@ -9,7 +9,7 @@ function UserForm() {
           type="text"
           name="fullname"
           id="fullname"
-          value={'no value for the moment'}
+          value={'no value'}
           onChange={() => {}}
           className={`user__form-input`}
           autoFocus
@@ -21,7 +21,7 @@ function UserForm() {
           type="email"
           name="email"
           id="email"
-          value={'no value for the moment'}
+          value={'no@value.com'}
           onChange={() => {}}
           className={`user__form-input`}
         />
@@ -33,19 +33,19 @@ function UserForm() {
           name="password"
           id="password"
           placeholder="********"
-          value={'no value for the moment'}
+          value={'no value'}
           onChange={() => {}}
           className={`user__form-input`}
         />
       </div>
       <div className="user__form-box">
-        <label htmlFor="password_conf">Password Confirmation</label>
+        <label htmlFor="password_conf">Password conf.</label>
         <input
           type="password"
           name="password_conf"
           id="password_conf"
           placeholder="********"
-          value={'no value for the moment'}
+          value={'no value'}
           onChange={() => {}}
           className={`user__form-input`}
         />

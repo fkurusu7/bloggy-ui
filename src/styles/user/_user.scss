@@ -44,3 +44,43 @@
     width: 100%;
   }
 }
+
+.user__form {
+  border-radius: var(--border-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  outline: 2px solid var(--color-grey-300);
+  padding: 3rem;
+
+  &-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+
+    font-family: 'Sono', sans-serif;
+
+    & label {
+      color: var(--color-brand-600);
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    & input {
+      background-color: transparent;
+      border: none;
+      border-radius: var(--border-radius-md);
+      color: var(--color-grey-500);
+      font-size: 1.5rem;
+      outline: 1px solid var(--color-grey-300);
+      padding: 0.3rem 1rem;
+      width: 20ch;
+
+      &:focus {
+        outline: 2px solid var(--color-brand-500);
+        outline-offset: -1px;
+      }
+    }
+  }
+}

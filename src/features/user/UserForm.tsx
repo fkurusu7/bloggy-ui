@@ -1,7 +1,7 @@
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
-import { UserData } from '../blog_admin/types';
-import { useState } from 'react';
+import { UserData, UserUpdateData } from '../blog_admin/types';
+import React, { useState } from 'react';
 
 /* 
 return res.status(200).json(
@@ -18,25 +18,34 @@ return res.status(200).json(
       );
       */
 function UserForm(userData: UserData) {
-  const [userFormData, setUserFormData] = useState(userData);
+  const [userFormData, setUserFormData] = useState<UserUpdateData>({
+    fullname: '',
+    email: '',
+    profileImg: '',
+    password: '',
+  });
+
+  // TODO: chack why the input is not updated in Real time, validate passwords
 
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
     setUserFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  console.log(userFormData);
+
   return (
     <form className="user__form">
       <div className="user__form-box">
-        <label htmlFor="profileimg" className="user__form-img">
+        <label htmlFor="profileImg" className="user__form-img">
           <HiOutlinePhoto />
           <span>Click to update image</span>
 
           <input
             type="file"
             hidden
-            name="profileimg"
-            id="profileimg"
+            name="profileImg"
+            id="profileImg"
             accept=".png, .jpg, .jpeg"
             onChange={handleFormDataChange}
             disabled={false} // set it when uploading
@@ -49,8 +58,8 @@ function UserForm(userData: UserData) {
           type="text"
           name="fullname"
           id="fullname"
-          value={userFormData.fullname}
-          onChange={() => {}}
+          value={userData.fullname}
+          onChange={handleFormDataChange}
           className={`user__form-input`}
           autoFocus
         />
@@ -61,8 +70,8 @@ function UserForm(userData: UserData) {
           type="email"
           name="email"
           id="email"
-          value={userFormData.email}
-          onChange={() => {}}
+          value={userData.email}
+          onChange={handleFormDataChange}
           className={`user__form-input`}
         />
       </div>
@@ -74,7 +83,7 @@ function UserForm(userData: UserData) {
           id="password"
           placeholder="********"
           value={'********'}
-          onChange={() => {}}
+          onChange={handleFormDataChange}
           className={`user__form-input`}
         />
       </div>
@@ -86,7 +95,7 @@ function UserForm(userData: UserData) {
           id="password_conf"
           placeholder="********"
           value={'********'}
-          onChange={() => {}}
+          onChange={handleFormDataChange}
           className={`user__form-input`}
         />
       </div>

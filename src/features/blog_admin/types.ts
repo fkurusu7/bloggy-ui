@@ -15,6 +15,13 @@ export interface UserData {
   posts: number;
 }
 
+export interface UserUpdateData {
+  fullname: string;
+  email: string;
+  profileImg: string;
+  password: string;
+}
+
 export interface Post {
   slug: string;
   title: string;

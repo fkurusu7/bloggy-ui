@@ -1,31 +1,41 @@
+import React, { useState } from 'react';
+import { z } from 'zod';
+
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
-import { UserData, UserUpdateData } from '../blog_admin/types';
-import React, { useState } from 'react';
 
-/* 
-return res.status(200).json(
-  formatResponse(
-    true,
-    {
-      fullname: user.personal_info.fullname,
-      email: user.personal_info.email,
-      profileImg: user.personal_info.profile_img,
-      posts: user.account_info.total_posts,
-      },
-      "success"
-      )
-      );
-      */
-function UserForm(userData: UserData) {
-  const [userFormData, setUserFormData] = useState<UserUpdateData>({
-    fullname: '',
-    email: '',
-    profileImg: '',
-    password: '',
+import { UserData, UserUpdateData } from '../blog_admin/types';
+
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+const passwordMasked = '********';
+
+const imageSchema = z.object({
+  image: z
+    .instanceof(File)
+    .refine((file) => file?.size <= MAX_IMAGE_SIZE, 'Max image size is 5MB')
+    .refine((file) => ALLOWED_IMAGE_TYPES.includes(file?.type)),
+});
+
+const userUpdateSchema = z
+  .object({
+    fullname: z.string().min(3, 'Fullname is required').optional(),
+    email: z.string().email('Invalid email').optional(),
+    profileImg: z.string().optional(),
+    password: z.string().min(8, 'Password must be at least 8 characters').optional(),
+  })
+  .refine((data) => !data.password || data.password !== passwordMasked, {
+    message: `Password must be changed from default ${passwordMasked}`,
+    path: ['password'],
   });
 
-  // TODO: chack why the input is not updated in Real time, validate passwords
+function UserForm(userData: UserData) {
+  const [userFormData, setUserFormData] = useState<UserUpdateData>({
+    fullname: userData.fullname,
+    email: userData.email,
+    profileImg: userData.profileImg,
+    password: '',
+  });
 
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
@@ -58,7 +68,7 @@ function UserForm(userData: UserData) {
           type="text"
           name="fullname"
           id="fullname"
-          value={userData.fullname}
+          value={userFormData.fullname}
           onChange={handleFormDataChange}
           className={`user__form-input`}
           autoFocus
@@ -70,7 +80,7 @@ function UserForm(userData: UserData) {
           type="email"
           name="email"
           id="email"
-          value={userData.email}
+          value={userFormData.email}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />
@@ -81,8 +91,8 @@ function UserForm(userData: UserData) {
           type="password"
           name="password"
           id="password"
-          placeholder="********"
-          value={'********'}
+          placeholder={passwordMasked}
+          value={passwordMasked}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />
@@ -93,8 +103,8 @@ function UserForm(userData: UserData) {
           type="password"
           name="password_conf"
           id="password_conf"
-          placeholder="********"
-          value={'********'}
+          placeholder={passwordMasked}
+          value={passwordMasked}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />

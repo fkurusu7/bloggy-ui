@@ -1,7 +1,25 @@
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
+// import { useState } from 'react';
 
 function UserForm() {
+  /* 
+  return res.status(200).json(
+      formatResponse(
+        true,
+        {
+          fullname: user.personal_info.fullname,
+          email: user.personal_info.email,
+          profileImg: user.personal_info.profile_img,
+          posts: user.account_info.total_posts,
+        },
+        "success"
+      )
+    );
+  */
+
+  // const [user, setUser] = useState(undefined);
+
   return (
     <form className="user__form">
       <div className="user__form-box">

@@ -8,6 +8,13 @@ export interface PostData {
   description: string;
 }
 
+export interface UserData {
+  fullname: string;
+  email: string;
+  profileImg: string;
+  posts: number;
+}
+
 export interface Post {
   slug: string;
   title: string;

@@ -1,24 +1,29 @@
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
-// import { useState } from 'react';
+import { UserData } from '../blog_admin/types';
+import { useState } from 'react';
 
-function UserForm() {
-  /* 
-  return res.status(200).json(
-      formatResponse(
-        true,
-        {
-          fullname: user.personal_info.fullname,
-          email: user.personal_info.email,
-          profileImg: user.personal_info.profile_img,
-          posts: user.account_info.total_posts,
-        },
-        "success"
+/* 
+return res.status(200).json(
+  formatResponse(
+    true,
+    {
+      fullname: user.personal_info.fullname,
+      email: user.personal_info.email,
+      profileImg: user.personal_info.profile_img,
+      posts: user.account_info.total_posts,
+      },
+      "success"
       )
-    );
-  */
+      );
+      */
+function UserForm(userData: UserData) {
+  const [userFormData, setUserFormData] = useState(userData);
 
-  // const [user, setUser] = useState(undefined);
+  const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, id } = ev.target;
+    setUserFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   return (
     <form className="user__form">
@@ -33,7 +38,7 @@ function UserForm() {
             name="profileimg"
             id="profileimg"
             accept=".png, .jpg, .jpeg"
-            onChange={() => {}}
+            onChange={handleFormDataChange}
             disabled={false} // set it when uploading
           />
         </label>
@@ -44,7 +49,7 @@ function UserForm() {
           type="text"
           name="fullname"
           id="fullname"
-          value={'no value'}
+          value={userFormData.fullname}
           onChange={() => {}}
           className={`user__form-input`}
           autoFocus
@@ -56,7 +61,7 @@ function UserForm() {
           type="email"
           name="email"
           id="email"
-          value={'no@value.com'}
+          value={userFormData.email}
           onChange={() => {}}
           className={`user__form-input`}
         />
@@ -68,7 +73,7 @@ function UserForm() {
           name="password"
           id="password"
           placeholder="********"
-          value={'no value'}
+          value={'********'}
           onChange={() => {}}
           className={`user__form-input`}
         />
@@ -80,7 +85,7 @@ function UserForm() {
           name="password_conf"
           id="password_conf"
           placeholder="********"
-          value={'no value'}
+          value={'********'}
           onChange={() => {}}
           className={`user__form-input`}
         />

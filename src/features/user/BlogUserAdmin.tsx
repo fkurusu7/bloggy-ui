@@ -70,7 +70,7 @@ function BlogUserAdmin() {
       </div>
       {isOpenModal && (
         <Modal onClose={closeModal}>
-          <UserForm />
+          <UserForm userData={user} />
         </Modal>
       )}
     </>

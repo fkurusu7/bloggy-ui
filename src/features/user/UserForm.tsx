@@ -6,17 +6,17 @@ import Button from '../../component/Button';
 
 import { UserData, UserUpdateData } from '../blog_admin/types';
 
-const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
-const passwordMasked = '********';
+// const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
+// const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+const PASSOWRD_MASKED = '********';
 
-const imageSchema = z.object({
+/* const imageSchema = z.object({
   image: z
     .instanceof(File)
     .refine((file) => file?.size <= MAX_IMAGE_SIZE, 'Max image size is 5MB')
     .refine((file) => ALLOWED_IMAGE_TYPES.includes(file?.type)),
 });
-
+ */
 const userUpdateSchema = z
   .object({
     fullname: z.string().min(3, 'Fullname is required').optional(),
@@ -24,10 +24,30 @@ const userUpdateSchema = z
     profileImg: z.string().optional(),
     password: z.string().min(8, 'Password must be at least 8 characters').optional(),
   })
-  .refine((data) => !data.password || data.password !== passwordMasked, {
-    message: `Password must be changed from default ${passwordMasked}`,
+  .refine((data) => !data.password || data.password !== PASSOWRD_MASKED, {
+    message: `Password must be changed from default ${PASSOWRD_MASKED}`,
     path: ['password'],
   });
+
+const getChangedFields = (original: UserData, updated: UserUpdateData) => {
+  const changes: Partial<UserUpdateData> = {};
+
+  if (original.fullname !== updated.fullname) {
+    changes.fullname = updated.fullname;
+  }
+  if (original.email !== updated.email) {
+    changes.email = updated.email;
+  }
+  if (original.profileImg !== updated.profileImg) {
+    changes.profileImg = updated.profileImg;
+  }
+  // Only send password if it's filled in
+  if (updated.password && updated.password !== PASSOWRD_MASKED) {
+    changes.password = updated.password;
+  }
+
+  return changes;
+};
 
 function UserForm(userData: UserData) {
   const [userFormData, setUserFormData] = useState<UserUpdateData>({
@@ -39,13 +59,43 @@ function UserForm(userData: UserData) {
 
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
-    setUserFormData((prevData) => ({ ...prevData, [id]: value }));
+
+    // Validate Password
+    if (id === 'password_conf') {
+    } else {
+      setUserFormData((prevData) => ({ ...prevData, [id]: value }));
+    }
+  };
+
+  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
+    try {
+      const updatedFields = getChangedFields(userData, userFormData);
+      console.log(updatedFields);
+
+      const parseResult = userUpdateSchema.safeParse(updatedFields);
+      console.log(parseResult);
+
+      console.log('Valid fields', parseResult);
+      /* 
+      {
+        "success": true,
+        "data": {
+          "fullname": "fernando cruz barudesu",
+          "email": "coding.fcv@gmail.com.mx"
+        }
+      }
+       */
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   console.log(userFormData);
 
   return (
-    <form className="user__form">
+    <form className="user__form" onSubmit={handleSubmit}>
       <div className="user__form-box">
         <label htmlFor="profileImg" className="user__form-img">
           <HiOutlinePhoto />
@@ -91,8 +141,8 @@ function UserForm(userData: UserData) {
           type="password"
           name="password"
           id="password"
-          placeholder={passwordMasked}
-          value={passwordMasked}
+          placeholder={PASSOWRD_MASKED}
+          value={PASSOWRD_MASKED}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />
@@ -103,8 +153,8 @@ function UserForm(userData: UserData) {
           type="password"
           name="password_conf"
           id="password_conf"
-          placeholder={passwordMasked}
-          value={passwordMasked}
+          placeholder={PASSOWRD_MASKED}
+          value={PASSOWRD_MASKED}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />

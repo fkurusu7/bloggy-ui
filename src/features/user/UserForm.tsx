@@ -129,7 +129,6 @@ function UserForm(userData: UserData) {
         <label htmlFor="profileImg" className="user__form-img">
           <HiOutlinePhoto />
           <span>Click to update image</span>
-
           <input
             type="file"
             hidden

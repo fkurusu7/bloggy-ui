@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
 
-import { UserData, UserUpdateData } from '../blog_admin/types';
+import { FormError, UserData, UserUpdateData } from '../blog_admin/types';
 
 // const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 // const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -23,12 +23,29 @@ const userUpdateSchema = z
     email: z.string().email('Invalid email').optional(),
     profileImg: z.string().optional(),
     password: z.string().min(8, 'Password must be at least 8 characters').optional(),
+    password_conf: z.string().min(8, 'Password Conf must be at least 8 characters').optional(),
   })
   .refine((data) => !data.password || data.password !== PASSOWRD_MASKED, {
     message: `Password must be changed from default ${PASSOWRD_MASKED}`,
     path: ['password'],
+  })
+  .superRefine(({ password, password_conf }, ctx) => {
+    if (password !== password_conf) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Passwords do not match',
+        path: ['password_conf'],
+      });
+    }
   });
 
+/**
+ * Determines which fields to include in the update request,
+ * only sending what's necessary.
+ * @param original User Data
+ * @param updated User Data
+ * @returns object with fileds to be included in the update
+ */
 const getChangedFields = (original: UserData, updated: UserUpdateData) => {
   const changes: Partial<UserUpdateData> = {};
 
@@ -45,6 +62,9 @@ const getChangedFields = (original: UserData, updated: UserUpdateData) => {
   if (updated.password && updated.password !== PASSOWRD_MASKED) {
     changes.password = updated.password;
   }
+  if (updated.password_conf && updated.password_conf !== PASSOWRD_MASKED) {
+    changes.password_conf = updated.password_conf;
+  }
 
   return changes;
 };
@@ -55,26 +75,24 @@ function UserForm(userData: UserData) {
     email: userData.email,
     profileImg: userData.profileImg,
     password: '',
+    password_conf: '',
   });
+  const [errors, setErrors] = useState<FormError[]>([]);
 
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
-
-    // Validate Password
-    if (id === 'password_conf') {
-    } else {
-      setUserFormData((prevData) => ({ ...prevData, [id]: value }));
-    }
+    setUserFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
+    console.log(userFormData);
     try {
       const updatedFields = getChangedFields(userData, userFormData);
       console.log(updatedFields);
 
-      const parseResult = userUpdateSchema.safeParse(updatedFields);
+      const parseResult = userUpdateSchema.parse(updatedFields);
       console.log(parseResult);
 
       console.log('Valid fields', parseResult);
@@ -88,11 +106,22 @@ function UserForm(userData: UserData) {
       }
        */
     } catch (error) {
-      console.log(error);
+      console.log('ERROR', error);
+      console.log(errors);
+      if (error instanceof z.ZodError) {
+        const formErrors = error.errors.map((e) => ({
+          field: e.path.join('.'),
+          message: e.message,
+        }));
+
+        console.log(formErrors, typeof formErrors);
+        setErrors(formErrors);
+        // TODO: focus on error
+      }
     }
   };
 
-  console.log(userFormData);
+  console.log(errors);
 
   return (
     <form className="user__form" onSubmit={handleSubmit}>
@@ -127,7 +156,7 @@ function UserForm(userData: UserData) {
       <div className="user__form-box">
         <label htmlFor="email">Email</label>
         <input
-          type="email"
+          type="text"
           name="email"
           id="email"
           value={userFormData.email}
@@ -142,7 +171,7 @@ function UserForm(userData: UserData) {
           name="password"
           id="password"
           placeholder={PASSOWRD_MASKED}
-          value={PASSOWRD_MASKED}
+          value={userFormData.password}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />
@@ -154,7 +183,7 @@ function UserForm(userData: UserData) {
           name="password_conf"
           id="password_conf"
           placeholder={PASSOWRD_MASKED}
-          value={PASSOWRD_MASKED}
+          value={userFormData.password_conf}
           onChange={handleFormDataChange}
           className={`user__form-input`}
         />

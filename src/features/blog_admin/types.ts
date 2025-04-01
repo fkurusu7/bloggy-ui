@@ -20,6 +20,7 @@ export interface UserUpdateData {
   email: string;
   profileImg: string;
   password: string;
+  password_conf: string;
 }
 
 export interface Post {
@@ -44,3 +45,9 @@ export interface PostAddedTagProps {
   setEditorFormData: React.Dispatch<React.SetStateAction<PostData>>;
   editorFormData: PostData;
 }
+
+// Define the error message type
+export type FormError = {
+  field: string;
+  message: string;
+};

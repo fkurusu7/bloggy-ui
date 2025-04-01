@@ -23,6 +23,7 @@ import {
 } from '../../context/userSlice';
 import { API_BASE_URL, logger } from '../../utils/helpers';
 import LogoSVG from '../../component/LogoSVG';
+import { FormError } from '../blog_admin/types';
 
 type UserAuthProps = {
   type: 'signin' | 'signup';
@@ -32,12 +33,6 @@ type UserFormData = {
   email: string;
   password: string;
   fullname?: string;
-};
-
-// Define the error message type
-type FormError = {
-  field: string;
-  message: string;
 };
 
 class ApiError extends Error {

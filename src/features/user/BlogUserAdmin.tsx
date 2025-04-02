@@ -68,7 +68,17 @@ function BlogUserAdmin() {
           </Button>
         </div>
       </div>
-      {isOpenModal && <Modal onClose={closeModal}>{user && <UserForm {...user} />}</Modal>}
+      {isOpenModal && (
+        <Modal onClose={closeModal}>
+          {user && (
+            <UserForm
+              userData={user}
+              onClose={closeModal}
+              onUpdate={(updatedUser: UserData) => setUser(updatedUser)}
+            />
+          )}
+        </Modal>
+      )}
     </>
   );
 }

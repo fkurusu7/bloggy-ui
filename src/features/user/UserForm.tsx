@@ -5,6 +5,8 @@ import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
 
 import { FormError, UserData, UserUpdateData } from '../blog_admin/types';
+import { API_BASE_URL } from '../../utils/helpers';
+import toast from 'react-hot-toast';
 
 // const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 // const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -69,7 +71,15 @@ const getChangedFields = (original: UserData, updated: UserUpdateData) => {
   return changes;
 };
 
-function UserForm(userData: UserData) {
+function UserForm({
+  userData,
+  onClose,
+  onUpdate,
+}: {
+  userData: UserData;
+  onClose: () => void;
+  onUpdate?: (_updated: UserData) => void;
+}) {
   const [userFormData, setUserFormData] = useState<UserUpdateData>({
     fullname: userData.fullname,
     email: userData.email,
@@ -92,19 +102,30 @@ function UserForm(userData: UserData) {
       const updatedFields = getChangedFields(userData, userFormData);
       console.log(updatedFields);
 
-      const parseResult = userUpdateSchema.parse(updatedFields);
-      console.log(parseResult);
+      const dataToUpdate = userUpdateSchema.parse(updatedFields);
 
-      console.log('Valid fields', parseResult);
-      /* 
-      {
-        "success": true,
-        "data": {
+      console.log('Valid fields', dataToUpdate);
+      /*{ 
           "fullname": "fernando cruz barudesu",
           "email": "coding.fcv@gmail.com.mx"
-        }
+        }*/
+
+      // Call Update Signed In user API
+      const response = await fetch(`${API_BASE_URL}/api/user/updateSignedInUser`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(dataToUpdate),
+      });
+      if (!response.ok) {
+        console.log('ERROR: Response not ok', response.ok);
       }
-       */
+
+      const jsonres = await response.json();
+      console.log(jsonres);
+      toast.success('User updated successfully');
+      onClose();
+      onUpdate?.(jsonres.data);
     } catch (error) {
       console.log('ERROR', error);
       console.log(errors);

@@ -7,18 +7,20 @@ import Button from '../../component/Button';
 import { FormError, UserData, UserUpdateData } from '../blog_admin/types';
 import { API_BASE_URL } from '../../utils/helpers';
 import toast from 'react-hot-toast';
+import { FiLoader } from 'react-icons/fi';
+import { uploadImageToAWS } from '../../utils/aws';
 
-// const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
-// const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 const PASSOWRD_MASKED = '********';
 
-/* const imageSchema = z.object({
+const imageSchema = z.object({
   image: z
     .instanceof(File)
     .refine((file) => file?.size <= MAX_IMAGE_SIZE, 'Max image size is 5MB')
     .refine((file) => ALLOWED_IMAGE_TYPES.includes(file?.type)),
 });
- */
+
 const userUpdateSchema = z
   .object({
     fullname: z.string().min(3, 'Fullname is required').optional(),
@@ -87,12 +89,37 @@ function UserForm({
     password: '',
     password_conf: '',
   });
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [errors, setErrors] = useState<FormError[]>([]);
 
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
     setUserFormData((prevData) => ({ ...prevData, [id]: value }));
     setErrors((prevError) => prevError.filter((error) => error.field !== id));
+  };
+
+  const handleImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setIsUploadingImage(true);
+      if (ev.target.files && ev.target.files.length > 0) {
+        const img = ev.target.files[0];
+        imageSchema.parse({ image: img });
+        const imageUploadedURL = await uploadImageToAWS(img);
+        setUserFormData((prevData) => ({
+          ...prevData,
+          profileImg: imageUploadedURL,
+        }));
+        toast.success('Image uploaded successfully');
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors.map((e) => e.message).join(', '));
+      } else {
+        console.error(error);
+      }
+    } finally {
+      setIsUploadingImage(false);
+    }
   };
 
   const getFieldError = (fieldname: string): string | undefined => {
@@ -147,11 +174,25 @@ function UserForm({
     }
   };
 
+  console.log(userData);
+
   return (
     <form className="user__form" onSubmit={handleSubmit}>
       <div className="user__form-box">
         <label htmlFor="profileImg" className="user__form-img">
-          <HiOutlinePhoto />
+          {isUploadingImage ? (
+            <div className="user__form-img-loading">
+              <FiLoader className="spin" />
+            </div>
+          ) : userData.profileImg ? (
+            <img
+              src={userData.profileImg}
+              alt="User profile image"
+              style={isUploadingImage ? { opacity: 0.3 } : {}}
+            />
+          ) : (
+            <HiOutlinePhoto />
+          )}
           <span>Click to update image</span>
           <input
             type="file"
@@ -159,8 +200,8 @@ function UserForm({
             name="profileImg"
             id="profileImg"
             accept=".png, .jpg, .jpeg"
-            onChange={handleFormDataChange}
-            disabled={false} // set it when uploading
+            onChange={handleImgUpload}
+            disabled={isUploadingImage} // set it when uploading
           />
         </label>
       </div>

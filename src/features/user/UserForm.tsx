@@ -24,8 +24,8 @@ const userUpdateSchema = z
     fullname: z.string().min(3, 'Fullname is required').optional(),
     email: z.string().email('Invalid email').optional(),
     profileImg: z.string().optional(),
-    password: z.string().min(8, 'Password must be at least 8 characters').optional(),
-    password_conf: z.string().min(8, 'Password Conf must be at least 8 characters').optional(),
+    password: z.string().min(8, 'must be at least 8 characters').optional(),
+    password_conf: z.string().min(8, 'must be at least 8 characters').optional(),
   })
   .refine((data) => !data.password || data.password !== PASSOWRD_MASKED, {
     message: `Password must be changed from default ${PASSOWRD_MASKED}`,
@@ -92,6 +92,11 @@ function UserForm({
   const handleFormDataChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { value, id } = ev.target;
     setUserFormData((prevData) => ({ ...prevData, [id]: value }));
+    setErrors((prevError) => prevError.filter((error) => error.field !== id));
+  };
+
+  const getFieldError = (fieldname: string): string | undefined => {
+    return errors.find((error) => error.field === fieldname)?.message;
   };
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
@@ -142,8 +147,6 @@ function UserForm({
     }
   };
 
-  console.log(errors);
-
   return (
     <form className="user__form" onSubmit={handleSubmit}>
       <div className="user__form-box">
@@ -162,30 +165,42 @@ function UserForm({
         </label>
       </div>
       <div className="user__form-box">
-        <label htmlFor="fullname">Fullname</label>
+        <label htmlFor="fullname" className="user__form-label">
+          Fullname
+        </label>
         <input
+          className={`user__form-input ${errors.some((error) => error.field === 'fullname') ? 'user__form-input-error' : ''}`}
           type="text"
           name="fullname"
           id="fullname"
           value={userFormData.fullname}
           onChange={handleFormDataChange}
-          className={`user__form-input`}
           autoFocus
         />
+        {getFieldError('fullname') && (
+          <span className="user__form-error">{getFieldError('fullname')}</span>
+        )}
       </div>
       <div className="user__form-box">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="user__form-label">
+          Email
+        </label>
         <input
           type="text"
           name="email"
           id="email"
           value={userFormData.email}
           onChange={handleFormDataChange}
-          className={`user__form-input`}
+          className={`user__form-input ${errors.some((error) => error.field === 'email') ? 'user__form-input-error' : ''}`}
         />
+        {getFieldError('email') && (
+          <span className="user__form-error">{getFieldError('email')}</span>
+        )}
       </div>
       <div className="user__form-box">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="user__form-label">
+          Password
+        </label>
         <input
           type="password"
           name="password"
@@ -193,11 +208,16 @@ function UserForm({
           placeholder={PASSOWRD_MASKED}
           value={userFormData.password}
           onChange={handleFormDataChange}
-          className={`user__form-input`}
+          className={`user__form-input ${errors.some((error) => error.field === 'password') ? 'user__form-input-error' : ''}`}
         />
+        {getFieldError('password') && (
+          <span className="user__form-error">{getFieldError('password')}</span>
+        )}
       </div>
       <div className="user__form-box">
-        <label htmlFor="password_conf">Password conf.</label>
+        <label htmlFor="password_conf" className="user__form-label">
+          Password conf.
+        </label>
         <input
           type="password"
           name="password_conf"
@@ -205,8 +225,11 @@ function UserForm({
           placeholder={PASSOWRD_MASKED}
           value={userFormData.password_conf}
           onChange={handleFormDataChange}
-          className={`user__form-input`}
+          className={`user__form-input ${errors.some((error) => error.field === 'password_conf') ? 'user__form-input-error' : ''}`}
         />
+        {getFieldError('password_conf') && (
+          <span className="user__form-error">{getFieldError('password_conf')}</span>
+        )}
       </div>
       <div className="user__form-box">
         <Button type="submit" size="small" variant="form">

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { z } from 'zod';
 
-import { HiOutlinePhoto } from 'react-icons/hi2';
 import Button from '../../component/Button';
 
 import { FormError, UserData, UserUpdateData } from '../blog_admin/types';
@@ -9,6 +8,7 @@ import { API_BASE_URL } from '../../utils/helpers';
 import toast from 'react-hot-toast';
 import { FiLoader } from 'react-icons/fi';
 import { uploadImageToAWS } from '../../utils/aws';
+import { HiOutlineUserCircle } from 'react-icons/hi2';
 
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -191,7 +191,7 @@ function UserForm({
               style={isUploadingImage ? { opacity: 0.3 } : {}}
             />
           ) : (
-            <HiOutlinePhoto />
+            <HiOutlineUserCircle />
           )}
           <span>Click to update image</span>
           <input

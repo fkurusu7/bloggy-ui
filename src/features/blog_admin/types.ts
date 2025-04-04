@@ -11,7 +11,7 @@ export interface PostData {
 export interface UserData {
   fullname: string;
   email: string;
-  profileImg: string;
+  profileImg?: string;
   posts: number;
 }
 

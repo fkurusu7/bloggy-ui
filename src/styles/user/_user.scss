@@ -27,6 +27,12 @@
     width: auto;
   }
 
+  & svg {
+    height: 15rem;
+    width: 15rem;
+    color: var(--color-brand-600);
+  }
+
   &__email {
     color: var(--color-blue-700);
     font-size: 1.8rem;
@@ -71,13 +77,14 @@
 
   // IMAGE
 
-  &-img {
-    cursor: pointer;
+  &-imglabel {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
     padding: 1rem;
     outline: 2px dashed var(--color-grey-200);
     transition: all 0.3s ease-out;
@@ -85,6 +92,15 @@
     &:hover,
     &:focus {
       outline-color: var(--color-brand-500);
+    }
+
+    & > img {
+      display: inline-block;
+      border-radius: var(--border-radius-md);
+      height: 17rem;
+      margin-bottom: 1rem;
+      filter: grayscale(70%);
+      width: auto;
     }
 
     & > svg {
@@ -98,6 +114,7 @@
     }
   }
 
+  // Labels with inputs siblings
   &-label {
     color: var(--color-brand-600);
     font-weight: 400;

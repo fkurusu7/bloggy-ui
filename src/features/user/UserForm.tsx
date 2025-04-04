@@ -172,20 +172,18 @@ function UserForm({
     }
   };
 
+  console.log(userData);
+
   return (
     <form className="user__form" onSubmit={handleSubmit}>
       <div className="user__form-box">
-        <label htmlFor="profileImg" className="user__form-img">
+        <label htmlFor="profileImg" className="user__form-imglabel">
           {isUploadingImage ? (
             <div className="user__form-img-loading">
               <FiLoader className="spin" />
             </div>
           ) : userData.profileImg ? (
-            <img
-              src={userData.profileImg}
-              alt="User profile image"
-              style={isUploadingImage ? { opacity: 0.3 } : {}}
-            />
+            <img src={userData.profileImg} alt="User profile image" />
           ) : userFormData.profileImg ? (
             <img
               src={userFormData.profileImg}

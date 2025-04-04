@@ -6,6 +6,7 @@ import UserForm from './UserForm';
 import { UserData } from '../blog_admin/types';
 import toast from 'react-hot-toast';
 import { API_BASE_URL, logger } from '../../utils/helpers';
+import { HiOutlineUserCircle } from 'react-icons/hi2';
 
 function BlogUserAdmin() {
   const { isOpenModal, closeModal, toggleModal } = useModal();
@@ -18,6 +19,7 @@ function BlogUserAdmin() {
   */
   const [user, setUser] = useState<UserData | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
+  const [noImg, setNoImg] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,6 +44,9 @@ function BlogUserAdmin() {
           posts: jsonRes.data.posts,
         };
         // console.log(transformedUser);
+        if (!transformedUser.profileImg) {
+          setNoImg(true);
+        }
         setUser(transformedUser);
       } catch (error) {
         toast.error(`Error fetching user, please refresh page. ${error}`);
@@ -54,13 +59,33 @@ function BlogUserAdmin() {
     fetchUser();
   }, []);
 
+  const handleImageError = () => {
+    setNoImg(true);
+    // Update the user state to set profileImg to null
+    if (user) {
+      setUser({
+        ...user,
+        profileImg: '',
+      });
+    }
+  };
+
   return (
     <>
       <div className="user-admin__container">
         <div className="user-admin">
           {isLoading}
           <h2 className="user-admin__title">{user?.fullname}</h2>
-          <img className="user-admin__img" src={user?.profileImg} alt="Me, Fer CuVa" />
+          {noImg ? (
+            <HiOutlineUserCircle />
+          ) : (
+            <img
+              className="user-admin__img"
+              src={user?.profileImg}
+              alt="Profile Image"
+              onError={handleImageError}
+            />
+          )}
           <p className="user-admin__email">{user?.email}</p>
           <p className="user-admin__posts">
             <span>Total posts:</span> <span className="user-admin__total">{user?.posts}</span>

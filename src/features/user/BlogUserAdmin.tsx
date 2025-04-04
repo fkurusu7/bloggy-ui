@@ -33,7 +33,7 @@ function BlogUserAdmin() {
         }
 
         const jsonRes = await response.json();
-        console.log(jsonRes);
+        // console.log(jsonRes);
 
         const transformedUser: UserData = {
           fullname: jsonRes.data.fullname,
@@ -41,7 +41,7 @@ function BlogUserAdmin() {
           profileImg: jsonRes.data.profileImg,
           posts: jsonRes.data.posts,
         };
-        console.log(transformedUser);
+        // console.log(transformedUser);
         setUser(transformedUser);
       } catch (error) {
         toast.error(`Error fetching user, please refresh page. ${error}`);

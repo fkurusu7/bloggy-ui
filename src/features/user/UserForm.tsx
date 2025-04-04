@@ -100,15 +100,12 @@ function UserForm({
 
   const handleImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     try {
-      console.log(userData);
       setIsUploadingImage(true);
       if (ev.target.files && ev.target.files.length > 0) {
         const img = ev.target.files[0];
         imageSchema.parse({ image: img });
-        console.log(img);
 
         const imageUploadedURL = await uploadImageToAWS(img);
-        console.log(imageUploadedURL);
 
         setUserFormData((prevData) => ({
           ...prevData,
@@ -127,7 +124,6 @@ function UserForm({
       setIsUploadingImage(false);
     }
   };
-  console.log(userFormData);
 
   const getFieldError = (fieldname: string): string | undefined => {
     return errors.find((error) => error.field === fieldname)?.message;
@@ -136,15 +132,11 @@ function UserForm({
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
-    console.log(userData);
-    console.log(userFormData);
     try {
       const updatedFields = getChangedFields(userData, userFormData);
-      console.log(updatedFields);
 
       const dataToUpdate = userUpdateSchema.parse(updatedFields);
 
-      console.log('Valid fields', dataToUpdate);
       /*{ 
           "fullname": "fernando cruz barudesu",
           "email": "coding.fcv@gmail.com.mx"
@@ -158,30 +150,27 @@ function UserForm({
         body: JSON.stringify(dataToUpdate),
       });
       if (!response.ok) {
-        console.log('ERROR: Response not ok', response.ok);
+        toast.error('Image upload failed, please try again in a moment');
+        return;
       }
 
       const jsonres = await response.json();
-      console.log(jsonres);
+
       toast.success('User updated successfully');
       onClose();
       onUpdate?.(jsonres.data);
     } catch (error) {
-      console.log('ERROR', error);
-      console.log(errors);
       if (error instanceof z.ZodError) {
         const formErrors = error.errors.map((e) => ({
           field: e.path.join('.'),
           message: e.message,
         }));
 
-        console.log(formErrors, typeof formErrors);
         setErrors(formErrors);
         // TODO: focus on error
       }
     }
   };
-  console.log('IMAGEEEE: ', userFormData.profileImg);
 
   return (
     <form className="user__form" onSubmit={handleSubmit}>

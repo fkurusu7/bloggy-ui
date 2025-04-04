@@ -32,6 +32,6 @@ export const uploadImageToAWS = async (image: File) => {
   }
 
   // return the public URL
-  console.log(`AWS url:  ${urlUploadImage}`);
+  // console.log(`AWS url:  ${urlUploadImage}`);
   return urlUploadImage.split('?')[0];
 };

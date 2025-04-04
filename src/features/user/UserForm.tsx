@@ -100,15 +100,21 @@ function UserForm({
 
   const handleImgUpload = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     try {
+      console.log(userData);
       setIsUploadingImage(true);
       if (ev.target.files && ev.target.files.length > 0) {
         const img = ev.target.files[0];
         imageSchema.parse({ image: img });
+        console.log(img);
+
         const imageUploadedURL = await uploadImageToAWS(img);
+        console.log(imageUploadedURL);
+
         setUserFormData((prevData) => ({
           ...prevData,
           profileImg: imageUploadedURL,
         }));
+        userData.profileImg = '';
         toast.success('Image uploaded successfully');
       }
     } catch (error) {
@@ -121,6 +127,7 @@ function UserForm({
       setIsUploadingImage(false);
     }
   };
+  console.log(userFormData);
 
   const getFieldError = (fieldname: string): string | undefined => {
     return errors.find((error) => error.field === fieldname)?.message;
@@ -129,6 +136,7 @@ function UserForm({
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
+    console.log(userData);
     console.log(userFormData);
     try {
       const updatedFields = getChangedFields(userData, userFormData);
@@ -173,8 +181,7 @@ function UserForm({
       }
     }
   };
-
-  console.log(userData);
+  console.log('IMAGEEEE: ', userFormData.profileImg);
 
   return (
     <form className="user__form" onSubmit={handleSubmit}>
@@ -188,6 +195,12 @@ function UserForm({
             <img
               src={userData.profileImg}
               alt="User profile image"
+              style={isUploadingImage ? { opacity: 0.3 } : {}}
+            />
+          ) : userFormData.profileImg ? (
+            <img
+              src={userFormData.profileImg}
+              alt="User profile image updated"
               style={isUploadingImage ? { opacity: 0.3 } : {}}
             />
           ) : (

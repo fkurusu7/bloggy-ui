@@ -18,7 +18,7 @@ export interface UserData {
 export interface UserUpdateData {
   fullname: string;
   email: string;
-  profileImg: string;
+  profileImg?: string;
   password: string;
   password_conf: string;
 }

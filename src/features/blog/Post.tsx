@@ -13,7 +13,7 @@ function Post() {
 
   const calculateReadingTime = (content: string) => {
     const words = content.trim().split(/\s+/).length;
-    const minutes = Math.ceil(words / 150);
+    const minutes = Math.ceil(words / 75);
     return `${minutes} min read`;
   };
 

@@ -114,6 +114,7 @@
       font-weight: 400;
       letter-spacing: 0.1rem;
       margin-bottom: 2rem;
+      margin-top: 2rem;
       // margin-left: 3rem;
     }
     & h2 {
@@ -138,6 +139,7 @@
     & ol {
       color: var(--color-blue-700);
       margin-left: 2rem;
+      margin-bottom: 2rem;
     }
     & ul {
       list-style: disc;
@@ -157,8 +159,8 @@
     }
 
     & hr {
-      color: var(--color-grey-300);
-      margin: 0.5rem;
+      color: var(--color-grey-50);
+      margin: 2rem 0;
     }
 
     & blockquote {
@@ -198,7 +200,7 @@
     & pre[class*='language-'] {
       background-color: #1c1917;
       border-radius: var(--border-radius-md);
-      margin: 0 auto;
+      margin: 1rem auto 1rem;
       padding: 2rem;
 
       // ✅ Scrolling logic
